@@ -1,0 +1,7 @@
+body{
+    background-color: #fff6ef;
+}
+.error-message {color: #dd4b39;}
+.success-message{ background-color: #dff0d8; display: block; padding: 10px;position: relative;}
+.imageview {border: 1px solid #cccccc;width: 25%;display: inline-block;padding: 3px; margin-top: 10px;}
+.imageview img{width: 100%}
