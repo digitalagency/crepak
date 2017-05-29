@@ -3,5 +3,5 @@
 digitalauth
 
 login: administration / admin@admin.com
-password : 12345678
 
+password : 12345678
