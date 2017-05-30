@@ -73,16 +73,27 @@
            </li>
 -->
 
-           <li class="treeview ">
+          <!-- <li class="treeview ">
              <a href="#">
                <i class="fa fa-edit"></i> <span>Pages</span>
                <i class="fa fa-angle-left pull-right"></i>
              </a>
              <ul class="treeview-menu">
-               <li class="<?php if($this->uri->segment(2)=="addpage")echo "active"?>"><a href="<?php echo base_url('digitalauth/addpage')?>"><i class="fa fa-circle-o"></i> Add Page</a></li>
-               <li class="<?php if($this->uri->segment(2)=="listpages")echo "active"?>"><a href="<?php echo base_url('digitalauth/listpages')?>"><i class="fa fa-circle-o"></i> List Pages</a></li>
+               <li class="<?php /*if($this->uri->segment(2)=="addpage")echo "active"*/?>"><a href="<?php /*echo base_url('digitalauth/addpage')*/?>"><i class="fa fa-circle-o"></i> Add Page</a></li>
+               <li class="<?php /*if($this->uri->segment(2)=="listpages")echo "active"*/?>"><a href="<?php /*echo base_url('digitalauth/listpages')*/?>"><i class="fa fa-circle-o"></i> List Pages</a></li>
              </ul>
-           </li>
+           </li>-->
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addpage"||$this->uri->segment(3) == "listpages"||$this->uri->segment(3) == "editpage") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-edit"></i> <span>Pages</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addpage")echo "active"?>"><a href="<?php echo base_url('digitalauth/pages/addpage')?>"><i class="fa fa-circle-o"></i> Add Page</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listpages")echo "active"?>"><a href="<?php echo base_url('digitalauth/pages/listpages')?>"><i class="fa fa-circle-o"></i> List Pages</a></li>
+                 </ul>
+             </li>
 
 
 

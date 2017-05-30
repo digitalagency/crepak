@@ -100,9 +100,9 @@ $db['default'] = array(
 else
 {
 	$db['default']=array(
-	'username'=>'root',
-	'password' => '',
-	'database' => 'database',
+	'username'=>'dactechn_crepak',
+	'password' => '62ox0B4tij0tfj5Z',
+	'database' => 'dactechn_crepak',
 	'hostname'=>'localhost',
 	'dsn'	=> '',
 	'dbdriver' => 'mysqli',
@@ -122,7 +122,7 @@ else
 	);
 
 }
-$mysqllocation = FCPATH.'cihmvc.sql';
+//$mysqllocation = FCPATH.'cihmvc.sql';
 mysqli_connect(
     $db['default']['hostname'],
     $db['default']['username'],

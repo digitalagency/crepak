@@ -32,7 +32,7 @@ elseif($_SERVER['HTTP_HOST']=="crepak.dev"){
 }
 
 else{
-    //$config['base_url'] = 'http://brittsorganic.com.au/brittsorganic/';
+    $config['base_url'] = 'http://dac.technocreates.net/crepak';
 }
 
 /*
