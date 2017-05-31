@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf27b1b8-fca0-4136-be7a-bceb2181cc97" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Birthday\42548^356322A5F42F86E588AF8BB309D6A85524F665C1B35FE26E6D^pimgpsh_fullsize_distr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Birthday\65988nagrikta.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Ghum gham\29712nagrikta.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Ghum gham\68863^356322A5F42F86E588AF8BB309D6A85524F665C1B35FE26E6D^pimgpsh_fullsize_distr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Ghum gham\91459binaya.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\Ghum gham\9842012140763_10154083313630139_5903934300415689011_n.jpg" afterPath="" />
+      <change type="DELETED" beforePath="D:\xampp\htdocs\crepak.dev\uploads\articles\24029binaya.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\xampp\htdocs\crepak.dev\application\modules\digitalauth\models\MyPages.php" afterPath="$PROJECT_DIR$/application/modules/digitalauth/models/Mypages.php" />
     </list>
     <ignored path="cicms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,155 +37,7 @@
     <favorites_list name="cicms" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Digitalauth.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Digitalauth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-              <folding>
-                <element signature="n#index#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#main#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#addmenu#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#listmenus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#editmenu#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#deletemenu#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#checkmenu#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#toggleMenuStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#addarticle#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#editarticle#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#listarticles#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#deletearticle#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#checkartilce#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#toggleArticleStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#addgallery#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#listgallaries#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#deletegallery#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#editgallery#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#toggleGalleryStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#checkgallery#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#listphoto#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#addphotos#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#togglePhotoStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#deletephotos#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#addpage#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="e#26566#30158#0#PHP" expanded="false" />
-                <element signature="e#27534#28346#0#PHP" expanded="false" />
-                <element signature="e#28360#29184#0#PHP" expanded="false" />
-                <element signature="n#listpages#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#checkpage#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#deletepage#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="e#31124#31345#0#PHP" expanded="false" />
-                <element signature="e#31439#31678#0#PHP" expanded="false" />
-                <element signature="n#togglePageStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#editpage#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="e#32492#38216#0#PHP" expanded="false" />
-                <element signature="e#33729#34596#0#PHP" expanded="false" />
-                <element signature="n#login#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#logout#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#editprofile#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#forgotpassword#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#reset_password#0;n#Digitalauth#0;n#!!top" expanded="false" />
-                <element signature="n#register#0;n#Digitalauth#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pages.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="29" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="29" />
-              <folding>
-                <element signature="e#826#4289#0#PHP" expanded="false" />
-                <element signature="n#editpage#0;n#Pages#0;n#!!top" expanded="false" />
-                <element signature="e#5917#6033#0#PHP" expanded="false" />
-                <element signature="e#6050#6184#0#PHP" expanded="false" />
-                <element signature="e#6202#7069#0#PHP" expanded="false" />
-                <element signature="e#7086#7965#0#PHP" expanded="false" />
-                <element signature="e#7983#10413#0#PHP" expanded="false" />
-                <element signature="e#8597#9204#0#PHP" expanded="false" />
-                <element signature="e#9221#9877#0#PHP" expanded="false" />
-                <element signature="e#9894#10413#0#PHP" expanded="false" />
-                <element signature="n#deletepage#0;n#Pages#0;n#!!top" expanded="false" />
-                <element signature="n#checkpage#0;n#Pages#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="25" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="98" column="167" selection-start-line="98" selection-start-column="167" selection-end-line="98" selection-end-column="167" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addcategory.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4965278">
-              <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addpage.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/addpage.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="161" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editcategory.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listcategory.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -220,23 +79,23 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/models/Pages.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/editpage.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/pages/editpage.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/models/MyPages.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/pages/addpage.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php" />
         <option value="$PROJECT_DIR$/application/config/database.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/models/Mypages.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Categories.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Digitalauth.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/includes/header.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php" />
-        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php" />
         <option value="$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php" />
+        <option value="$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php" />
       </list>
     </option>
   </component>
@@ -367,170 +226,6 @@
               <option name="myItemId" value="digitalauth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="digitalauth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="digitalauth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="digitalauth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="category" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="digitalauth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="digitalauth" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cicms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crepak.dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -590,9 +285,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15812592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15812592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -646,13 +341,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/language/english/auth_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4666667">
-          <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/admin----/controllers/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8738574">
@@ -875,13 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/editpage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="47" selection-start-line="198" selection-start-column="47" selection-end-line="198" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1773309">
@@ -903,20 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.935484">
-          <caret line="116" column="57" selection-start-line="116" selection-start-column="57" selection-end-line="116" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21746293">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -931,24 +598,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php">
+    <entry file="file://$PROJECT_DIR$/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4193548">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.21746293">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/models/Mypages.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.038194444">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.083333336">
+          <caret line="98" column="167" selection-start-line="98" selection-start-column="167" selection-end-line="98" selection-end-column="167" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/addpage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0">
+          <caret line="155" column="27" selection-start-line="155" selection-start-column="27" selection-end-line="155" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Digitalauth.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state vertical-scroll-proportion="-4.225806">
+          <caret line="362" column="100" selection-start-line="361" selection-start-column="8" selection-end-line="362" selection-end-column="100" />
           <folding>
             <element signature="n#index#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#main#0;n#Digitalauth#0;n#!!top" expanded="false" />
@@ -962,7 +655,6 @@
             <element signature="n#editarticle#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#listarticles#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#deletearticle#0;n#Digitalauth#0;n#!!top" expanded="false" />
-            <element signature="n#checkartilce#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#toggleArticleStatus#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#addgallery#0;n#Digitalauth#0;n#!!top" expanded="false" />
             <element signature="n#listgallaries#0;n#Digitalauth#0;n#!!top" expanded="false" />
@@ -997,80 +689,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/header.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/editpage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5729167">
+          <caret line="212" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Pages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="29" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="29" />
+        <state vertical-scroll-proportion="-12.16129">
+          <caret line="291" column="5" selection-start-line="271" selection-start-column="4" selection-end-line="291" selection-end-column="5" />
           <folding>
-            <element signature="e#826#4289#0#PHP" expanded="false" />
+            <element signature="n#addpage#0;n#Pages#0;n#!!top" expanded="false" />
+            <element signature="e#1686#1808#0#PHP" expanded="false" />
+            <element signature="e#1822#2640#0#PHP" expanded="false" />
+            <element signature="e#2654#3484#0#PHP" expanded="false" />
+            <element signature="e#3510#4092#0#PHP" expanded="false" />
+            <element signature="n#listpages#0;n#Pages#0;n#!!top" expanded="false" />
             <element signature="n#editpage#0;n#Pages#0;n#!!top" expanded="false" />
-            <element signature="e#5917#6033#0#PHP" expanded="false" />
-            <element signature="e#6050#6184#0#PHP" expanded="false" />
-            <element signature="e#6202#7069#0#PHP" expanded="false" />
-            <element signature="e#7086#7965#0#PHP" expanded="false" />
-            <element signature="e#7983#10413#0#PHP" expanded="false" />
-            <element signature="e#8597#9204#0#PHP" expanded="false" />
-            <element signature="e#9221#9877#0#PHP" expanded="false" />
-            <element signature="e#9894#10413#0#PHP" expanded="false" />
+            <element signature="e#4993#10836#0#PHP" expanded="false" />
+            <element signature="e#5945#6061#0#PHP" expanded="false" />
+            <element signature="e#6078#6212#0#PHP" expanded="false" />
+            <element signature="e#6230#7097#0#PHP" expanded="false" />
+            <element signature="e#7114#7993#0#PHP" expanded="false" />
+            <element signature="e#8011#10441#0#PHP" expanded="false" />
+            <element signature="e#8625#9232#0#PHP" expanded="false" />
+            <element signature="e#9249#9905#0#PHP" expanded="false" />
+            <element signature="e#9922#10441#0#PHP" expanded="false" />
             <element signature="n#deletepage#0;n#Pages#0;n#!!top" expanded="false" />
             <element signature="n#checkpage#0;n#Pages#0;n#!!top" expanded="false" />
+            <element signature="n#togglePageStatus#0;n#Pages#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/listpage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="25" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/includes/sidebar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="167" selection-start-line="98" selection-start-column="167" selection-end-line="98" selection-end-column="167" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+        <state vertical-scroll-proportion="-15.67742">
+          <caret line="87" column="159" selection-start-line="87" selection-start-column="159" selection-end-line="87" selection-end-column="159" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/listcategory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.6837294">
+          <caret line="90" column="46" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+          <folding>
+            <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/editcategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5034722">
+          <caret line="183" column="28" selection-start-line="183" selection-start-column="28" selection-end-line="183" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/pages/addpage.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/controllers/Category.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="161" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.38194445">
+          <caret line="281" column="76" selection-start-line="281" selection-start-column="76" selection-end-line="281" selection-end-column="76" />
+          <folding>
+            <element signature="n#addcategory#0;n#Category#0;n#!!top" expanded="false" />
+            <element signature="e#1838#2656#0#PHP" expanded="false" />
+            <element signature="e#2670#3500#0#PHP" expanded="false" />
+            <element signature="n#listcategories#0;n#Category#0;n#!!top" expanded="false" />
+            <element signature="n#editcategory#0;n#Category#0;n#!!top" expanded="false" />
+            <element signature="e#6013#6129#0#PHP" expanded="false" />
+            <element signature="e#6146#6280#0#PHP" expanded="false" />
+            <element signature="e#6298#7165#0#PHP" expanded="false" />
+            <element signature="e#7182#8061#0#PHP" expanded="false" />
+            <element signature="e#8079#10509#0#PHP" expanded="false" />
+            <element signature="e#8693#9300#0#PHP" expanded="false" />
+            <element signature="e#9317#9973#0#PHP" expanded="false" />
+            <element signature="e#9990#10509#0#PHP" expanded="false" />
+            <element signature="n#checkcategory#0;n#Category#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/views/category/addcategory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4965278">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.3888889">
+          <caret line="141" column="73" selection-start-line="141" selection-start-column="50" selection-end-line="141" selection-end-column="73" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/models/Mycategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53281856">
+          <caret line="74" column="34" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+          <folding>
+            <element signature="n#add#0;n#Mycategory#0;n#!!top" expanded="false" />
+            <element signature="n#edit#0;n#Mycategory#0;n#!!top" expanded="false" />
+            <element signature="n#getAllCategories#0;n#Mycategory#0;n#!!top" expanded="false" />
+            <element signature="n#getCategoryByValue#0;n#Mycategory#0;n#!!top" expanded="false" />
+            <element signature="n#getCount#0;n#Mycategory#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/digitalauth/models/Mypages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6180556">
+          <caret line="80" column="5" selection-start-line="70" selection-start-column="4" selection-end-line="80" selection-end-column="5" />
+          <folding>
+            <element signature="n#add#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#edit#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#getAllPages#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#getPageByValue#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#getValue#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#Mypages#0;n#!!top" expanded="false" />
+            <element signature="n#getCount#0;n#Mypages#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -19,7 +19,7 @@
                 <div class='box-header'>
                     <h3 class='box-title'>List of Pages</h3>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/pages/addpage')?>">Add Article </a>
+                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/pages/addpage')?>">Add Page </a>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -84,8 +84,8 @@
 
                                 </td>
                                 <td>
-                                    <a href="<?php echo base_url('digitalauth/pages/editpage/'.$article->id); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="<?php echo base_url('digitalauth/pages/deletepage/'.$article->id); ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <a href="<?php echo base_url('digitalauth/pages/editpage/'.$article->id); ?>" title="Edit <?php echo $article->title;?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="<?php echo base_url('digitalauth/pages/deletepage/'.$article->id); ?>" title="Delete <?php echo $article->title;?>"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
                         <?php }

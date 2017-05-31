@@ -137,11 +137,13 @@
 <script>
     function titletoslug() {
         var title = document.getElementById("artilcetitle").value;
+       // alert(title);
         $.ajax({
             url:"<?php echo base_url('digitalauth/category/checkcategory/')?>",
             data: {title: title},
             type: 'POST',
             success: function(data){
+
                 if(data == 1){
 
                     bootbox.confirm("<h4>Category's title Already Exist</h4>", function(result) {

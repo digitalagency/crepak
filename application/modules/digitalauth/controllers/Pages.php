@@ -34,6 +34,7 @@ class Pages extends Digitalauth
 
         if ($this->form_validation->run() == TRUE) {
             $image = '';
+            $image_cn = '';
             $title = $this->input->post('title');
             $title_cn = $this->input->post('title_cn');
             $slug = $this->input->post('slug');
