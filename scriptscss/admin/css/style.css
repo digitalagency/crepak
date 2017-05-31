@@ -5,3 +5,14 @@ body{
 .success-message{ background-color: #dff0d8; display: block; padding: 10px;position: relative;}
 .imageview {border: 1px solid #cccccc;width: 25%;display: inline-block;padding: 3px; margin-top: 10px;}
 .imageview img{width: 100%}
+
+.login-footer{
+    background: #fff none repeat scroll 0 0;
+    border-top: 1px solid #d2d6de;
+    color: #444;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
