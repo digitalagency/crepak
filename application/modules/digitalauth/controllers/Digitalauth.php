@@ -23,9 +23,13 @@ class Digitalauth extends MX_Controller {
         // }
         else{
             $this->data['menucount'] = $this->mymodel->getcount('*','tbl_menu');
-            $this->data['gallerycount'] = $this->mymodel->getcount('*','tbl_gallery');
+            /*$this->data['gallerycount'] = $this->mymodel->getcount('*','tbl_gallery');
             $this->data['imagecount'] = $this->mymodel->getcount('*','tbl_gallery_image');
-            $this->data['articlecount'] = $this->mymodel->getcount('*','tbl_article');
+            $this->data['articlecount'] = $this->mymodel->getcount('*','tbl_article');*/
+            $this->data['pagecount'] = $this->mymodel->getcount('*','tbl_post','post_type = "pages"');
+            $this->data['categorycount'] = $this->mymodel->getcount('*','tbl_post','post_type = "category"');
+            $this->data['productcount'] = $this->mymodel->getcount('*','tbl_post','post_type = "product"');
+
           $this->_render_page('welcome_admin');
         }
         $this->load->view('includes/adminscript');

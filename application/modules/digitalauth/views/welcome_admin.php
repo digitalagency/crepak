@@ -23,35 +23,39 @@ Dashboard
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="<?php echo base_url('admin/listmenus')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div><!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3><?php echo $gallerycount;?><sup style="font-size: 20px">/<?php echo $imagecount;?></sup></h3>
-                    <p>Gallery/Images</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-camera"></i>
-                </div>
-                <a href="<?php echo base_url('admin/listgallaries')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo base_url('digitalauth/listmenus')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3><?php echo $articlecount;?></h3>
-                    <p>Articles</p>
+                    <h3><?php echo $pagecount;?></h3>
+                    <p>Pages</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-edit"></i>
                 </div>
-                <a href="<?php echo base_url('admin/listarticles')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo base_url('digitalauth/pages/listpages')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div><!-- ./col -->
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3><?php echo $categorycount;?><sup style="font-size: 20px">/<?php echo $productcount;?></sup></h3>
+                    <p>Category/Products</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-camera"></i>
+                </div>
+                <a href="<?php echo base_url('digitalauth/category/listcategories')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div><!-- ./col -->
+
+
+
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-red">

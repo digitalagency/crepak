@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of an Article" onchange="titletoslug()">
+                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Page" onchange="titletoslug()">
                                     <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>

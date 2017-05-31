@@ -58,7 +58,7 @@ foreach ($pageValues as $value) {
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
                                     <input type="text" class="form-control" id="artilcetitle" name="title"
-                                           placeholder="Title of an Article" onchange="titletoslug()"
+                                           placeholder="Title of the Page" onchange="titletoslug()"
                                            value="<?php echo $title; ?>">
                                     <?php echo form_error('title', '<span class="error-message">', '</span>'); ?>
                                 </div>
@@ -67,7 +67,7 @@ foreach ($pageValues as $value) {
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" name="slug"
-                                           placeholder="Slug of an Article" value="<?php echo $slug; ?>">
+                                           placeholder="Slug of the Page" value="<?php echo $slug; ?>">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -107,6 +107,17 @@
                  </ul>
              </li>
 
+             <li class="treeview <?php if ($this->uri->segment(3) == "addproduct"||$this->uri->segment(3) == "listproducts"||$this->uri->segment(3) == "editproduct") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-edit"></i> <span>Products</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addproduct")echo "active"?>"><a href="<?php echo base_url('digitalauth/product/addproduct')?>"><i class="fa fa-circle-o"></i> Add Product</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listproducts")echo "active"?>"><a href="<?php echo base_url('digitalauth/product/listproducts')?>"><i class="fa fa-circle-o"></i> List Products</a></li>
+                 </ul>
+             </li>
+
 
 
          </ul>

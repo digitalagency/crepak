@@ -7,7 +7,7 @@
  * Time: 4:54 PM
  */
 include_once (dirname(__FILE__) . "/Digitalauth.php");
-class Category extends Digitalauth
+class Product extends Digitalauth
 {
     public $data;
 
@@ -26,7 +26,7 @@ class Category extends Digitalauth
 
     }
 
-    function addcategory(){
+    function addproduct(){
         if(!$this->ion_auth->logged_in() ){
             redirect('digitalauth/login', 'refresh');
         }
@@ -46,7 +46,7 @@ class Category extends Digitalauth
             $status = $this->input->post('status');
 
 
-            $folder_file = 'categories';
+            $folder_file = 'products';
             $target = 'uploads';
             $path        =  './uploads/'.$folder_file.'/';
             $thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
@@ -65,7 +65,7 @@ class Category extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/category/addcategory/");
+                    redirect("digitalauth/product/addproduct/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -82,7 +82,7 @@ class Category extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/category/addcategory/");
+                    redirect("digitalauth/product/addproduct/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -112,30 +112,30 @@ class Category extends Digitalauth
 
             if($this->mycategory->add($article)){
                 $this->session->set_flashdata('success_message', 'Category added successfully.');
-                redirect("digitalauth/category/addcategory");
+                redirect("digitalauth/product/addproduct");
             }
 
 
         }
 
 
-        $this->_render_page('category/addcategory',$this->data);
+        $this->_render_page('product/addproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
     }
 
-    function listcategories(){
+    function listproducts(){
         if(!$this->ion_auth->logged_in() ){
             redirect('digitalauth/login', 'refresh');
         }
 
         $this->data['articles'] = $this->mycategory->getAllCategories();
-        $this->_render_page('category/listcategory',$this->data);
+        $this->_render_page('product/listproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
     }
 
-    function editcategory($id=''){
+    function editproduct($id=''){
         if(!$this->ion_auth->logged_in() ){
             redirect('digitalauth/login', 'refresh');
         }
@@ -154,7 +154,7 @@ class Category extends Digitalauth
                 $excrept_cn = $this->input->post('excrept_cn');
                 $status = $this->input->post('status');
 
-                $folder_file = 'categories';
+                $folder_file = 'products';
                 $target = 'uploads';
                 $path        =  './uploads/'.$folder_file.'/';
                 $thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
@@ -173,7 +173,7 @@ class Category extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/category/editcategry/".$id);
+                        redirect("digitalauth/product/editproduct/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -187,7 +187,7 @@ class Category extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/category/editcategory/".$id);
+                        redirect("digitalauth/product/editproduct/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -258,31 +258,31 @@ class Category extends Digitalauth
                 die();*/
                 if($this->mycategory->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Category edited successfully.');
-                    redirect("digitalauth/category/editcategory/".$id);
+                    redirect("digitalauth/product/editproduct/".$id);
                 }
             }
         }
 
 
         $this->data['categoryValues'] = $this->mycategory->getCategoryByValue('*','id ='.$id);
-        $this->_render_page('category/editcategory',$this->data);
+        $this->_render_page('product/editproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
     }
 
-    function deletecategory($id){
+    function deleteproduct($id){
 
         $image = $this->mycategory->getValue('featured_img','id',$id);
         if(!empty($image)){
-            $imagepath = './uploads/categories/'.$image;
-            $imagepath_thumb = './uploads/categories/thumbnail/'.$image;
+            $imagepath = './uploads/products/'.$image;
+            $imagepath_thumb = './uploads/products/thumbnail/'.$image;
             @unlink($imagepath);
             @unlink($imagepath_thumb);
         }
         $image_cn = $this->mycategory->getValue('featured_img_cn','id',$id);
         if(!empty($image)){
-            $imagepath_cn = './uploads/categories/'.$image_cn;
-            $imagepath_cn_thumb = './uploads/categories/thumbnail/'.$image_cn;
+            $imagepath_cn = './uploads/products/'.$image_cn;
+            $imagepath_cn_thumb = './uploads/products/thumbnail/'.$image_cn;
             @unlink($imagepath_cn);
             @unlink($imagepath_cn_thumb);
         }
@@ -292,7 +292,7 @@ class Category extends Digitalauth
         }
     }
 
-    function checkcategory(){
+    function checkproduct(){
          $title = $_POST['title'];
         $count = $this->mycategory->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "category"');
         if($count>0){
@@ -307,8 +307,8 @@ class Category extends Digitalauth
 
     }
 
-    function toggleCategoryStatus($id, $stat){
-        $reurl = 'digitalauth/category/listcategories';
+    function toggleproductStatus($id, $stat){
+        $reurl = 'digitalauth/product/listproducts';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"
