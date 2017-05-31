@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Binaya
- * Date: 5/30/2017
- * Time: 11:08 AM
- */
-
 
 class Mypages extends CI_Model
 {

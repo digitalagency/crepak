@@ -96,6 +96,17 @@
              </li>
 
 
+             <li class="treeview <?php if ($this->uri->segment(3) == "addcategory"||$this->uri->segment(3) == "listcategories"||$this->uri->segment(3) == "editcategory") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-edit"></i> <span>Categories</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addcategory")echo "active"?>"><a href="<?php echo base_url('digitalauth/category/addcategory')?>"><i class="fa fa-circle-o"></i> Add Category</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listcategories")echo "active"?>"><a href="<?php echo base_url('digitalauth/category/listcategories')?>"><i class="fa fa-circle-o"></i> List Categories</a></li>
+                 </ul>
+             </li>
+
 
 
          </ul>
