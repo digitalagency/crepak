@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Category</li>
+        <li class="active">Add Product</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -16,8 +16,9 @@
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Add Category</h3>
-                </div><!-- /.box-header -->
+                    <h3 class='box-title'>Add Product</h3>
+                </div>
+                <!-- /.box-header -->
                 <div class='box-body pad'>
                     <?php if ($this->session->flashdata('success_message') != "") { ?>
                         <div class="alert alert-success alert-dismissible" role="alert">
@@ -25,36 +26,61 @@
                                     aria-hidden="true">&times;</span></button>
                             <?php echo $this->session->flashdata('success_message'); ?>
                         </div>
-                    <?php } ;?>
+                    <?php }; ?>
                     <?php if ($this->session->flashdata('error_message') != "") { ?>
                         <div class="alert alert-danger alert-dismissable" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                             <?php echo $this->session->flashdata('error_message'); ?>
                         </div>
-                    <?php } ;?>
+                    <?php }; ?>
 
-                    <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('digitalauth/category/addcategory');?>" enctype="multipart/form-data">
+                    <form role="form" method="post" class="form-horizontal"
+                          action="<?php echo base_url('digitalauth/product/addproduct'); ?>"
+                          enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Category" onchange="titletoslug()">
-                                    <?php echo form_error('title','<span class="error-message">','</span>');?>
+                                    <input type="text" class="form-control" id="artilcetitle" name="title"
+                                           placeholder="Title of the Product" onchange="titletoslug()">
+                                    <?php echo form_error('title', '<span class="error-message">', '</span>'); ?>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of the Category">
+                                    <input type="text" class="form-control" id="slug" name="slug"
+                                           placeholder="Slug of the Product">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
-                                    <label for="slug">Chinese Title  : </label>
-                                    <input type="text" class="form-control" id="title_cn" name="title_cn" placeholder="Chinese Title">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="slug">Chinese Title : </label>
+                                    <input type="text" class="form-control" id="title_cn" name="title_cn"
+                                           placeholder="Chinese Title">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="slug">Category : </label>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value="">Select the Category</option>
+                                        <?php
+                                        foreach ($allcategories as $category) {
+                                            ?>
+
+                                            <option
+                                                value="<?php echo $category->id ?>"><?php echo $category->title . ' / ' . $category->title_cn; ?></option>
+                                        <?php }
+                                        ?>
+                                    </select>
+
+
+                                </div>
+                            </div>
+
                             <div class="form-group">
 
                                 <div class="col-sm-12">
@@ -75,13 +101,13 @@
 
                             <div class="form-group">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Excrept:</label>
                             <textarea id="editor3" name="excrept" rows="10" cols="40">
                             </textarea>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Chinese Excrept:</label>
                             <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
                             </textarea>
@@ -90,11 +116,11 @@
 
 
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Images:</label>
                                     <input type="file" name="images" id="images">
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Chinese Images:</label>
                                     <input type="file" name="images_cn" id="images">
                                 </div>
@@ -103,9 +129,11 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="exampleInputFile">Status:</label>
+
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="status" id="publish" class="minimal" value="1" checked>
+                                            <input type="radio" name="status" id="publish" class="minimal" value="1"
+                                                   checked>
                                             Publish
                                         </label>
                                     </div>
@@ -120,44 +148,51 @@
 
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <input name="btnDo" id="addBtn" type="submit" value="Add" class="btn btn-primary" />
+                                    <input name="btnDo" id="addBtn" type="submit" value="Add" class="btn btn-primary"/>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
 
-            </div><!-- /.box -->
+            </div>
+            <!-- /.box -->
 
-        </div><!-- /.col-->
-    </div><!-- ./row -->
+        </div>
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
 </section><!-- /.content -->
 <script src="<?php echo base_url(); ?>scriptscss/admin/bootstraps/js/bootbox.min.js" type="text/javascript"></script>
 
 <script>
     function titletoslug() {
         var title = document.getElementById("artilcetitle").value;
-       // alert(title);
+        // alert(title);
         $.ajax({
-            url:"<?php echo base_url('digitalauth/category/checkcategory/')?>",
+            url: "<?php echo base_url('digitalauth/product/checkproduct/')?>",
             data: {title: title},
             type: 'POST',
-            success: function(data){
+            success: function (data) {
 
-                if(data == 1){
+                if (data == 1) {
 
-                    bootbox.confirm("<h4>Category's title Already Exist</h4>", function(result) {
-                        if(result){
+                    bootbox.confirm("<h4>Product's title Already Exist</h4>", function (result) {
+                        if (result) {
 
-                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
-                        }else{
-                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
+                            setTimeout(function () {
+                                $("#artilcetitle").focus();
+                            }, 1);
+                        } else {
+                            setTimeout(function () {
+                                $("#artilcetitle").focus();
+                            }, 1);
                         }
                     });
 //
                     document.getElementById("addBtn").disabled = true;
                 }
-                else{
+                else {
                     document.getElementById("addBtn").disabled = false;
                 }
             }

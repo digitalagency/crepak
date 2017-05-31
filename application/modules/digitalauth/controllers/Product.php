@@ -18,6 +18,7 @@ class Product extends Digitalauth
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
         $this->lang->load('auth');
         $this->load->model('mycategory');
+        $this->load->model('myproduct');
 
     }
 
@@ -44,6 +45,13 @@ class Product extends Digitalauth
             $excrept = $this->input->post('excrept');
             $excrept_cn = $this->input->post('excrept_cn');
             $status = $this->input->post('status');
+            if($this->input->post('category')!=''){
+                $post_parent = $this->input->post('category');
+            }
+            else{
+                $post_parent = '0';
+            }
+
 
 
             $folder_file = 'products';
@@ -106,19 +114,20 @@ class Product extends Digitalauth
                 'featured_img_cn'=> $image_cn,
                 'status'        =>  $status,
                 'post_date'     =>  date("Y-m-d  H:i:s"),
-                'post_type'     =>  'category'
+                'post_type'     =>  'product',
+                'post_parent'     =>  $post_parent
             );
 
 
-            if($this->mycategory->add($article)){
-                $this->session->set_flashdata('success_message', 'Category added successfully.');
+            if($this->myproduct->add($article)){
+                $this->session->set_flashdata('success_message', 'Product added successfully.');
                 redirect("digitalauth/product/addproduct");
             }
 
 
         }
 
-
+        $this->data['allcategories'] = $this->mycategory->getAllCategories();
         $this->_render_page('product/addproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -129,7 +138,7 @@ class Product extends Digitalauth
             redirect('digitalauth/login', 'refresh');
         }
 
-        $this->data['articles'] = $this->mycategory->getAllCategories();
+        $this->data['articles'] = $this->myproduct->getAllProducts();
         $this->_render_page('product/listproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -153,6 +162,12 @@ class Product extends Digitalauth
                 $excrept = $this->input->post('excrept');
                 $excrept_cn = $this->input->post('excrept_cn');
                 $status = $this->input->post('status');
+                if($this->input->post('category')!=''){
+                    $post_parent = $this->input->post('category');
+                }
+                else{
+                    $post_parent = '0';
+                }
 
                 $folder_file = 'products';
                 $target = 'uploads';
@@ -207,7 +222,8 @@ class Product extends Digitalauth
                         'excrept_cn' => $excrept_cn,
                         'featured_img' => $image,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
+                        'post_parent'     =>  $post_parent
                     );
                 }
                 elseif($image_cn!='' && $image ==''){
@@ -221,7 +237,8 @@ class Product extends Digitalauth
                         'excrept_cn' => $excrept_cn,
                         'featured_img_cn' => $image_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
+                        'post_parent'     =>  $post_parent
                     );
                 }
                 elseif($image!='' && $image_cn!=''){
@@ -236,7 +253,8 @@ class Product extends Digitalauth
                         'featured_img' => $image,
                         'featured_img_cn' => $image_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
+                        'post_parent'     =>  $post_parent
                     );
                 }
                 else{
@@ -249,22 +267,20 @@ class Product extends Digitalauth
                         'excrept' => $excrept,
                         'excrept_cn' => $excrept_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
+                        'post_parent'     =>  $post_parent
                     );
                 }
-                /*echo '<pre>';
-                    print_r($article);
-                echo '<pre>';
-                die();*/
-                if($this->mycategory->edit($article, 'id', $id)){
-                    $this->session->set_flashdata('success_message', 'Category edited successfully.');
+
+                if($this->myproduct->edit($article, 'id', $id)){
+                    $this->session->set_flashdata('success_message', 'Product edited successfully.');
                     redirect("digitalauth/product/editproduct/".$id);
                 }
             }
         }
 
-
-        $this->data['categoryValues'] = $this->mycategory->getCategoryByValue('*','id ='.$id);
+        $this->data['allcategories'] = $this->mycategory->getAllCategories();
+        $this->data['productValues'] = $this->myproduct->getProductByValue('*','id ='.$id);
         $this->_render_page('product/editproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -287,14 +303,14 @@ class Product extends Digitalauth
             @unlink($imagepath_cn_thumb);
         }
         if($this->mycategory->delete('id', $id)){
-            $this->session->set_flashdata('success_message', 'Category Deleted successfully.');
-            redirect("digitalauth/category/listcategories");
+            $this->session->set_flashdata('success_message', 'Product Deleted successfully.');
+            redirect("digitalauth/product/listproduct");
         }
     }
 
     function checkproduct(){
          $title = $_POST['title'];
-        $count = $this->mycategory->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "category"');
+        $count = $this->myproduct->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "product"');
         if($count>0){
             echo '1';
             die();
@@ -319,10 +335,12 @@ class Product extends Digitalauth
                 'status' => "1"
             );
         }
-        if($this->mycategory->edit( $additional_data, 'id', $id)){
+        if($this->myproduct->edit( $additional_data, 'id', $id)){
             redirect($reurl);
             die();
         }
     }
+
+
 
 }

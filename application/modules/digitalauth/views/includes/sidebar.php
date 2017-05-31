@@ -41,7 +41,7 @@
            </li>
            <li class="treeview <?php if ($this->uri->segment(2) == "addmenu"||$this->uri->segment(2) == "listmenus"||$this->uri->segment(2) == "editmenu") echo "active"; ?>">
              <a href="#">
-               <i class="fa fa-edit"></i> <span>Menu</span>
+               <i class="fa fa-files-o"></i> <span>Menu</span>
                <i class="fa fa-angle-left pull-right"></i>
              </a>
              <ul class="treeview-menu">
@@ -86,7 +86,7 @@
 
              <li class="treeview <?php if ($this->uri->segment(3) == "addpage"||$this->uri->segment(3) == "listpages"||$this->uri->segment(3) == "editpage") echo "active"; ?>">
                  <a href="#">
-                     <i class="fa fa-edit"></i> <span>Pages</span>
+                     <i class="fa fa-file"></i> <span>Pages</span>
                      <i class="fa fa-angle-left pull-right"></i>
                  </a>
                  <ul class="treeview-menu">
@@ -109,7 +109,7 @@
 
              <li class="treeview <?php if ($this->uri->segment(3) == "addproduct"||$this->uri->segment(3) == "listproducts"||$this->uri->segment(3) == "editproduct") echo "active"; ?>">
                  <a href="#">
-                     <i class="fa fa-edit"></i> <span>Products</span>
+                     <i class="fa fa-cart-plus"></i> <span>Products</span>
                      <i class="fa fa-angle-left pull-right"></i>
                  </a>
                  <ul class="treeview-menu">

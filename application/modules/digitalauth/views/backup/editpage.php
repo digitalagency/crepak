@@ -99,14 +99,14 @@ foreach ($pageValues as $value) {
 
                             <div class="form-group">
 
-                                <div class="col-sm-12 col-md-6 col-xs-12"">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Excrept:</label>
                             <textarea id="editor3" name="excrept" rows="10" cols="40">
                                 <?php echo $excrept; ?>
                             </textarea>
                                 </div>
 
-                                <div class="col-sm-12 col-md-6 col-xs-12"">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Chinese Excrept:</label>
                             <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
                                 <?php echo $excrept_cn; ?>

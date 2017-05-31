@@ -207,7 +207,7 @@ class Category extends Digitalauth
                         'excrept_cn' => $excrept_cn,
                         'featured_img' => $image,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
                     );
                 }
                 elseif($image_cn!='' && $image ==''){
@@ -221,7 +221,7 @@ class Category extends Digitalauth
                         'excrept_cn' => $excrept_cn,
                         'featured_img_cn' => $image_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
                     );
                 }
                 elseif($image!='' && $image_cn!=''){
@@ -236,7 +236,7 @@ class Category extends Digitalauth
                         'featured_img' => $image,
                         'featured_img_cn' => $image_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
                     );
                 }
                 else{
@@ -249,7 +249,7 @@ class Category extends Digitalauth
                         'excrept' => $excrept,
                         'excrept_cn' => $excrept_cn,
                         'status'  => $status,
-                        'post_update' => date("Y-m-d"),
+                        'post_update' => date("Y-m-d  H:i:s"),
                     );
                 }
                 /*echo '<pre>';

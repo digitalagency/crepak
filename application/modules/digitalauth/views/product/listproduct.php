@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">List of Pages</li>
+        <li class="active">List of Products</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -17,9 +17,9 @@
             <div class='box box-info'>
 
                 <div class='box-header'>
-                    <h3 class='box-title'>List of Categories</h3>
+                    <h3 class='box-title'>List of Productss</h3>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/category/addcategory')?>">Add Category </a>
+                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/product/addproduct')?>">Add Product </a>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -38,7 +38,7 @@
                             <th>Image</th>
                             <th>Chinese Image</th>
                             <th>Created Date</th>
-                            <th>No of Products</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -46,18 +46,14 @@
                         <tbody>
                         <?php
                         foreach($articles as $article){
-//                            echo '<pre>';
-//                            print_r($article);
-//                            echo '</pre>'
-
-                            ?>
+//                         ?>
                             <tr>
                                 <td><?php echo $article->title.' ('.$article->slug.')'?></td>
                                 <td><?php echo $article->title_cn;?></td>
                                 <td>
                                     <?php
                                     if($article->featured_img!=''){?>
-                                        <img src="<?php echo base_url().'uploads/categories/thumbnail/'.$article->featured_img?>" width="150" alt="">
+                                        <img src="<?php echo base_url().'uploads/products/thumbnail/'.$article->featured_img?>" width="150" alt="">
                                     <?php    }
                                     ?>
 
@@ -66,13 +62,19 @@
                                 <td>
                                     <?php
                                     if($article->featured_img_cn!=''){?>
-                                        <img src="<?php echo base_url().'uploads/categories/thumbnail/'.$article->featured_img_cn?>" width="150" alt="">
+                                        <img src="<?php echo base_url().'uploads/products/thumbnail/'.$article->featured_img_cn?>" width="150" alt="">
                                     <?php    }
                                     ?>
 
                                     <?php //echo $article['featured_img_cn']?></td>
                                 <td><?php echo $article->post_date?></td>
-                                <td>Count</td>
+                                <td><?php
+                                    if($article->post_parent!=0)
+                                    $categories = $this->myproduct->getProductCategory($article->post_parent);
+                                    else
+                                        echo 'N/A';
+
+                                    ?></td>
                                 <td>
                                     <a href="javascript:void(0)" onclick="toggleCategoryStatus(<?php echo $article->id; ?>,<?php echo $article->status; ?>)" >
                                         <?php
@@ -86,9 +88,9 @@
 
                                 </td>
                                 <td>
-                                    <a href="<?php echo base_url('digitalauth/category/editcategory/'.$article->id); ?>" title="Edit <?php echo $article->title;?>"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="<?php echo base_url('digitalauth/category/deletecategory/'.$article->id); ?>" title="Delete <?php echo $article->title;?>"><span class="glyphicon glyphicon-remove"></span></a>
-                                    <a href="#" title="Add products to <?php echo $article->title;?>"> <span class="glyphicon glyphicon-plus"></span> </a>
+                                    <a href="<?php echo base_url('digitalauth/product/editproduct/'.$article->id); ?>" title="Edit <?php echo $article->title;?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="<?php echo base_url('digitalauth/product/deleteproduct/'.$article->id); ?>" title="Delete <?php echo $article->title;?>"><span class="glyphicon glyphicon-remove"></span></a>
+
                                 </td>
                             </tr>
                         <?php }
@@ -101,7 +103,7 @@
                             <th>Image</th>
                             <th>Chinese Image</th>
                             <th>Created Date</th>
-                            <th>No of Products</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -118,7 +120,7 @@
 <script src="<?php echo base_url(); ?>scriptscss/admin/bootstraps/js/bootbox.min.js" type="text/javascript"></script>
 <script>
     function toggleCategoryStatus(id,stat){
-        url = '<?php echo base_url();?>digitalauth/category/toggleCategoryStatus/'+id+'/' + stat;
+        url = '<?php echo base_url();?>digitalauth/product/toggleproductStatus/'+id+'/' + stat;
         bootbox.confirm("<h4>Change Status</h4><hr><br><?php echo 'Confirm Status Change?'; ?>", function (result) {
             if (result) {
                 window.location.replace(url);

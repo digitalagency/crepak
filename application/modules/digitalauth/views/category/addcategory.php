@@ -37,20 +37,20 @@
                     <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('digitalauth/category/addcategory');?>" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
                                     <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Category" onchange="titletoslug()">
                                     <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of the Category">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Chinese Title  : </label>
                                     <input type="text" class="form-control" id="title_cn" name="title_cn" placeholder="Chinese Title">
                                 </div>
@@ -75,13 +75,13 @@
 
                             <div class="form-group">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Excrept:</label>
                             <textarea id="editor3" name="excrept" rows="10" cols="40">
                             </textarea>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label>Chinese Excrept:</label>
                             <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
                             </textarea>
@@ -90,11 +90,11 @@
 
 
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Images:</label>
                                     <input type="file" name="images" id="images">
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Chinese Images:</label>
                                     <input type="file" name="images_cn" id="images">
                                 </div>
