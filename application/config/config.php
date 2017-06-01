@@ -27,8 +27,8 @@ if($_SERVER['HTTP_HOST']=="localhost" || $_SERVER['HTTP_HOST']=="127.0.1.1" || $
 {
     $config['base_url']='http://'.$_SERVER['HTTP_HOST'].'/cicms/';
 }
-elseif($_SERVER['HTTP_HOST']=="crepak.dev"){
-    $config['base_url']= 'http://crepak.dev';
+elseif($_SERVER['HTTP_HOST']=="dacrepak.dev"){
+    $config['base_url']= 'http://dacrepak.dev';
 }
 
 else{
