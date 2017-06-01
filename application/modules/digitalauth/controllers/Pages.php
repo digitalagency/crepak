@@ -22,7 +22,7 @@ class Pages extends Digitalauth
     }
 
     function index(){
-        echo 'hello';
+        redirect('digitalauth/pages/listpages', 'refresh');
 
     }
 

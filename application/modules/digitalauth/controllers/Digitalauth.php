@@ -30,7 +30,7 @@ class Digitalauth extends MX_Controller {
             $this->data['categorycount'] = $this->mymodel->getcount('*','tbl_post','post_type = "category"');
             $this->data['productcount'] = $this->mymodel->getcount('*','tbl_post','post_type = "product"');
 
-          $this->_render_page('welcome_admin');
+          $this->_render_page('index');
         }
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');

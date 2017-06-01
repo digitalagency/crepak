@@ -95,6 +95,29 @@
                  </ul>
              </li>
 
+             <li class="treeview <?php if ($this->uri->segment(3) == "addnews"||$this->uri->segment(3) == "listnews"||$this->uri->segment(3) == "editnews"||$this->uri->segment(3) == "addnewscategory"||$this->uri->segment(3) == "categories"||$this->uri->segment(3) == "editnewscategory") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-newspaper-o"></i> <span>News & Events</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addnews")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/addnews')?>"><i class="fa fa-circle-o"></i> Add News</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listnews")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/listnews')?>"><i class="fa fa-circle-o"></i> List News</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="categories")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/categories')?>"><i class="fa fa-circle-o"></i> News Categories</a></li>
+                 </ul>
+             </li>
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addapplication"||$this->uri->segment(3) == "listapplications"||$this->uri->segment(3) == "editapplication") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-cloud"></i> <span>Applications</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addapplication")echo "active"?>"><a href="<?php echo base_url('digitalauth/application/addapplication')?>"><i class="fa fa-circle-o"></i> Add Application</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listapplications")echo "active"?>"><a href="<?php echo base_url('digitalauth/application/listapplications')?>"><i class="fa fa-circle-o"></i> List Applications</a></li>
+                 </ul>
+             </li>
+
 
              <li class="treeview <?php if ($this->uri->segment(3) == "addcategory"||$this->uri->segment(3) == "listcategories"||$this->uri->segment(3) == "editcategory") echo "active"; ?>">
                  <a href="#">

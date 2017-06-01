@@ -1,4 +1,3 @@
-<!-- breadcrumb -->
 <?php
 foreach ($categoryValues as $value) {
     $id = $value->id;
@@ -14,6 +13,7 @@ foreach ($categoryValues as $value) {
     $slug = $value->slug;
 }
 ?>
+<!-- breadcrumb -->
 <section class="content-header">
     <h1>
         Dashboard
@@ -21,7 +21,7 @@ foreach ($categoryValues as $value) {
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Edit Category</li>
+        <li class="active">Edit News Category</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -31,7 +31,7 @@ foreach ($categoryValues as $value) {
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Edit Category</h3>
+                    <h3 class='box-title'>Edit News Category</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body pad'>
@@ -51,7 +51,7 @@ foreach ($categoryValues as $value) {
                     <?php }; ?>
 
                     <form role="form" method="post" class="form-horizontal"
-                          action="<?php echo base_url('digitalauth/category/editcategory') . '/' . $id; ?>"
+                          action="<?php echo base_url('digitalauth/news/editnewscategory') . '/' . $id; ?>"
                           enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
@@ -77,91 +77,7 @@ foreach ($categoryValues as $value) {
                                            placeholder="Chinese Title" value="<?php echo $title_cn; ?>">
                                 </div>
                             </div>
-                            <div class="form-group">
 
-                                <div class="col-sm-12">
-                                    <label>Content:</label>
-                                    <textarea id="editor1" name="content" rows="10" cols="80">
-                                      <?php echo $aticle; ?>
-                                    </textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-sm-12">
-                                    <label>Chinese Content:</label>
-                            <textarea id="editor2" name="content_cn" rows="10" cols="80">
-                                <?php echo $aticle_cn; ?>
-                            </textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Excrept:</label>
-                            <textarea id="editor3" name="excrept" rows="10" cols="40">
-                                <?php echo $excrept; ?>
-                            </textarea>
-                                </div>
-
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Chinese Excrept:</label>
-                            <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
-                                <?php echo $excrept_cn; ?>
-                            </textarea>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="exampleInputFile">Images:</label>
-                                    <input type="file" name="images" id="images">
-                                    <?php if (!empty($image)) { ?>
-                                        <div class="imageview">
-                                            <img class="img-responsive"
-                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image ?>"
-                                                 alt=""/>
-                                        </div>
-
-                                    <?php } ?>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="exampleInputFile">Chinese Images:</label>
-                                    <input type="file" name="images_cn" id="images">
-                                    <?php if (!empty($image_cn)) { ?>
-                                        <div class="imageview">
-                                            <img class="img-responsive"
-                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image_cn ?>"
-                                                 alt=""/>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-
-
-
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <label for="exampleInputFile">Status:</label>
-
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="status" id="publish" class="minimal"
-                                                   value="1" <?php echo ($status == '1') ? 'checked' : '' ?>>
-                                            Publish
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="status" id="unpublish" class="minimal"
-                                                   value="0" <?php echo ($status == '0') ? 'checked' : '' ?>>
-                                            Unpublish
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div class="form-group">

@@ -1,6 +1,5 @@
-<!-- breadcrumb -->
 <?php
-foreach ($categoryValues as $value) {
+foreach ($newsValues as $value) {
     $id = $value->id;
     $title = $value->title;
     $title_cn = $value->title_cn;
@@ -12,8 +11,11 @@ foreach ($categoryValues as $value) {
     $image_cn = $value->featured_img_cn;
     $status = $value->status;
     $slug = $value->slug;
+    $post_parent = $value->post_parent;
 }
 ?>
+
+<!-- breadcrumb -->
 <section class="content-header">
     <h1>
         Dashboard
@@ -21,7 +23,7 @@ foreach ($categoryValues as $value) {
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Edit Category</li>
+        <li class="active">Edit News</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -31,7 +33,7 @@ foreach ($categoryValues as $value) {
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Edit Category</h3>
+                    <h3 class='box-title'>Edit News</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body pad'>
@@ -51,7 +53,7 @@ foreach ($categoryValues as $value) {
                     <?php }; ?>
 
                     <form role="form" method="post" class="form-horizontal"
-                          action="<?php echo base_url('digitalauth/category/editcategory') . '/' . $id; ?>"
+                          action="<?php echo base_url('digitalauth/news/editnews') . '/' . $id; ?>"
                           enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
@@ -63,6 +65,7 @@ foreach ($categoryValues as $value) {
                                     <?php echo form_error('title', '<span class="error-message">', '</span>'); ?>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
@@ -70,11 +73,37 @@ foreach ($categoryValues as $value) {
                                            placeholder="Slug of the Category" value="<?php echo $slug; ?>">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Chinese Title : </label>
                                     <input type="text" class="form-control" id="title_cn" name="title_cn"
                                            placeholder="Chinese Title" value="<?php echo $title_cn; ?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="slug">Category : </label>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value="">Select the Category</option>
+                                        <?php
+                                        foreach ($allnews as $news) {
+                                            if($post_parent == $news->id){
+                                                $selected = 'selected';
+                                            }
+                                            else{
+                                                $selected = '';
+                                            }
+                                            ?>
+
+                                            <option
+                                                value="<?php echo $news->id ?>" <?php echo $selected;?>><?php echo $news->title . ' / ' . $news->title_cn; ?></option>
+                                        <?php }
+                                        ?>
+                                    </select>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -99,19 +128,19 @@ foreach ($categoryValues as $value) {
 
                             <div class="form-group">
 
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Excrept:</label>
+                                <div class="col-sm-12 col-md-6 col-xs-12"
+                                ">
+                                <label>Excrept:</label>
                             <textarea id="editor3" name="excrept" rows="10" cols="40">
                                 <?php echo $excrept; ?>
                             </textarea>
-                                </div>
+                            </div>
 
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Chinese Excrept:</label>
+                            <div class="col-sm-12 col-md-6 col-xs-12">
+                                <label>Chinese Excrept:</label>
                             <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
                                 <?php echo $excrept_cn; ?>
                             </textarea>
-                                </div>
                             </div>
 
 
@@ -122,7 +151,7 @@ foreach ($categoryValues as $value) {
                                     <?php if (!empty($image)) { ?>
                                         <div class="imageview">
                                             <img class="img-responsive"
-                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image ?>"
+                                                 src="<?php echo base_url() . 'uploads/news/thumbnail/' . $image ?>"
                                                  alt=""/>
                                         </div>
 
@@ -134,12 +163,12 @@ foreach ($categoryValues as $value) {
                                     <?php if (!empty($image_cn)) { ?>
                                         <div class="imageview">
                                             <img class="img-responsive"
-                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image_cn ?>"
+                                                 src="<?php echo base_url() . 'uploads/news/thumbnail/' . $image_cn ?>"
                                                  alt=""/>
                                         </div>
                                     <?php } ?>
                                 </div>
-
+                            </div>
 
 
                             <div class="form-group">
@@ -189,7 +218,7 @@ foreach ($categoryValues as $value) {
         var title = document.getElementById("artilcetitle").value;
         if (orgtitle != title) {
             $.ajax({
-                url: "<?php echo base_url('digitalauth/category/checkcategory/')?>",
+                url: "<?php echo base_url('digitalauth/product/checkproduct/')?>",
                 data: {title: title},
                 type: 'POST',
                 success: function (data) {

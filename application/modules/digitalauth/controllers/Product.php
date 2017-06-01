@@ -23,8 +23,7 @@ class Product extends Digitalauth
     }
 
     function index(){
-        echo 'hello';
-
+        redirect('digitalauth/product/listproducts', 'refresh');
     }
 
     function addproduct(){
