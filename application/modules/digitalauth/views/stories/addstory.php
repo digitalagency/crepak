@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Page</li>
+        <li class="active">Add Successful Story</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -16,7 +16,7 @@
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Add Page</h3>
+                    <h3 class='box-title'>Add Successful Story</h3>
                 </div><!-- /.box-header -->
                 <div class='box-body pad'>
                     <?php if ($this->session->flashdata('success_message') != "") { ?>
@@ -34,19 +34,19 @@
                         </div>
                     <?php } ;?>
 
-                    <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('digitalauth/pages/addpage');?>" enctype="multipart/form-data">
+                    <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('digitalauth/successstory/addstory');?>" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Page" onchange="titletoslug()">
+                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Story" onchange="titletoslug()">
                                     <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of the Page">
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of the Story">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -138,13 +138,13 @@
     function titletoslug() {
         var title = document.getElementById("artilcetitle").value;
         $.ajax({
-            url:"<?php echo base_url('digitalauth/pages/checkpage/')?>",
+            url:"<?php echo base_url('digitalauth/successstory/checkstory/')?>",
             data: {title: title},
             type: 'POST',
             success: function(data){
                 if(data == 1){
 
-                    bootbox.confirm("<h4>Page's title Already Exist</h4>", function(result) {
+                    bootbox.confirm("<h4>Story's title Already Exist</h4>", function(result) {
                         if(result){
 
                             setTimeout(function(){$("#artilcetitle").focus();}, 1);
