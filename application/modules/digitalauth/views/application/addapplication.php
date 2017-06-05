@@ -112,9 +112,9 @@
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Successful Stories:</label>
                                     <?php foreach($allstories as $story){?>
-                                        <div class="radio">
+                                        <div class="checkbox">
                                             <label>
-                                                <input name="stories" id="stories<?php echo $story->id;?>" value="<?php echo $story->id;?>" type="radio">
+                                                <input name="stories[]" id="stories<?php echo $story->id;?>" value="<?php echo $story->id;?>" type="checkbox">
                                                 <?php echo $story->title.' / '.$story->title_cn;?>
                                             </label>
                                         </div>
@@ -127,9 +127,9 @@
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Products:</label>
                                     <?php foreach($allproducts as $product){?>
-                                        <div class="radio">
+                                        <div class="checkbox">
                                             <label>
-                                                <input name="products" id="products<?php echo $product->id;?>" value="<?php echo $product->id;?>" type="radio">
+                                                <input name="products[]" id="products<?php echo $product->id;?>" value="<?php echo $product->id;?>" type="checkbox">
                                                 <?php echo $product->title.' / '.$product->title_cn;?>
                                             </label>
                                         </div>
@@ -182,14 +182,14 @@
         var title = document.getElementById("artilcetitle").value;
         // alert(title);
         $.ajax({
-            url: "<?php echo base_url('digitalauth/product/checkproduct/')?>",
+            url: "<?php echo base_url('digitalauth/application/checkapplication/')?>",
             data: {title: title},
             type: 'POST',
             success: function (data) {
 
                 if (data == 1) {
 
-                    bootbox.confirm("<h4>Product's title Already Exist</h4>", function (result) {
+                    bootbox.confirm("<h4>Application's title Already Exist</h4>", function (result) {
                         if (result) {
 
                             setTimeout(function () {

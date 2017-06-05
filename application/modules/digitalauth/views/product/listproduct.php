@@ -17,7 +17,7 @@
             <div class='box box-info'>
 
                 <div class='box-header'>
-                    <h3 class='box-title'>List of Productss</h3>
+                    <h3 class='box-title'>List of Products</h3>
                     <div class="pull-right">
                         <a class="btn btn-primary" href="<?php echo base_url('digitalauth/product/addproduct')?>">Add Product </a>
                     </div>
