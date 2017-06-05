@@ -13,4 +13,18 @@ class Myapplication extends CI_Model
         parent::__construct();
     }
 
+
+    //list all values by post type
+    public function getValuesbyPostType($value){
+
+        $this->db->select('*');
+        $this->db->from($this->table_topbanner);
+
+        $this->db->where('post_type', $value);
+        $query = $this->db->get();
+        $result = $query->result() ;
+        return $result;
+
+    }
+
 }

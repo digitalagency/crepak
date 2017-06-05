@@ -29,6 +29,9 @@ class Application extends Digitalauth
         if(!$this->ion_auth->logged_in() ){
             redirect('digitalauth/login', 'refresh');
         }
+
+        $this->data['allstories'] = $this->myapplication->getValuesbyPostType('story');
+        $this->data['allproducts'] = $this->myapplication->getValuesbyPostType('product');
         $this->_render_page('application/addapplication',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');

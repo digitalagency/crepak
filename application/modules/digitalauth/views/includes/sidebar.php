@@ -109,7 +109,7 @@
 
              <li class="treeview <?php if ($this->uri->segment(3) == "addstory"||$this->uri->segment(3) == "liststories"||$this->uri->segment(3) == "editstory") echo "active"; ?>">
                  <a href="#">
-                     <i class="fa fa-newspaper-o"></i> <span>Successful Stories</span>
+                     <i class="fa fa-users"></i> <span>Successful Stories</span>
                      <i class="fa fa-angle-left pull-right"></i>
                  </a>
                  <ul class="treeview-menu">
