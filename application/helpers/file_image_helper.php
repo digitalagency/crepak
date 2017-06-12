@@ -109,29 +109,34 @@ function create_image($src, $dest,  $ratio = false)
 }
 
 
-function upload_file($files,$target){
+function file_upload($files,$target){
 
 	$CI = &get_instance();
-	initialize_upload($target);
-		if($CI->upload->do_upload($files))
-		{
-			$data = $CI->upload->data();
-			$files = rand(0,100000).$data['file_name'];
-			$config['upload_path'] = $target;
-			$config['file_name'] = $files;
-			$config['overwrite'] = TRUE;
-			$config['allowed_types'] = 'gif|jpg|jpeg|png|JPG|JPEG|PNG|GIF|pdf|pptx';
-			$CI->load->library('upload',$config);
-			$CI->upload->initialize($config);
-			return $config;
-		}
-		else
-		{
-			$CI->session->set_flashdata('message', $CI->upload->display_errors());
+	//initialize_upload($target);
+	 $new_name = rand(0,100000).$_FILES[$files]['name'];
 
-			return false;
-			//return $CI->upload->display_errors();
-		}
+	$config['upload_path'] = $target;
+	$config['overwrite'] = TRUE;
+	$config['allowed_types'] = 'gif|jpg|jpeg|png|JPG|JPEG|PNG|GIF|pdf|pptx';
+	//$config['encrypt_name'] = TRUE;
+
+	$config['file_name'] = $new_name;
+
+
+	$CI->load->library('upload', $config);
+	$CI->upload->initialize($config);
+
+	if (!$CI->upload->do_upload($files))
+	{
+		$CI->session->set_flashdata('message', $CI->upload->display_errors());
+
+		return false;
+	}
+	else{
+		$data = $CI->upload->data();
+		return $data;
+	}
+
 
 }
 

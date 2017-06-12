@@ -191,7 +191,7 @@ foreach ($productValues as $value) {
                                     <input type="file" name="pfile_cn" id="pfile_cn">
                                     <?php if (!empty($prodfile_cn[0]->post_meta_value)) { ?>
                                         <div class="fileview">
-                                            <a href="<?php echo base_url() . 'uploads/pfiles/' . $prodfile_cn[0]->post_meta_value; ?>"
+                                            <a href="<?php echo base_url('digitalauth/download') . '/' . $prodfile_cn[0]->post_meta_value; ?>"
                                                class="btn btn-app">
                                                 <i class="fa fa-file-archive-o"></i>
                                                 Notifications

@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 if($_SERVER['HTTP_HOST']=="localhost" || $_SERVER['HTTP_HOST']=="127.0.1.1" || $_SERVER['HTTP_HOST']=="192.168.0.101")
 {
-    $config['base_url']='http://'.$_SERVER['HTTP_HOST'].'/cicms/';
+    $config['base_url']='http://'.$_SERVER['HTTP_HOST'].'/crepak.dev/';
 }
 elseif($_SERVER['HTTP_HOST']=="crepak.dev"){
     $config['base_url']= 'http://crepak.dev';

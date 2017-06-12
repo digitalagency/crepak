@@ -977,9 +977,14 @@ class Digitalauth extends MX_Controller {
     //Category
     function download($filename){
          $name = $filename;
-
+        $this->load->helper('download');
         $path = base_url().'uploads/pfiles/'.$filename;
-        if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off'); }
+        $pth    =   file_get_contents($path);
+        //$nme    =   "sample_file.pdf";
+        force_download($name, $pth);
+
+
+        /*if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off'); }
 
         // get the file mime type using the file extension
         $this->load->helper('file');
@@ -997,7 +1002,7 @@ class Digitalauth extends MX_Controller {
         header('Content-Transfer-Encoding: binary');
         header('Content-Length: '.filesize($path)); // provide file size
         header('Connection: close');
-        readfile($path); // push it out
+        readfile($path); // push it out*/
         exit();
     }
 

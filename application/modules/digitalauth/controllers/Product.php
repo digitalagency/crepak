@@ -135,7 +135,7 @@ class Product extends Digitalauth
 
                // $thumb = array('dest' => $target . '/' . $folder_pfile, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
                 $thumb =  $target . '/' . $folder_pfile;
-                $result = upload_file('pfile', $thumb);
+                $result = file_upload('pfile', $thumb);
                 if (isset($result['file_name'])) {
                      $pfile =  $result['file_name'];
                 }
@@ -151,7 +151,7 @@ class Product extends Digitalauth
 
             if ($_FILES['pfile_cn']['size']!=0) {
                 $thumb =  $target . '/' . $folder_pfile;
-                $result = upload_file('pfile_cn', $thumb);
+                $result = file_upload('pfile_cn', $thumb);
                 if (isset($result['file_name'])) {
                     $pfile_cn =  $result['file_name'];
                 }
@@ -197,6 +197,7 @@ class Product extends Digitalauth
 
             $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
             if ($this->form_validation->run() == TRUE) {
+
                 $image = '';
                 $image_cn = '';
                 $title = $this->input->post('title');
@@ -330,14 +331,14 @@ class Product extends Digitalauth
 
                     // $thumb = array('dest' => $target . '/' . $folder_pfile, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
                     $thumb =  $target . '/' . $folder_pfile;
-                    $result = upload_file('pfile', $thumb);
+                    $result = file_upload('pfile', $thumb);
                     if (isset($result['file_name'])) {
                         $pfile =  $result['file_name'];
                     }
 
                     $prodfilecount = $this->myproduct->getfileCount('tbl_postmeta','*','post_id ='.$id.' AND post_meta_key= "product_file"');
                     if($prodfilecount>0){
-                        $relatedstr = $this->myapplication->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file"');
+                        $relatedstr = $this->myproduct->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file"');
                         foreach($relatedstr as $prod){
                             $relatedId = $prod->id;
                         }
@@ -356,9 +357,10 @@ class Product extends Digitalauth
                     }
 
                 }
+
                 if ($_FILES['pfile_cn']['size']!=0) {
                     $thumb =  $target . '/' . $folder_pfile;
-                    $result = upload_file('pfile_cn', $thumb);
+                    $result = file_upload('pfile_cn', $thumb);
                     if (isset($result['file_name'])) {
                         $pfile_cn =  $result['file_name'];
                     }
