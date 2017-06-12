@@ -5,7 +5,9 @@
     <title><?php echo $this->config->item('site_title','ion_auth');?></title>
     <link href="<?php echo base_url(); ?>scriptscss/admin/bootstraps/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!-- FontAwesome 4.3.0 -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
+
+      <link href="<?php echo base_url(); ?>scriptscss/admin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <!--<link href="--><?php //echo base_url(); ?><!--scriptscss/admin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
 <!-- Ionicons 2.0.0 -->
 <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />

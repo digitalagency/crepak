@@ -88,16 +88,15 @@ foreach ($productValues as $value) {
                                         <option value="">Select the Category</option>
                                         <?php
                                         foreach ($allcategories as $category) {
-                                            if($post_parent == $category->id){
+                                            if ($post_parent == $category->id) {
                                                 $selected = 'selected';
-                                            }
-                                            else{
+                                            } else {
                                                 $selected = '';
                                             }
                                             ?>
 
                                             <option
-                                                value="<?php echo $category->id ?>" <?php echo $selected;?>><?php echo $category->title . ' / ' . $category->title_cn; ?></option>
+                                                value="<?php echo $category->id ?>" <?php echo $selected; ?>><?php echo $category->title . ' / ' . $category->title_cn; ?></option>
                                         <?php }
                                         ?>
                                     </select>
@@ -164,6 +163,39 @@ foreach ($productValues as $value) {
                                             <img class="img-responsive"
                                                  src="<?php echo base_url() . 'uploads/products/thumbnail/' . $image_cn ?>"
                                                  alt=""/>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">File (Downloadable):</label>
+                                    <input type="file" name="pfile" id="pfile">
+                                    <?php
+
+                                    if (!empty($prodfile[0]->post_meta_value)) {
+                                        ?>
+                                        <div class="fileview">
+                                            <a href="<?php echo base_url('digitalauth/download') .'/'.  $prodfile[0]->post_meta_value; ?>"
+                                               class="btn btn-app">
+                                                <i class="fa fa-file-archive-o"></i>
+                                                Notifications
+                                            </a>
+                                        </div>
+
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Chinese File (Downloadable):</label>
+                                    <input type="file" name="pfile_cn" id="pfile_cn">
+                                    <?php if (!empty($prodfile_cn[0]->post_meta_value)) { ?>
+                                        <div class="fileview">
+                                            <a href="<?php echo base_url() . 'uploads/pfiles/' . $prodfile_cn[0]->post_meta_value; ?>"
+                                               class="btn btn-app">
+                                                <i class="fa fa-file-archive-o"></i>
+                                                Notifications
+                                            </a>
                                         </div>
                                     <?php } ?>
                                 </div>

@@ -127,6 +127,17 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">File (Downloadable):</label>
+                                    <input type="file" name="pfile" id="pfile">
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Chinese File (Downloadable):</label>
+                                    <input type="file" name="pfile_cn" id="pfile_cn">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="exampleInputFile">Status:</label>
 

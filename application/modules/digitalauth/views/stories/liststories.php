@@ -19,7 +19,7 @@
                 <div class='box-header'>
                     <h3 class='box-title'>List of Successful Stories</h3>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/pages/addpage')?>">Add Page </a>
+                        <a class="btn btn-primary" href="<?php echo base_url('digitalauth/successstory/addstory')?>">Add Successful Story </a>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
