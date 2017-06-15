@@ -3,6 +3,7 @@
     $id = $value->id;
     $title = $value->title;
     $title_cn = $value->title_cn;
+     $slug = $value->slug;
 }?>
 <section class="content-header">
     <h1>
@@ -41,6 +42,7 @@
 
                     <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('digitalauth/gallery/addimage/'.$id);?>" enctype="multipart/form-data">
                         <div class="box-body">
+                            <input type="hidden" name="foldername" value="<?php echo $slug;?>">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="exampleInputFile">Images:</label>
@@ -76,6 +78,8 @@
                             </div>
                         </div>
                     </form>
+
+
                 </div>
 
             </div><!-- /.box -->
@@ -93,10 +97,9 @@
 
         for(var i=0;i<total_file;i++)
         {
-            $('#image_preview').append("<a class='imageview' id='imageview"+i+"'><div class='imageremover' onclick='removeImg("+i+")'>X</div><img src="+URL.createObjectURL(event.target.files[i])+"></div>");
+            $('#image_preview').append("<div class='imageview' id='imageview"+i+"'><img src="+URL.createObjectURL(event.target.files[i])+"></div>");
         }
     }
-    function removeImg(i){
-        $('#imageview'+i).remove();
-    }
+
+
 </script>

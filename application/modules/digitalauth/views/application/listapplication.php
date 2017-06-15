@@ -40,6 +40,7 @@
                             <th>Chinese Title</th>
                             <th>Image</th>
                             <th>Chinese Image</th>
+                            <th>Add Image</th>
                             <th>Created Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -78,6 +79,11 @@
 
                                     <?php //echo $application['featured_img_cn']
                                     ?></td>
+                                <td>
+                                    <a href="<?php echo base_url('digitalauth/gallery/listimages/' . $application->id) ?>">
+                                        <img src="<?php echo base_url(); ?>scriptscss/images/gallery.png">
+                                    </a>
+                                </td>
                                 <td><?php echo $application->post_date ?></td>
 
                                 <td>
@@ -112,6 +118,7 @@
                             <th>Chinese Title</th>
                             <th>Image</th>
                             <th>Chinese Image</th>
+                            <th>Add Image</th>
                             <th>Created Date</th>
                             <th>Status</th>
                             <th>Action</th>

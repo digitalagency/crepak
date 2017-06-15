@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title><?php echo $this->config->item('site_title','ion_auth');?></title>
     <link href="<?php echo base_url(); ?>scriptscss/admin/bootstraps/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <!--File upload-->
+      <link href="<?php echo base_url(); ?>scriptscss/admin/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <!-- FontAwesome 4.3.0 -->
 <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />-->
 

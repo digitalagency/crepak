@@ -22,9 +22,26 @@ class Mygallery extends CI_Model
         $result = $query->result() ;
         return $result;
     }
+    //get single value of Post
+    function getPostValue($reqvalue,$fieldname,$fieldvalue){
+        $this->db->where($fieldname,$fieldvalue);
+        $query=$this->db->get($this->table_post);
+        $result=$query->row()->$reqvalue;
+        return $result;
+    }
 
 
     //gallery values
+    //save page
+    function add($data){
+        $this->db->insert($this->tbl_images, $data);
+        if ($this->db->affected_rows() == '1')
+        {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
 
     function getAllImagesById($fields,$where=''){
 
@@ -38,6 +55,27 @@ class Mygallery extends CI_Model
         $query = $this->db->get();
         $result = $query->result() ;
         return $result;
+    }
+
+    //get single value of Image
+    function getImageValue($reqvalue,$fieldname,$fieldvalue){
+        $this->db->where($fieldname,$fieldvalue);
+        $query=$this->db->get($this->tbl_images);
+        $result=$query->row()->$reqvalue;
+        return $result;
+    }
+
+    function edit($data,$fieldID,$ID){
+
+        $this->db->where($fieldID,$ID);
+        $this->db->update($this->tbl_images, $data);
+
+        if ($this->db->affected_rows() >= 0)
+        {
+            return TRUE;
+        }
+
+        return FALSE;
     }
 
     function getCount($fields,$where="1=1")
@@ -54,6 +92,18 @@ class Mygallery extends CI_Model
         }
 
 
+    }
+
+    //delete image
+    function deleteImage($fieldID,$ID){
+        $this->db->where($fieldID,$ID);
+        $this->db->delete($this->tbl_images);
+        if ($this->db->affected_rows() == '1')
+        {
+            return TRUE;
+        }
+
+        return FALSE;
     }
 
 }

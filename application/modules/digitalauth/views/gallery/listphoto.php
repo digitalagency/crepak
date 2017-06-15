@@ -3,6 +3,7 @@
     $id = $value->id;
     $title = $value->title;
     $title_cn = $value->title_cn;
+    $slug = $value->slug;
 }?>
 <section class="content-header">
     <h1>
@@ -48,13 +49,12 @@
                         <tbody>
                         <?php
 
-                        if(!empty($imageCount)){
                             foreach($imageValues as $gallery){
                                 ?>
                                 <tr>
 
                                     <td>
-                                        <img src="<?php echo base_url().'uploads/'.$title.'/'.$gallery->image;?>" alt="<?php echo $title;?>" width="200">
+                                        <img src="<?php echo base_url().'uploads/'.$slug.'/'.$gallery->image;?>" alt="<?php echo $title;?>" width="200">
                                     </td>
                                     <td><?php echo $gallery->created_date?></td>
                                     <td>
@@ -71,14 +71,12 @@
                                     </td>
                                     <td>
 
-                                        <a href="<?php echo base_url('digitalauth/deletephotos/'.$gallery->id.'/'.$id); ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                                        <a href="<?php echo base_url('digitalauth/gallery/deleteimage/'.$gallery->id.'/'.$id); ?>"><span class="glyphicon glyphicon-remove"></span></a>
                                     </td>
                                 </tr>
                             <?php }
-                        }
-                        else{
-                            echo '<tr><td colspan="7"> No Images </td></tr>';
-                        }
+
+
                         ?>
 
                         </tbody>
@@ -103,7 +101,7 @@
 <script>
     function togglePhotoStatus(id,stat,idd){
 
-        url = '<?php echo base_url();?>admin/togglePhotoStatus/'+id+'/' + stat+'/'+idd;
+        url = '<?php echo base_url();?>digitalauth/gallery/toggleImageStatus/'+id+'/' + stat+'/'+idd;
         bootbox.confirm("<h4>Change Status</h4><hr><br><?php echo 'Confirm Status Change?'; ?>", function (result) {
             if (result) {
                 window.location.replace(url);

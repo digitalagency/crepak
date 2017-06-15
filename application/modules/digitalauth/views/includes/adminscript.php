@@ -14,7 +14,12 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
+
+<!--File upload-->
+<script src="<?php echo base_url(); ?>scriptscss/admin/js/fileinput.min.js"></script>
+
 <!-- Bootstrap 3.3.2 JS -->
+
 <script src="<?php echo base_url(); ?>scriptscss/admin/bootstraps/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>scriptscss/admin/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
