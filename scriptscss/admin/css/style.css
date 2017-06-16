@@ -20,3 +20,11 @@ body{
 .fileview{
     margin: 10px 0 10px -10px;
 }
+.posttype {
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    margin-top: 3px;
+}
+.secondmenu{
+    margin-left: 10px;
+}

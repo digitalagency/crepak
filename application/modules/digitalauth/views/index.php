@@ -17,7 +17,14 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3><?php echo $menucount;?></h3>
+                    <h3><?php
+                        if($menucount>0){
+                            echo $menucount;
+                        }
+                        else{
+                            echo '0';
+                        }
+                        ?></h3>
                     <p>Menus</p>
                 </div>
                 <div class="icon">
@@ -30,7 +37,14 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3><?php echo $pagecount;?></h3>
+                    <h3><?php
+                        if($pagecount>0){
+                            echo $pagecount;
+                        }
+                        else{
+                            echo '0';
+                        }
+                        ?></h3>
                     <p>Pages</p>
                 </div>
                 <div class="icon">
@@ -44,7 +58,23 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3><?php echo $categorycount;?><sup style="font-size: 20px">/<?php echo $productcount;?></sup></h3>
+                    <h3><?php
+                        if($categorycount>0){
+                            echo $categorycount;
+                        }
+                        else{
+                            echo '0';
+                        }?>
+                        <sup style="font-size: 20px">/
+                            <?php
+                            if($productcount>0){
+                                echo $productcount;
+                            }
+                            else{
+                                echo '0';
+                            }
+                            ?>
+                        </sup></h3>
                     <p>Category/Products</p>
                 </div>
                 <div class="icon">

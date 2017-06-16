@@ -32,16 +32,20 @@
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of an Article" onchange="titletoslug()">
+                                    <input type="text" class="form-control" id="menutitle" name="title" placeholder="Name of Menu" onchange="checktitle()">
                                     <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of an Article">
+                                    <label for="slug">Chinese Title</label>
+                                    <input type="text" class="form-control" id="articlechinesetitle" name="title_cn" placeholder="Chinese Name of Menu">
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="slug">Parent Menu</label>
@@ -56,7 +60,12 @@
                                                 <option value="">--Select a parent--</option>
                                                 <?php
                                                     foreach($ParentMenu as $pm){
+                                                        $pId = $pm['id'];
                                                         echo '<option value="'.$pm['id'].'">'.$pm['title'].'</option>';
+                                                        $secondlevel = $this->mymodel->get('tbl_menu', '*','parent_id =' .$pId);
+                                                        foreach($secondlevel as $sl){
+                                                            echo '<option value="'.$sl['id'].'" class="secondmenu">'.$sl['title'].'</option>';
+                                                        }
                                                     }
                                                 ?>
                                             </select>
@@ -66,55 +75,39 @@
 <!--                                    <input type="text" class="form-control" id="parent_menu" name="parent_menu" placeholder="Parent Menu">-->
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <label for="slug">Article Link</label>
+                                    <label for="slug">Post Link</label>
+                                    <select name="page_link" class="form-control" id="article">
+                                        <option value="">--Select the Post--</option>
+                                        <option value="index">Home</option>
+                                        <option value="contact">Contact</option>
+                                        <?php
+                                        foreach($posttype as $type){
+                                            $postType = $type['post_type'];
+                                            echo '<option value="'.$postType.'"  class="posttype">'.ucwords($postType).'</option>';
+                                            $postList = $this->mymodel->get('tbl_post', '*','post_type ="'.$postType.'" order by id asc');
+                                            foreach($postList as $al){
 
-                                    <?php if($Articlecount==0){?>
-                                        <select name="" id="" class="form-control" disabled="">
-                                            <option value="">--No Article to select--</option>
-                                        </select>
-                                    <?php }
-                                    else{?>
-                                        <select name="article_link" id="article" class="form-control" >
-                                            <option value="">--Select an Article--</option>
-                                            <?php
-                                            foreach($ArticleList as $al){
-                                                echo '<option value="'.$al['slug'].'">'.$al['title'].'</option>';
+                                                echo '<option value="'.$al['post_type'].'/'.$al['slug'].'">'.ucwords($al['title']).'</optioin>';
                                             }
-                                            ?>
-                                        </select>
-                                    <?php }
-                                    ?>
+                                        }
+
+                                        ?>
+                                    </select>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <label for="slug">Page Link</label>
-                                    <input type="text" class="form-control" id="page_link" name="page_link" placeholder="Page Link Eg: contact , gallery">
+                                    <label for="Menuorder">Menu Order</label>
+                                    <input type="number" class="form-control" id="menu_order" name="menu_order" placeholder="Menu Order(0-9)">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <label for="exampleInputFile">External Url:</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="externalurl"  id="externalurl" value="1">
-                                            External url
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group externalLink hide">
-                                <div class="col-sm-6">
-
-                                        <label for="slug">Exterl Link</label>
-                                        <input type="text" class="form-control" id="exteral_link" name="exteral_link" placeholder="http://abc.com">
-
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -163,8 +156,8 @@
             }
         });
     });
-    function titletoslug() {
-        var title = document.getElementById("artilcetitle").value;
+    function checktitle() {
+        var title = document.getElementById("menutitle").value;
         $.ajax({
             url:"<?php echo base_url('digitalauth/checkmenu/')?>",
             data: {title: title},
@@ -172,12 +165,12 @@
             success: function(data){
                 if(data == 1){
 
-                    bootbox.confirm("<h4>Title Already Exist</h4>", function(result) {
+                    bootbox.confirm("<h4>Menu Already Exist</h4>", function(result) {
                         if(result){
 
-                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
+                            setTimeout(function(){$("#menutitle").focus();}, 1);
                         }else{
-                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
+                            setTimeout(function(){$("#menutitle").focus();}, 1);
                         }
                     });
 //
@@ -188,8 +181,7 @@
                 }
             }
         })
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
-        $('#slug').val(slug);
+
 
     }
 </script>

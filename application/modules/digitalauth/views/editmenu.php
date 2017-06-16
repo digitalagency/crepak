@@ -4,12 +4,10 @@ foreach ($MenuValue as $value) {
     $id             =$value['id'];
     $parent_id      =$value['parent_id'];
     $title          = $value['title'];
-    $slug           = $value['slug'];
-    $article_link   = $value['article_link'];
+    $title_cn       = $value['title_cn'];
     $page_link      = $value['page_link'];
-    $external       = $value['external'];
-    $exteral_link   = $value['exteral_link'];
-    $status             = $value['status'];
+    $status         = $value['status'];
+    $menu_order     = $value['menu_order'];
 }
 ?>
 <section class="content-header">
@@ -45,16 +43,18 @@ foreach ($MenuValue as $value) {
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of an Article" onchange="titletoslug()" value="<?php echo $title;?>">
+                                    <input type="text" class="form-control" id="menutitle" name="title" placeholder="Name of Menu" onchange="titletoslug()" value="<?php echo $title;?>">
                                     <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of an Article" value="<?php echo $slug;?>">
+                                    <label for="slug">Chinese Title</label>
+                                    <input type="text" class="form-control" id="articlechinesetitle" name="title_cn" placeholder="Chinese Name of Menu" value="<?php echo $title_cn;?>">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="slug">Parent Menu</label>
@@ -80,6 +80,20 @@ foreach ($MenuValue as $value) {
                                                 }
                                                 //$selected = ($pm['id']==$parent_id)?'selected':'';
                                                 echo '<option value="'.$pm['id'].'"'.$selected.'>'.$pm['title'].'</option>';
+
+                                                $secondlevel = $this->mymodel->get('tbl_menu', '*','parent_id =' .$pm['id']);
+                                                foreach($secondlevel as $sl){
+                                                    if($sl['id']==$parent_id){
+                                                        $selected ='selected';
+                                                    }
+                                                    elseif($sl['id']==$id){
+                                                        $selected ='disabled';
+                                                    }
+                                                    else{
+                                                        $selected ='';
+                                                    }
+                                                    echo '<option value="'.$sl['id'].'" '.$selected.'  class="secondmenu">'.$sl['title'].'</option>';
+                                                }
                                             }
                                             ?>
                                         </select>
@@ -89,55 +103,49 @@ foreach ($MenuValue as $value) {
                                     <!--                                    <input type="text" class="form-control" id="parent_menu" name="parent_menu" placeholder="Parent Menu">-->
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="slug">Article Link</label>
 
-                                    <?php if($Articlecount==0){?>
-                                        <select name="" id="" class="form-control" disabled="">
-                                            <option value="">--No Article to select--</option>
-                                        </select>
-                                    <?php }
-                                    else{?>
-                                        <select name="article_link" id="article" class="form-control" >
-                                            <option value="">--Select an Article--</option>
+
+                                    <select name="page_link" class="form-control" id="article">
+                                            <option value="">--Select an Post--</option>
+                                            <option value="index" <?php echo ($page_link == 'index'?'selected':'');?>>Home</option>
+                                            <option value="contact" <?php echo ($page_link == 'contact'?'selected':'');?>>Contact</option>
                                             <?php
-                                            foreach($ArticleList as $al){
-                                                $select = ($article_link==$al['slug'])?'selected':'';
-                                                echo '<option value="'.$al['slug'].'"'.$select.'>'.$al['title'].'</option>';
+                                            foreach($posttype as $type){
+                                                $postType = $type['post_type'];
+                                                if($page_link == $postType){
+                                                    $selected = 'selected';
+                                                }else{
+                                                    $selected = '';
+                                                }
+                                                echo '<option value="'.$postType.'" '.$selected.'  class="posttype">'.ucwords($postType).'</option>';
+                                                $postList = $this->mymodel->get('tbl_post', '*','post_type ="'.$postType.'" order by id asc');
+                                                foreach($postList as $al){
+                                                    $optval = $al['post_type'].'/'.$al['slug'];
+                                                    if($page_link == $optval){
+                                                        $selected = 'selected';
+                                                    }else{
+                                                        $selected = '';
+                                                    }
+
+                                                    echo '<option value="'.$optval.'" '.$selected.'>'.ucwords($al['title']).'</optioin>';
+                                                }
                                             }
                                             ?>
                                         </select>
-                                    <?php }
-                                    ?>
+
                                 </div>
                             </div>
+
+
+
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <label for="slug">Page Link</label>
-                                    <input type="text" class="form-control" id="page_link" name="page_link" placeholder="Page Link Eg: contact , gallery" value="<?php echo $page_link; ?>">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <label for="exampleInputFile">External Url:</label>
-                                    <div class="checkbox">
-                                        <label>
-
-                                            <input type="checkbox" name="externalurl" id="externalurl" value="1"  <?php echo $check = ($external!=0)?'checked':''?>>
-                                            External url
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group externalLink <?php echo $hide = ($external!=0)?'':'hide'?>">
-                                <div class="col-sm-6">
-
-                                    <label for="slug">Exterl Link</label>
-                                    <input type="text" class="form-control" id="exteral_link" name="exteral_link" placeholder="http://abc.com" value="<?php echo $exteral_link;?>">
-
+                                    <label for="Menuorder">Menu Order</label>
+                                    <input type="number" class="form-control" id="menu_order" name="menu_order" placeholder="Menu Order(0-9)" value="<?php echo $menu_order;?>">
                                 </div>
                             </div>
 

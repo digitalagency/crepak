@@ -16,16 +16,9 @@ class Digitalauth extends MX_Controller {
         if(!$this->ion_auth->logged_in() ){
           redirect('digitalauth/login', 'refresh');
         }
-        // elseif($this->ion_auth->logged_in() && $this->ion_auth->is_admin()){
-        //   $this->_render_page('welcome_admin');
-        // //  $this->load->view('includes/sub_header');
-        //   // $this->load->view('includes/sidebar');
-        // }
+
         else{
             $this->data['menucount'] = $this->mymodel->getcount('*','tbl_menu');
-            /*$this->data['gallerycount'] = $this->mymodel->getcount('*','tbl_gallery');
-            $this->data['imagecount'] = $this->mymodel->getcount('*','tbl_gallery_image');
-            $this->data['articlecount'] = $this->mymodel->getcount('*','tbl_article');*/
             $this->data['pagecount'] = $this->mymodel->getcount('*','tbl_post','post_type = "pages"');
             $this->data['categorycount'] = $this->mymodel->getcount('*','tbl_post','post_type = "category"');
             $this->data['productcount'] = $this->mymodel->getcount('*','tbl_post','post_type = "product"');
@@ -37,21 +30,6 @@ class Digitalauth extends MX_Controller {
 
       }
 
-    function main(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-
-        else{
-            $this->data['menucount'] = $this->mymodel->getcount('*','tbl_menu');
-            $this->data['gallerycount'] = $this->mymodel->getcount('*','tbl_gallery');
-            $this->data['imagecount'] = $this->mymodel->getcount('*','tbl_gallery_image');
-            $this->data['articlecount'] = $this->mymodel->getcount('*','tbl_article');
-            $this->_render_page('main');
-        }
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
 
     function addmenu(){
         if(!$this->ion_auth->logged_in() ){
@@ -61,34 +39,23 @@ class Digitalauth extends MX_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $title = $this->input->post('title');
-            $slug = $this->input->post('slug');
-            $article_link = $this->input->post('article_link');
+            $title_cn = $this->input->post('title_cn');
             $page_link = $this->input->post('page_link');
             $parentmenu = $this->input->post('parentmenu');
-            $external = $this->input->post('externalurl');
-            $exteral_link = $this->input->post('exteral_link');
             $status = $this->input->post('status');
             if(!empty($parentmenu)){
                 $parent_menu = $parentmenu;
             }else{
                 $parent_menu = '0';
             }
-            if(!empty($external)){
-                $external_val = $external;
-                $el = $exteral_link;
-            }else{
-                $external_val = '0';
-                $el = '';
-            }
+            $menu_order = $this->input->post('menu_order');
             $menu = array(
                 'title'   => $title,
-                'slug'    => $slug,
+                'title_cn'   => $title_cn,
                 'parent_id'    => $parent_menu,
-                'article_link' => $article_link,
                 'page_link'   => $page_link,
-                'external'  => $external_val,
-                'exteral_link' => $el,
                 'status' => $status,
+                'menu_order'    => $menu_order,
                 'created_date' => date("Y-m-d"),
             );
             if($this->mymodel->add('tbl_menu',$menu)){
@@ -99,8 +66,9 @@ class Digitalauth extends MX_Controller {
         }
         $this->data['ParentMenu']  = $this->mymodel->get('tbl_menu', '*','parent_id =0');
         $this->data['parentcount'] = $this->mymodel->getcount('*','tbl_menu','parent_id =0');
-        $this->data['ArticleList']  = $this->mymodel->get('tbl_article', '*','status =1');
-        $this->data['Articlecount'] = $this->mymodel->getcount('*','tbl_article','status =1');
+        $this->data['posttype']     = $this->mymodel->get('tbl_post','Distinct(post_type)','status = "1" order by post_type asc');
+        //$this->data['ArticleList']  = $this->mymodel->get('tbl_post', '*','status = "1" order by post_type asc');
+
         $this->_render_page('addmenu',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -124,34 +92,24 @@ class Digitalauth extends MX_Controller {
             $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
             if ($this->form_validation->run() == TRUE) {
                 $title = $this->input->post('title');
-                $slug = $this->input->post('slug');
-                $article_link = $this->input->post('article_link');
+                $title_cn = $this->input->post('title_cn');
                 $page_link = $this->input->post('page_link');
                 $parentmenu = $this->input->post('parentmenu');
-                $external = $this->input->post('externalurl');
-                $exteral_link = $this->input->post('exteral_link');
                 $status = $this->input->post('status');
                 if(!empty($parentmenu)){
                     $parent_menu = $parentmenu;
                 }else{
                     $parent_menu = '0';
                 }
-                if(!empty($external)){
-                    $external_val = $external;
-                    $el = $exteral_link;
-                }else{
-                    $external_val = '0';
-                    $el = '';
-                }
+                $menu_order = $this->input->post('menu_order');
+
                 $menu = array(
                     'title'   => $title,
-                    'slug'    => $slug,
+                    'title_cn'   => $title_cn,
                     'parent_id'    => $parent_menu,
-                    'article_link' => $article_link,
                     'page_link'   => $page_link,
-                    'external'  => $external_val,
-                    'exteral_link' => $el,
                     'status' => $status,
+                    'menu_order'    => $menu_order,
                     'created_date' => date("Y-m-d"),
                 );
                 if($this->mymodel->edit("tbl_menu", $menu, 'id', $id)){
@@ -163,9 +121,10 @@ class Digitalauth extends MX_Controller {
         }
         $this->data['ParentMenu']   = $this->mymodel->get('tbl_menu', '*','parent_id =0');
         $this->data['parentcount']  = $this->mymodel->getcount('*','tbl_menu','parent_id =0');
-        $this->data['ArticleList']  = $this->mymodel->get('tbl_article', '*','status =1');
-        $this->data['Articlecount'] = $this->mymodel->getcount('*','tbl_article','status =1');
+        $this->data['posttype']     = $this->mymodel->get('tbl_post','Distinct(post_type)','status = "1" order by post_type asc');
+
         $this->data['MenuValue']    = $this->mymodel->get('tbl_menu','*','id ='.$id);
+
         $this->_render_page('editmenu',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -213,768 +172,7 @@ class Digitalauth extends MX_Controller {
         }
     }
 
-    function addarticle(){
-        if(!$this->ion_auth->logged_in() ){
-          redirect('digitalauth/login', 'refresh');
-        }
-        $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
 
-          if ($this->form_validation->run() == TRUE) {
-              $image = '';
-              $title = $this->input->post('title');
-              $slug = $this->input->post('slug');
-              $article = $this->input->post('content');
-              $status = $this->input->post('status');
-              $folder_file = 'articles';
-              $target = 'uploads';
-              $path        =  './uploads/'.$folder_file.'/';
-              if(!is_dir($path)):
-                  mkdir($path);
-                  chmod($path, 0755);
-              endif;
-              if($_FILES['images']['size'] != 0){
-                  //$this->callback_image_upload('father_image');
-                  $imgSize = getimagesize($_FILES["images"]['tmp_name']);
-                  if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                      $message = "Image height or width is larger than 2048px.";
-                      $this->session->set_flashdata('error_message', $message);
-                      redirect("digitalauth/addarticle/");
-                  }
-                  $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
-                  $result = upload_image('images', $target, $thumb, $folder_file);
-                  if (isset($result['fullname'])) {
-                  $image =  $result['fullname'];
-                  }
-
-
-              }
-              $article = array(
-                  'title'   => $title,
-                  'slug'    => $slug,
-                  'article' => $article,
-                  'image'   => $image,
-                  'status'  => $status,
-                  'created_date' => date("Y-m-d"),
-              );
-
-              if($this->mymodel->add('tbl_article',$article)){
-                  $this->session->set_flashdata('success_message', 'Article added successfully.');
-                  redirect("digitalauth/addarticle");
-              }
-
-
-          }
-          else{
-
-          }
-        $this->_render_page('addarticle',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-      }
-
-    function editarticle($id){
-      if(!$this->ion_auth->logged_in() ){
-        redirect('digitalauth/login', 'refresh');
-      }
-        if ($this->input->post('btnDo') == 'Edit' ) {
-
-            $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
-            if ($this->form_validation->run() == TRUE) {
-                $image = '';
-                $title = $this->input->post('title');
-                $slug = $this->input->post('slug');
-                $article = $this->input->post('content');
-                $status = $this->input->post('status');
-                $folder_file = 'articles';
-                $target = 'uploads';
-                $path        =  './uploads/'.$folder_file.'/';
-                if(!is_dir($path)):
-                    mkdir($path);
-                    chmod($path, 0755);
-                endif;
-
-                if($_FILES['images']['size'] != 0){
-                    //$this->callback_image_upload('father_image');
-                    $imgSize = getimagesize($_FILES["images"]['tmp_name']);
-                    if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                        $message = "Image height or width is larger than 2048px.";
-                        $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/addarticle/");
-                    }
-                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
-                    $result = upload_image('images', $target, $thumb, $folder_file);
-                    if (isset($result['fullname'])) {
-                        $image =  $result['fullname'];
-                    }
-                }
-                if($image!=''){
-                    $article = array(
-                        'title' => $title,
-                        'slug' => $slug,
-                        'article' => $article,
-                        'image' => $image,
-                        'status'  => $status,
-                        'created_date' => date("Y-m-d"),
-                    );
-                }
-                else{
-                    $article = array(
-                        'title' => $title,
-                        'slug' => $slug,
-                        'article' => $article,
-                        'status'  => $status,
-                        'created_date' => date("Y-m-d"),
-                    );
-                }
-                if($this->mymodel->edit("tbl_article", $article, 'id', $id)){
-                    $this->session->set_flashdata('success_message', 'Article edited successfully.');
-                    redirect("digitalauth/editarticle/".$id);
-                }
-            }
-        }
-
-      $this->data['articleValues'] = $this->mymodel->get('tbl_article', '*','id ='.$id);
-      $this->_render_page('editarticle',$this->data);
-      $this->load->view('includes/adminscript');
-      $this->load->view('includes/footer');
-    }
-
-    function listarticles(){
-        if(!$this->ion_auth->logged_in() ){
-          redirect('digitalauth/login', 'refresh');
-        }
-        $this->data['articles'] = $this->mymodel->get('tbl_article', '*');
-
-        $this->_render_page('listarticles',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function deletearticle($id){
-        $image = $this->mymodel->getValue('tbl_article','image','id',$id);
-        if(!empty($image)){
-            $imagepath = './uploads/articles/'.$image;
-            @unlink($imagepath);
-        }
-        if($this->mymodel->delete("tbl_article", 'id', $id)){
-            $this->session->set_flashdata('success_message', 'Article Deleted successfully.');
-            redirect("digitalauth/listarticles");
-        }
-    }
-
-    function checkartilce(){
-        $title = $_POST['title'];
-       $count = $this->mymodel->getCount('LCASE(title)','tbl_article','title =LCASE("'.$title.'")');
-      if($count>0){
-          echo '1';
-          die();
-      }
-        else{
-            echo '0';
-            die();
-        }
-
-    }
-
-    function toggleArticleStatus($id, $stat){
-        $reurl = 'digitalauth/listarticles';
-        if($stat=='1'){
-            $additional_data = array(
-                'status' => "0"
-            );
-        }
-        else{
-            $additional_data = array(
-                'status' => "1"
-            );
-        }
-        if($this->mymodel->edit("tbl_article", $additional_data, 'id', $id)){
-            redirect($reurl);
-            die();
-        }
-    }
-
-    function addgallery(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
-
-        if ($this->form_validation->run() == TRUE) {
-            $image = '';
-            $title = $this->input->post('title');
-            $slug = $this->input->post('slug');
-            $status = $this->input->post('status');
-            $folder_file = $title;
-            $target = 'uploads';
-            $path        =  './uploads/'.$folder_file.'/';
-
-            if($_FILES['galleryimages']['size'] != 0){
-                //$this->callback_image_upload('father_image');
-                $imgSize = getimagesize($_FILES["galleryimages"]['tmp_name']);
-                if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                    $message = "Image height or width is larger than 2048px.";
-                    $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/addgallery/");
-                }
-                if(!is_dir($path)):
-                    mkdir($path);
-                    chmod($path, 0755);
-                endif;
-                $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
-                $result = upload_image('galleryimages', $target, $thumb, $folder_file);
-                if (isset($result['fullname'])) {
-                    $image =  $result['fullname'];
-                }
-            }
-            $gallery = array(
-                'title'   => $title,
-                'slug'    => $slug,
-                'image'   => $image,
-                'status'  => $status,
-                'created_date' => date("Y-m-d"),
-            );
-
-            if($this->mymodel->add('tbl_gallery',$gallery)){
-                $this->session->set_flashdata('success_message', 'Gallery added successfully.');
-                redirect("digitalauth/addgallery");
-            }
-        }
-        else{
-
-        }
-        $this->_render_page('addgallery',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function listgallaries(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        $this->data['galleries'] = $this->mymodel->get('tbl_gallery', '*');
-        $this->_render_page('listgallaries',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function deletegallery($id){
-        $image = $this->mymodel->getValue('tbl_gallery','image','id',$id);
-        $name = $this->mymodel->getValue('tbl_gallery','title','id',$id);
-        $img =  $name.'/'.$image;
-        if(!empty($image)){
-            $imagepath = './uploads/'.$img;
-            @unlink($imagepath);
-            rmdir('./uploads/'.$name);
-        }
-        if($this->mymodel->delete("tbl_gallery", 'id', $id)){
-            $this->session->set_flashdata('success_message', 'Gallery Deleted successfully.');
-            redirect("digitalauth/listgallaries");
-        }
-    }
-
-    function editgallery($id){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        if ($this->input->post('btnDo') == 'Edit' ){
-            $image = '';
-            $title = $this->mymodel->getValue('tbl_gallery','title','id',$id);
-            $status = $this->input->post('status');
-            $folder_file = $title;
-            $target = 'uploads';
-            $path        =  './uploads/'.$folder_file.'/';
-            if(!is_dir($path)):
-                mkdir($path);
-                chmod($path, 0755);
-            endif;
-
-            if($_FILES['images']['size'] != 0){
-                //$this->callback_image_upload('father_image');
-                $imgSize = getimagesize($_FILES["images"]['tmp_name']);
-                if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                    $message = "Image height or width is larger than 2048px.";
-                    $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/editgallery/");
-                }
-                $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
-                $result = upload_image('images', $target, $thumb, $folder_file);
-                if (isset($result['fullname'])) {
-                    $image =  $result['fullname'];
-                }
-            }
-            if($image!=''){
-                $gallery = array(
-                    'image' => $image,
-                    'status'  => $status,
-
-                );
-            }
-            else{
-                $gallery = array(
-                    'status'  => $status,
-                );
-            }
-            if($this->mymodel->edit("tbl_gallery", $gallery, 'id', $id)){
-                $this->session->set_flashdata('success_message', 'Article edited successfully.');
-                redirect("digitalauth/editgallery/".$id);
-            }
-        }
-        $this->data['galleryValues'] = $this->mymodel->get('tbl_gallery', '*','id ='.$id);
-        $this->_render_page('editgallery',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function toggleGalleryStatus($id, $stat){
-        $reurl = 'digitalauth/listgallaries';
-        if($stat=='1'){
-            $additional_data = array(
-                'status' => "0"
-            );
-        }
-        else{
-            $additional_data = array(
-                'status' => "1"
-            );
-        }
-        if($this->mymodel->edit("tbl_gallery", $additional_data, 'id', $id)){
-            redirect($reurl);
-            die();
-        }
-    }
-
-    function checkgallery(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        $title = $_POST['title'];
-        $count = $this->mymodel->getCount('LCASE(title)','tbl_gallery','title =LCASE("'.$title.'")');
-        if($count>0){
-            echo '1';
-            die();
-        }
-        else{
-            echo '0';
-            die();
-        }
-
-    }
-
-    function listphoto($id){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-
-        $this->data['galleryValues'] = $this->mymodel->get('tbl_gallery', '*','id ='.$id);
-        $this->data['imageValues'] = $this->mymodel->get('tbl_gallery_image', '*','gallery_id ='.$id);
-        $this->data['imageCount'] = $this->mymodel->getcount('*','tbl_gallery_image','gallery_id ='.$id);
-        $this->_render_page('listphoto',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function addphotos($id){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        if ($this->input->post('btnDo') == 'Add' ){
-            $status = $this->input->post('status');
-            $title = $this->mymodel->getValue('tbl_gallery','title','id',$id);
-            $folder_file = $title;
-            $target = 'uploads/';
-            $path        =  './uploads/'.$folder_file.'/';
-
-
-            if($_FILES['images']['size'][0] != 0){
-                $files1 = $_FILES['images'];
-                $cpt = count($_FILES['images']['name']);
-                for($i=0; $i<$cpt; $i++){
-                        echo '<br>'.$i.'<br>';
-                    $imgSize[$i] = getimagesize($files1['tmp_name'][$i]);
-
-                    if($imgSize[$i][0] > 2048 || $imgSize[$i][1] > 2048){
-                        $message = "Image height or width is larger than 2048px.";
-                        $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/addphotos/".$id);
-                    }
-                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
-                    $_FILES['images']['name']     = $files1['name'][$i];
-                    $_FILES['images']['type']     = $files1['type'][$i];
-                    $_FILES['images']['tmp_name'] = $files1['tmp_name'][$i];
-                    $_FILES['images']['error']    = $files1['error'][$i];
-                    $_FILES['images']['size']     = $files1['size'][$i];
-
-                    $result = upload_image('images', $target, $thumb, $folder_file);
-
-                    if (isset($result['file_name'])) {
-
-                        $data = array('upload_data' => $this->upload->data());
-                        //echo 'success';
-                        $imagesup = array(
-                            'gallery_id' => $id,
-                            'image' =>$result['fullname'],
-                            'status'=>$status,
-                            'created_date' => date("Y-m-d")
-                        );
-                        $this->mymodel->add('tbl_gallery_image',$imagesup);
-
-
-                    }
-                    else {
-                        $message = "Error in uploading.";
-                        $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/addphotos/".$id);
-                    }
-                }
-                $message = "Images Uploaded successfully.";
-                $this->session->set_flashdata('success_message', $message);
-                redirect("digitalauth/listphoto/".$id);
-
-            }
-        }
-        $this->data['galleryValues'] = $this->mymodel->get('tbl_gallery', '*','id ='.$id);
-        $this->_render_page('addphotos',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function togglePhotoStatus($id, $stat, $idd){
-
-        $reurl = 'digitalauth/listphoto/'.$idd;
-        if($stat=='1'){
-            $additional_data = array(
-                'status' => "0"
-            );
-        }
-        else{
-            $additional_data = array(
-                'status' => "1"
-            );
-        }
-        if($this->mymodel->edit("tbl_gallery_image", $additional_data, 'id', $id)){
-            redirect($reurl);
-            die();
-        }
-    }
-
-    function deletephotos($id,$idd){
-       echo $image = $this->mymodel->getValue('tbl_gallery_image','image','id',$id);
-        echo $gallery_id =$this->mymodel->getValue('tbl_gallery_image','gallery_id','id',$id);
-        echo $gallery =$this->mymodel->getValue('tbl_gallery','title','id',$gallery_id);
-        echo $img =  $gallery.'/'.$image;
-
-        if(!empty($image)){
-            $imagepath = './uploads/'.$img;
-            @unlink($imagepath);
-        }
-        if($this->mymodel->delete("tbl_gallery_image", 'id', $id)){
-            $this->session->set_flashdata('success_message', 'Image Deleted successfully.');
-            redirect("digitalauth/listphoto/".$idd);
-        }
-    }
-
-    //Pages
-    function addpage(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
-
-        if ($this->form_validation->run() == TRUE) {
-            $image = '';
-            $title = $this->input->post('title');
-            $title_cn = $this->input->post('title_cn');
-            $slug = $this->input->post('slug');
-            $content = $this->input->post('content');
-            $content_cn = $this->input->post('content_cn');
-            $excrept = $this->input->post('excrept');
-            $excrept_cn = $this->input->post('excrept_cn');
-            $status = $this->input->post('status');
-
-
-            $folder_file = 'pages';
-            $target = 'uploads';
-            $path        =  './uploads/'.$folder_file.'/';
-            $thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
-            if(!is_dir($path)):
-                mkdir($path);
-                chmod($path, 0755);
-            endif;
-            if(!is_dir($thumb_path)):
-                mkdir($thumb_path);
-                chmod($thumb_path, 0755);
-            endif;
-
-            if($_FILES['images']['size'] != 0){
-                //$this->callback_image_upload('father_image');
-                $imgSize = getimagesize($_FILES["images"]['tmp_name']);
-                if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                    $message = "Image height or width is larger than 2048px.";
-                    $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/addpage/");
-                }
-                $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
-                $result = upload_image('images', $target, $thumb, $folder_file);
-                if (isset($result['fullname'])) {
-                    $image =  $result['fullname'];
-                }
-
-
-            }
-
-            if($_FILES['images_cn']['size'] != 0){
-                //$this->callback_image_upload('father_image');
-                $imgSize = getimagesize($_FILES["images_cn"]['tmp_name']);
-                if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                    $message = "Image height or width is larger than 2048px.";
-                    $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/addpage/");
-                }
-                $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
-                $result = upload_image('images_cn', $target, $thumb, $folder_file);
-                if (isset($result['fullname'])) {
-                    $image_cn =  $result['fullname'];
-                }
-
-
-            }
-
-
-            $article = array(
-                'title'         =>  $title,
-                'title_cn'      =>  $title_cn,
-                'slug'          =>  $slug,
-                'content'       =>  $content,
-                'content_cn'    =>  $content_cn,
-                'excrept'       =>  $excrept,
-                'excrept_cn'    =>  $excrept_cn,
-                'featured_img'  =>  $image,
-                'featured_img_cn'=> $image_cn,
-                'status'        =>  $status,
-                'post_date'     =>  date("Y-m-d  H:i:s"),
-                'post_type'     =>  'pages'
-            );
-
-//            echo '<pre>';
-//            print_r($article);
-//            echo '</pre>';
-//            die();
-
-            if($this->mymodel->add('tbl_post',$article)){
-                $this->session->set_flashdata('success_message', 'Page added successfully.');
-                redirect("digitalauth/addpage");
-            }
-
-
-        }
-        else{
-
-        }
-        $this->_render_page('addpage',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function listpages(){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        $this->data['articles'] = $this->mymodel->get('tbl_post', '*','post_type = "pages"');
-
-        $this->_render_page('listpages',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-
-    function checkpage(){
-        $title = $_POST['title'];
-        $count = $this->mymodel->getCount('LCASE(title)','tbl_post','title =LCASE("'.$title.'")');
-        if($count>0){
-            echo '1';
-            die();
-        }
-        else{
-            echo '0';
-            die();
-        }
-
-    }
-
-    function deletepage($id){
-        $image = $this->mymodel->getValue('tbl_post','featured_img','id',$id);
-        if(!empty($image)){
-            $imagepath = './uploads/pages/'.$image;
-            $imagepath_thumb = './uploads/pages/thumbnail/'.$image;
-            @unlink($imagepath);
-            @unlink($imagepath_thumb);
-        }
-        $image_cn = $this->mymodel->getValue('tbl_post','featured_img_cn','id',$id);
-        if(!empty($image)){
-            $imagepath_cn = './uploads/pages/'.$image_cn;
-            $imagepath_cn_thumb = './uploads/pages/thumbnail/'.$image_cn;
-            @unlink($imagepath_cn);
-            @unlink($imagepath_cn_thumb);
-        }
-        if($this->mymodel->delete("tbl_post", 'id', $id)){
-            $this->session->set_flashdata('success_message', 'Page Deleted successfully.');
-            redirect("digitalauth/listpages");
-        }
-    }
-
-    function togglePageStatus($id, $stat){
-        $reurl = 'digitalauth/listpages';
-        if($stat=='1'){
-            $additional_data = array(
-                'status' => "0"
-            );
-        }
-        else{
-            $additional_data = array(
-                'status' => "1"
-            );
-        }
-        if($this->mymodel->edit("tbl_post", $additional_data, 'id', $id)){
-            redirect($reurl);
-            die();
-        }
-    }
-
-    function editpage($id){
-        if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
-        }
-        if ($this->input->post('btnDo') == 'Edit' ) {
-
-            $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
-            if ($this->form_validation->run() == TRUE) {
-                $image = '';
-                $image_cn = '';
-                $title = $this->input->post('title');
-                $title_cn = $this->input->post('title_cn');
-                $slug = $this->input->post('slug');
-                $content = $this->input->post('content');
-                $content_cn = $this->input->post('content_cn');
-                $excrept = $this->input->post('excrept');
-                $excrept_cn = $this->input->post('excrept_cn');
-                $status = $this->input->post('status');
-
-                $folder_file = 'pages';
-                $target = 'uploads';
-                $path        =  './uploads/'.$folder_file.'/';
-                $thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
-                if(!is_dir($path)):
-                    mkdir($path);
-                    chmod($path, 0755);
-                endif;
-                if(!is_dir($thumb_path)):
-                    mkdir($thumb_path);
-                    chmod($thumb_path, 0755);
-                endif;
-
-                if($_FILES['images']['size'] != 0){
-                    //$this->callback_image_upload('father_image');
-                    $imgSize = getimagesize($_FILES["images"]['tmp_name']);
-                    if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                        $message = "Image height or width is larger than 2048px.";
-                        $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
-                    }
-                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
-                    $result = upload_image('images', $target, $thumb, $folder_file);
-                    if (isset($result['fullname'])) {
-                        $image =  $result['fullname'];
-                    }
-                }
-                if($_FILES['images_cn']['size'] != 0){
-                    //$this->callback_image_upload('father_image');
-                    $imgSize = getimagesize($_FILES["images_cn"]['tmp_name']);
-                    if($imgSize[0] > 2048 || $imgSize[1] > 2048){
-                        $message = "Image height or width is larger than 2048px.";
-                        $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
-                    }
-                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
-                    $result = upload_image('images_cn', $target, $thumb, $folder_file);
-                    if (isset($result['fullname'])) {
-                        $image_cn =  $result['fullname'];
-                    }
-                }
-
-                if($image!='' && $image_cn ==''){
-                    $article = array(
-                        'title' => $title,
-                        'title_cn' => $title_cn,
-                        'slug' => $slug,
-                        'content' => $content,
-                        'content_cn' => $content_cn,
-                        'excrept' => $excrept,
-                        'excrept_cn' => $excrept_cn,
-                        'featured_img' => $image,
-                        'status'  => $status,
-                        'post_update' => date("Y-m-d"),
-                    );
-                }
-                elseif($image_cn!='' && $image ==''){
-                    $article = array(
-                        'title' => $title,
-                        'title_cn' => $title_cn,
-                        'slug' => $slug,
-                        'content' => $content,
-                        'content_cn' => $content_cn,
-                        'excrept' => $excrept,
-                        'excrept_cn' => $excrept_cn,
-                        'featured_img_cn' => $image_cn,
-                        'status'  => $status,
-                        'post_update' => date("Y-m-d"),
-                    );
-                }
-                elseif($image!='' && $image_cn!=''){
-                    $article = array(
-                        'title' => $title,
-                        'title_cn' => $title_cn,
-                        'slug' => $slug,
-                        'content' => $content,
-                        'content_cn' => $content_cn,
-                        'excrept' => $excrept,
-                        'excrept_cn' => $excrept_cn,
-                        'featured_img' => $image,
-                        'featured_img_cn' => $image_cn,
-                        'status'  => $status,
-                        'post_update' => date("Y-m-d"),
-                    );
-                }
-                else{
-                    $article = array(
-                        'title' => $title,
-                        'title_cn' => $title_cn,
-                        'slug' => $slug,
-                        'content' => $content,
-                        'content_cn' => $content_cn,
-                        'excrept' => $excrept,
-                        'excrept_cn' => $excrept_cn,
-                        'status'  => $status,
-                        'post_update' => date("Y-m-d"),
-                    );
-                }
-
-                if($this->mymodel->edit("tbl_post", $article, 'id', $id)){
-                    $this->session->set_flashdata('success_message', 'Page edited successfully.');
-                    redirect("digitalauth/editpage/".$id);
-                }
-            }
-        }
-
-        $this->data['pageValues'] = $this->mymodel->get('tbl_post', '*','id ='.$id);
-        $this->_render_page('editpage',$this->data);
-        $this->load->view('includes/adminscript');
-        $this->load->view('includes/footer');
-    }
-    //pages
-
-    //Category
-
-    //Category
     function download($filename){
          $name = $filename;
         $this->load->helper('download');
