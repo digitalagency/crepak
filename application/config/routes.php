@@ -61,3 +61,5 @@ $route['digitalauth/(:any)'] = "digitalauth/$1";
 $route['(:any)'] = "front/$1";
 $route['news/(:any)'] = "front/news/$1";
 $route['product/(:any)'] = "front/product/$1";
+$route['applications/(:any)'] = "front/applications/$1";
+$route['category/(:any)'] = "front/category/$1";

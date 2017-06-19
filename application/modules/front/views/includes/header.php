@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Crepak</title>
+    <title><?php echo $title ?></title>
 
 
     <!-- Bootstrap Core CSS -->
@@ -39,14 +40,18 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2">
                     <div class="brand-logo">
-                        <a id="brand" class="navbar-brand" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>scriptscss/theme/images/logo.png" alt="Brand Logo"></a>
+                        <a id="brand" class="navbar-brand" href="<?php echo base_url(); ?>"><img
+                                src="<?php echo base_url(); ?>scriptscss/theme/images/logo.png" alt="Brand Logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-9 col-md-10">
                     <div class="head-menu">
                         <div class="navbar-header">
                             <ul class="language mobile-language visible-xs pull-right">
-                                <li class="dropdown"><a href="<?php echo base_url(); ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language"></i><span><i class="fa fa-angle-down"></i></span></a>
+                                <li class="dropdown"><a href="<?php echo base_url(); ?>" class="dropdown-toggle"
+                                                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                        aria-expanded="false"><i class="fa fa-language"></i><span><i
+                                                class="fa fa-angle-down"></i></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">1</a></li>
                                         <li><a href="#">2</a></li>
@@ -55,6 +60,7 @@
                             </ul>
                             <div class="header-search mobile-search visible-xs pull-right">
                                 <i class="fa fa-search"></i>
+
                                 <div class="header-form">
                                     <form action="#">
                                         <input type="text" placeholder="search">
@@ -62,7 +68,8 @@
                                     </form>
                                 </div>
                             </div>
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -76,24 +83,34 @@
                                 <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
+
                             <ul class="nav navbar-nav">
-                                <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                                <li class="dropdown <?php if(@$menuSelected=='product') echo 'active '; ?>"><a href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product<span class="caret dropdown-toggle"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>product/details">Tumbler Tags</a></li>
-                                        <li><a href="<?php echo base_url(); ?>product/details">Saber Tags</a></li>
-                                        <li><a href="<?php echo base_url(); ?>product/details">Terminator Tags</a></li>
-                                        <li><a href="<?php echo base_url(); ?>product/details">E-Bolt</a></li>
-                                        <li><a href="<?php echo base_url(); ?>product/details">E-Plate</a></li>
-                                    </ul>
-                                </li>
-                                <li ><a href="">Application</a></li>
-                                <li ><a href="<?php echo base_url(); ?>news">News</a></li>
-                                <li ><a href="">Company</a></li>
-                                <li ><a href="<?php echo base_url(); ?>contact">Contact</a></li>
+                            <?php
+                            foreach ($menus as $menu) {
+                                $menu['id'];
+                                $submenucount = $this->mymodel->getcount('*','tbl_menu','parent_id ='.$menu['id']);
+                                $submenus   = $this->mymodel->get('tbl_menu', '*','parent_id ='.$menu['id']);
+                                ?>
+                                <?php if($submenucount>0){?>
+                                    <li class="dropdown"><a
+                                            href="<?php echo base_url().$menu['page_link'];?>" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                            aria-expanded="false"><?php echo $menu['title']?><span class="caret dropdown-toggle"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach($submenus as $submenu ):?>
+                                                <li><a href="<?php echo base_url().$submenu['page_link']; ?>"><?php echo $submenu['title']?></a></li>
+                                             <?php endforeach;?>
+                                        </ul>
+                                    </li>
+                                    <?php }else{?>
+                                    <li><a href="<?php echo base_url().$menu['page_link'];?>"><?php echo $menu['title']?></a></li>
+                                    <?php }?>
+
+                            <?php }
+                            ?>
                             </ul>
                             <div class="header-search hidden-xs">
                                 <i class="fa fa-search"></i>
+
                                 <div class="header-form">
                                     <form action="#">
                                         <input type="text" placeholder="search">
@@ -102,7 +119,9 @@
                                 </div>
                             </div>
                             <ul class="language navbar-right hidden-xs">
-                                <li class="dropdown"><a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language"></i><span><i class="fa fa-angle-down"></i></span></a>
+                                <li class="dropdown"><a href="index.php" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-language"></i><span><i class="fa fa-angle-down"></i></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">1</a></li>
                                         <li><a href="#">2</a></li>
@@ -124,5 +143,6 @@
     </nav>
     <!-- /.navbar -->
 </header>
+
 
 <!-- Header end -->

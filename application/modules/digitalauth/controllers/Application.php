@@ -111,7 +111,7 @@ class Application extends Digitalauth
                 'featured_img_cn' => $image_cn,
                 'status' => $status,
                 'post_date' => date("Y-m-d  H:i:s"),
-                'post_type' => 'application'
+                'post_type' => 'applications'
             );
 
             $lastId = $this->myapplication->getLastId($article);
