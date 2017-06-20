@@ -33,7 +33,7 @@
                     <p>Contact us to know how our RFID tags would help you to optimize your operation</p>
                 </div>
                 <div class="creat-btn">
-                    <a class="btn btn-default" href="#">Contact Crepak</a>
+                    <a class="btn btn-default" href="#"><?php echo $this->lang->line('contact_crepak');?> </a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
     <section>
         <div class="footer-bottom">
             <div class="container">
-                <p>Copyright ©2015-2017 Crepak Ltd   All rights reserved</p>
+                <p><?php echo $this->lang->line('copyright');?></p>
             </div>
         </div>
     </section>
@@ -65,6 +65,23 @@
 
 <!-- Scrolling Nav JavaScript -->
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/scrolling-nav.js"></script>
+<script>
+
+    function switchlang(lang)
+    {
+        var language = lang
+        $.ajax({
+            url: "<?php echo base_url('front/switchlang')?>",
+            data: {language: language},
+            type: 'POST',
+            success: function (data) {
+
+                location.reload();
+
+            }
+        })
+    }
+</script>
 
 </body>
 </html>

@@ -34,7 +34,10 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="download-pdf">
-                                        <button class="btn- btn-default"> Download PDF </button>
+                                        <button class="btn- btn-default"> <?php
+                                            $download = $this->lang->line('download_file');
+                                            echo utf8_encode($download);
+                                            ?> </button>
                                         <div class="pdf-share">
                                             <h4>Share On:</h4>
                                             <ul>
@@ -53,9 +56,9 @@
             <div class="product-details-tab">
                 <div class="tab-wrap">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">Description</a></li>
-                        <li><a data-toggle="tab" href="#menu1">Additional Information</a></li>
-                        <li><a data-toggle="tab" href="#menu2">Review</a></li>
+                        <li class="active"><a data-toggle="tab" href="#home"><?php echo $this->lang->line('description');?></a></li>
+                        <li><a data-toggle="tab" href="#menu1"><?php echo $this->lang->line('additional_information');?></a></li>
+                        <li><a data-toggle="tab" href="#menu2"><?php echo $this->lang->line('review');?></a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -77,7 +80,7 @@
             </div>
             <div class="related-products text-center">
                 <div class="page-title">
-                    <h2>Related Products</h2>
+                    <h2><?php echo $this->lang->line('related_product');?></h2>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-xs-6">
@@ -86,7 +89,7 @@
                             <div class="figcaption">
                                 <h3>Terminator 50</h3>
                                 <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details">View Detail <i class="fa fa-angle-right"></i></a>
+                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +99,7 @@
                             <div class="figcaption">
                                 <h3>Terminator 20</h3>
                                 <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details">View Detail <i class="fa fa-angle-right"></i></a>
+                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +109,7 @@
                             <div class="figcaption">
                                 <h3>Terminator 30</h3>
                                 <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details">View Detail <i class="fa fa-angle-right"></i></a>
+                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>

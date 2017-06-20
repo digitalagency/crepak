@@ -49,6 +49,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+/*$route['^en/(.+)$'] = "$1";
+$route['^fr/(.+)$'] = "$1";
+$route['^cn/(.+)$'] = "$1";
+
+$route['^en$'] = $route['default_controller'] = 'front';
+$route['^fr$'] = $route['default_controller'] = 'front';
+$route['^cn$'] = $route['default_controller'] = 'front';*/
+
 $route['default_controller'] = 'front';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -61,3 +69,5 @@ $route['digitalauth/(:any)'] = "digitalauth/$1";
 $route['(:any)'] = "front/$1";
 $route['news/(:any)'] = "front/news/$1";
 $route['product/(:any)'] = "front/product/$1";
+$route['applications/(:any)'] = "front/applications/$1";
+$route['category/(:any)'] = "front/category/$1";
