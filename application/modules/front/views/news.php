@@ -17,7 +17,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>
@@ -27,7 +27,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                         <figcaption>
                                             <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
                                             <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details">Learn More <i class="fa fa-angle-right"></i></a>
+                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                                         </figcaption>
                                     </div>
                                 </div>

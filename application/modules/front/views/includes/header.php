@@ -21,6 +21,7 @@
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/owl.carousel.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>scriptscss/theme/css/custom.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/responsive.css" rel="stylesheet" media="all">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>scriptscss/theme/images/fav-icon.png">
 
@@ -87,7 +88,9 @@
                             </ul>
 
                             <ul class="nav navbar-nav">
+                                <?php $language;?>
                             <?php
+
                             foreach ($menus as $menu) {
                                 $menu['id'];
                                 $submenucount = $this->mymodel->getcount('*','tbl_menu','parent_id ='.$menu['id']);
@@ -96,15 +99,43 @@
                                 <?php if($submenucount>0){?>
                                     <li class="dropdown"><a
                                             href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                            aria-expanded="false"><?php echo $menu['title']?><span class="caret dropdown-toggle"></span></a>
+                                            aria-expanded="false">
+                                            <?php
+                                            if($language == 'cn'){
+                                                echo $menu['title_cn'];
+                                            }
+                                            else{
+                                                echo $menu['title'];
+                                            }
+                                           // echo $menu['title']?>
+
+                                            <span class="caret dropdown-toggle"></span></a>
                                         <ul class="dropdown-menu">
                                             <?php foreach($submenus as $submenu ):?>
-                                                <li><a href="<?php echo base_url().$submenu['page_link']; ?>"><?php echo $submenu['title']?></a></li>
+                                                <li><a href="<?php echo base_url().$submenu['page_link']; ?>">
+                                                        <?php
+                                                        if($language == 'cn'){
+                                                            echo $submenu['title_cn'];
+                                                        }
+                                                        else{
+                                                            echo $submenu['title'];
+                                                        }
+                                                        ?>
+                                                    </a></li>
                                              <?php endforeach;?>
                                         </ul>
                                     </li>
                                     <?php }else{?>
-                                    <li><a href="<?php echo base_url().$menu['page_link'];?>"><?php echo $menu['title']?></a></li>
+                                    <li><a href="<?php echo base_url().$menu['page_link'];?>">
+                                            <?php
+                                            if($language == 'cn'){
+                                                echo $menu['title_cn'];
+                                            }
+                                            else{
+                                                echo $menu['title'];
+                                            }
+                                            ?>
+                                        </a></li>
                                     <?php }?>
 
                             <?php }
@@ -147,6 +178,7 @@
 </header>
 
 <?php
+//echo $language;
 
 //echo $this->lang->line('account_creation_successful');
 //echo $this->lang->line('download_file');

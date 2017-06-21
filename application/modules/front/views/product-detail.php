@@ -35,8 +35,8 @@
                                 <div class="col-xs-6">
                                     <div class="download-pdf">
                                         <button class="btn- btn-default"> <?php
-                                            $download = $this->lang->line('download_file');
-                                            echo utf8_encode($download);
+                                            echo $download = $this->lang->line('download_file');
+                                            //echo utf8_encode($download);
                                             ?> </button>
                                         <div class="pdf-share">
                                             <h4>Share On:</h4>

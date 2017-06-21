@@ -1,6 +1,4 @@
-
 <!-- Banner start -->
-
 <div class="container-flud">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -17,7 +15,7 @@
                         <h1>Machinery<br> E-Bolt</h1>
                         <em>Get upto 15% offer</em>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain applications in manufacturing, automotive and variety other industries; </p>
-                        <a class="btn btn-default" href="#">Shop Now <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-default" href="#"><?php echo $this->lang->line('shop_now')?> <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -28,7 +26,7 @@
                         <h1>Machinery<br> E-Bolt</h1>
                         <em>Get upto 15% offer</em>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain applications in manufacturing, automotive and variety other industries; </p>
-                        <a class="btn btn-default" href="#">Shop Now <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-default" href="#"><?php echo $this->lang->line('shop_now')?> <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -39,7 +37,7 @@
                         <h1>Machinery<br> E-Bolt</h1>
                         <em>Get upto 15% offer</em>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain applications in manufacturing, automotive and variety other industries; </p>
-                        <a class="btn btn-default" href="#">Shop Now <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-default" href="#"><?php echo $this->lang->line('shop_now')?> <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -93,7 +91,7 @@
 <section class="application">
     <div class="container">
         <div class="title">
-            <h2>applications</h2>
+            <h2><?php echo $this->lang->line('application')?></h2>
             <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain applications in manufacturing, automotive and variety other industries;</p>
         </div>
         <div class="row">
@@ -103,7 +101,7 @@
                     <figcaption>
                         <h4>Asset <br> Management</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -113,7 +111,7 @@
                     <figcaption>
                         <h4>Warehouse & <br> Logistic Management</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -123,7 +121,7 @@
                     <figcaption>
                         <h4>Work in <br> Progress Tracking</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -133,7 +131,7 @@
                     <figcaption>
                         <h4>Tool <br> Tracking</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -143,7 +141,7 @@
                     <figcaption>
                         <h4>Transportation <br> Management</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -153,7 +151,7 @@
                     <figcaption>
                         <h4>MRO <br> Management</h4>
                         <p>Our qualified UHF metal and non-metal Tags, to solve your asset management, logistic, supply-chain ...</p>
-                        <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                        <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                     </figcaption>
                 </div>
             </div>
@@ -169,7 +167,7 @@
 <section class="news-events">
     <div class="container">
         <div class="title text-center">
-            <h2>News & Events</h2>
+            <h2><?php echo $this->lang->line('news_events')?></h2>
         </div>
         <div class="col-sm-6 no-padding">
             <div class="news-item clearfix">
@@ -182,7 +180,7 @@
                             <h3>News Title</h3>
                             <span><i class="fa fa-clock-o"></i>21 May 2017</span>
                             <p>Crepak designs and manufactures durable, high Performance RFID tagsfor general and harsh environment.</p>
-                            <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                            <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                         </figcaption>
                     </div>
                 </div>
@@ -199,7 +197,7 @@
                             <h3>News Title</h3>
                             <span><i class="fa fa-clock-o"></i>21 May 2017</span>
                             <p>Crepak designs and manufactures durable, high Performance RFID tagsfor general and harsh environment.</p>
-                            <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                            <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                         </figcaption>
                     </div>
                 </div>
@@ -216,7 +214,7 @@
                             <h3>News Title</h3>
                             <span><i class="fa fa-clock-o"></i>21 May 2017</span>
                             <p>Crepak designs and manufactures durable, high Performance RFID tagsfor general and harsh environment.</p>
-                            <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                            <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                         </figcaption>
                     </div>
                 </div>
@@ -233,7 +231,7 @@
                             <h3>News Title</h3>
                             <span><i class="fa fa-clock-o"></i>21 May 2017</span>
                             <p>Crepak designs and manufactures durable, high Performance RFID tagsfor general and harsh environment.</p>
-                            <a class="more" href="#">Learn More <i class="fa fa-angle-right"></i></a>
+                            <a class="more" href="#"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
                         </figcaption>
                     </div>
                 </div>
