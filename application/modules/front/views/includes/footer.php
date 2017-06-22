@@ -79,8 +79,17 @@
                 location.reload();
 
             }
-        })
+        });
     }
+
+    //add class to home page if url doesnot contain index
+    var currentLocation = window.location.href;
+    var base_url = '<?php echo base_url();?>';
+    var home_url = '<?php echo base_url();?>index';
+    if(currentLocation == base_url){
+        $('a[href="'+home_url+'"]').parent().addClass("active")
+    }
+
 </script>
 
 </body>

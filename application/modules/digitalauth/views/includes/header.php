@@ -32,6 +32,8 @@
 <link href="<?php echo base_url(); ?>scriptscss/admin/css/style.css" rel="stylesheet" type="text/css" />
       <link href="<?php echo base_url(); ?>scriptscss/admin/plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
       <script src="<?php echo base_url(); ?>scriptscss/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+      <link rel="shortcut icon" href="<?php echo base_url(); ?>scriptscss/images/fav-icon.png">
   </head>
   <body class="skin-blue sidebar-mini">
 
