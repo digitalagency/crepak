@@ -62,8 +62,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //digitalauth
-$route['digitalauth'] = 'digitalauth/index';
-$route['digitalauth/(:any)'] = "digitalauth/$1";
+$route['dacadmin'] = 'dacadmin/index';
+$route['dacadmin/(:any)'] = "dacadmin/$1";
 
 // front page
 $route['(:any)'] = "front/$1";
