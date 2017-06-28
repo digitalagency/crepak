@@ -48,7 +48,7 @@ class Myapplication extends CI_Model
         $this->db->select('*');
         $this->db->from($this->table_topbanner);
 
-        $this->db->where('post_type', "application");
+        $this->db->where('post_type', "applications");
         $query = $this->db->get();
         $result = $query->result() ;
         return $result;

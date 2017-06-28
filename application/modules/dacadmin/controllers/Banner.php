@@ -22,13 +22,13 @@ class Banner extends Dacadmin
     }
 
     function index(){
-        redirect('digitalauth/pages/listpages', 'refresh');
+        redirect('dacadmin/pages/listpages', 'refresh');
 
     }
 
     function addbanner(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -67,7 +67,7 @@ class Banner extends Dacadmin
                 if ($imgSize[0] > 2048 || $imgSize[1] > 2048) {
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/application/addapplication/");
+                    redirect("dacadmin/application/addapplication/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -84,7 +84,7 @@ class Banner extends Dacadmin
                 if ($imgSize[0] > 2048 || $imgSize[1] > 2048) {
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/application/addapplication/");
+                    redirect("dacadmin/application/addapplication/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -118,14 +118,14 @@ class Banner extends Dacadmin
                 $relatedproduct = array(
                     'post_id' => $lastId,
                     'post_meta_key' => 'related_product',
-                    'post_meta_value' => serialize($related_product)
+                    'post_meta_value' => $related_product
                 );
 
                 $this->mybanner->addRelated($relatedproduct, 'tbl_postmeta');
             }
 
             $this->session->set_flashdata('success_message', 'Banner added successfully.');
-            redirect("digitalauth/banner/addbanner");
+            redirect("dacadmin/banner/addbanner");
 
 
         }
@@ -139,7 +139,7 @@ class Banner extends Dacadmin
 
     function listbanners(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         $this->data['banners'] = $this->mybanner->getAllBanners();
         $this->_render_page('banner/listbanner',$this->data);
@@ -149,8 +149,162 @@ class Banner extends Dacadmin
 
     function editbanner($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
+
+        if ($this->input->post('btnDo') == 'Edit' ) {
+
+            $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
+            if ($this->form_validation->run() == TRUE) {
+                $image = '';
+                $image_cn = '';
+                $title = $this->input->post('title');
+                $title_cn = $this->input->post('title_cn');
+                $slug = $this->input->post('slug');
+                $content = $this->input->post('content');
+                $content_cn = $this->input->post('content_cn');
+                $excrept = $this->input->post('excrept');
+                $excrept_cn = $this->input->post('excrept_cn');
+                $status = $this->input->post('status');
+
+                $related_stories = $this->input->post('stories');
+                $related_product = $this->input->post('products');
+
+                $folder_file = 'banners';
+                $target = 'uploads';
+                $path        =  './uploads/'.$folder_file.'/';
+                $thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
+                if(!is_dir($path)):
+                    mkdir($path);
+                    chmod($path, 0755);
+                endif;
+                if(!is_dir($thumb_path)):
+                    mkdir($thumb_path);
+                    chmod($thumb_path, 0755);
+                endif;
+
+                if($_FILES['images']['size'] != 0){
+                    //$this->callback_image_upload('father_image');
+                    $imgSize = getimagesize($_FILES["images"]['tmp_name']);
+                    if($imgSize[0] > 2048 || $imgSize[1] > 2048){
+                        $message = "Image height or width is larger than 2048px.";
+                        $this->session->set_flashdata('error_message', $message);
+                        redirect("dacadmin/banner/editbanner/".$id);
+                    }
+                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
+                    $result = upload_image('images', $target, $thumb, $folder_file);
+                    if (isset($result['fullname'])) {
+                        $image =  $result['fullname'];
+                    }
+                }
+                if($_FILES['images_cn']['size'] != 0){
+                    //$this->callback_image_upload('father_image');
+                    $imgSize = getimagesize($_FILES["images_cn"]['tmp_name']);
+                    if($imgSize[0] > 2048 || $imgSize[1] > 2048){
+                        $message = "Image height or width is larger than 2048px.";
+                        $this->session->set_flashdata('error_message', $message);
+                        redirect("dacadmin/banner/editbanner/".$id);
+                    }
+                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
+                    $result = upload_image('images_cn', $target, $thumb, $folder_file);
+                    if (isset($result['fullname'])) {
+                        $image_cn =  $result['fullname'];
+                    }
+                }
+
+                if($image!='' && $image_cn ==''){
+                    $article = array(
+                        'title' => $title,
+                        'title_cn' => $title_cn,
+                        'slug' => $slug,
+                        'content' => $content,
+                        'content_cn' => $content_cn,
+                        'excrept' => $excrept,
+                        'excrept_cn' => $excrept_cn,
+                        'featured_img' => $image,
+                        'status'  => $status,
+                        'post_update' => date("Y-m-d  H:i:s"),
+                    );
+                }
+                elseif($image_cn!='' && $image ==''){
+                    $article = array(
+                        'title' => $title,
+                        'title_cn' => $title_cn,
+                        'slug' => $slug,
+                        'content' => $content,
+                        'content_cn' => $content_cn,
+                        'excrept' => $excrept,
+                        'excrept_cn' => $excrept_cn,
+                        'featured_img_cn' => $image_cn,
+                        'status'  => $status,
+                        'post_update' => date("Y-m-d  H:i:s"),
+                    );
+                }
+                elseif($image!='' && $image_cn!=''){
+                    $article = array(
+                        'title' => $title,
+                        'title_cn' => $title_cn,
+                        'slug' => $slug,
+                        'content' => $content,
+                        'content_cn' => $content_cn,
+                        'excrept' => $excrept,
+                        'excrept_cn' => $excrept_cn,
+                        'featured_img' => $image,
+                        'featured_img_cn' => $image_cn,
+                        'status'  => $status,
+                        'post_update' => date("Y-m-d  H:i:s"),
+                    );
+                }
+                else{
+                    $article = array(
+                        'title' => $title,
+                        'title_cn' => $title_cn,
+                        'slug' => $slug,
+                        'content' => $content,
+                        'content_cn' => $content_cn,
+                        'excrept' => $excrept,
+                        'excrept_cn' => $excrept_cn,
+                        'status'  => $status,
+                        'post_update' => date("Y-m-d  H:i:s"),
+                    );
+                }
+
+
+
+
+                $relatedProductcount = $this->mybanner->getRelatedCount('tbl_postmeta','*','post_id ='.$id.' AND post_meta_key= "related_product"');
+                if($relatedProductcount>0){
+                    $relatedPrd = $this->mybanner->getBannerrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "related_product"');
+                    foreach($relatedPrd as $prod){
+                        $relatedId = $prod->id;
+                    }
+
+                    $relatedproduct = array(
+                        'post_meta_value' => serialize($related_product)
+                    );
+                    $this->mybanner->editRelated(' tbl_postmeta',$relatedproduct, 'id', $relatedId);
+                }
+                else{
+                    $relatedproduct = array(
+                        'post_id' => $id,
+                        'post_meta_key' => 'related_product',
+                        'post_meta_value' => $related_product
+                    );
+
+                    $this->mybanner->addRelated($relatedproduct, 'tbl_postmeta');
+                }
+
+
+                if($this->mybanner->edit($article, 'id', $id)){
+                    $this->session->set_flashdata('success_message', 'Application edited successfully.');
+                    redirect("dacadmin/banner/editbanner/".$id);
+                }
+            }
+        }
+
+        $this->data['bannersValue'] = $this->mybanner->getBannersByValue('*','id ='.$id);
+        $this->data['allproducts'] = $this->mybanner->getValuesbyPostType('product');
+        $this->data['relatedproduct'] = $this->mybanner->getBannerrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "related_product"');
         $this->_render_page('banner/editbanner',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -160,23 +314,23 @@ class Banner extends Dacadmin
     function deletebanner($id=''){
         $image = $this->mybanner->getValue('featured_img','id',$id);
         if(!empty($image)){
-            $imagepath = './uploads/applications/'.$image;
-            $imagepath_thumb = './uploads/applications/thumbnail/'.$image;
+            $imagepath = './uploads/banners/'.$image;
+            $imagepath_thumb = './uploads/banners/thumbnail/'.$image;
             @unlink($imagepath);
             @unlink($imagepath_thumb);
         }
         $image_cn = $this->mybanner->getValue('featured_img_cn','id',$id);
         if(!empty($image)){
-            $imagepath_cn = './uploads/applications/'.$image_cn;
-            $imagepath_cn_thumb = './uploads/applications/thumbnail/'.$image_cn;
+            $imagepath_cn = './uploads/banners/'.$image_cn;
+            $imagepath_cn_thumb = './uploads/banners/thumbnail/'.$image_cn;
             @unlink($imagepath_cn);
             @unlink($imagepath_cn_thumb);
         }
         $this->mybanner->deleteRelated('post_id',$id,'tbl_postmeta');
 
         if($this->mybanner->delete('id', $id)){
-            $this->session->set_flashdata('success_message', 'Application Deleted successfully.');
-            redirect("digitalauth/application/listapplications");
+            $this->session->set_flashdata('success_message', 'Banner Deleted successfully.');
+            redirect("dacadmin/banner/listbanners");
         }
     }
 
@@ -185,14 +339,32 @@ class Banner extends Dacadmin
         $title = $_POST['title'];
         $count = $this->mybanner->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "banners"');
         if($count>0){
-            echo json_encode(array('status'=>1)) ;
+            echo '1' ;
             die();
         }
         else{
-           echo json_encode(array('status'=>0)) ;
+           echo '0' ;
             die();
         }
 
 
+    }
+
+    function toggleBannerStatus($id, $stat){
+        $reurl = 'dacadmin/banner/listbanners';
+        if($stat=='1'){
+            $additional_data = array(
+                'status' => "0"
+            );
+        }
+        else{
+            $additional_data = array(
+                'status' => "1"
+            );
+        }
+        if($this->mybanner->edit( $additional_data, 'id', $id)){
+            redirect($reurl);
+            die();
+        }
     }
 }

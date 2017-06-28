@@ -1,5 +1,6 @@
+<!-- breadcrumb -->
 <?php
-foreach ($categoryValues as $value) {
+foreach ($videosValue as $value) {
     $id = $value->id;
     $title = $value->title;
     $title_cn = $value->title_cn;
@@ -13,7 +14,6 @@ foreach ($categoryValues as $value) {
     $slug = $value->slug;
 }
 ?>
-<!-- breadcrumb -->
 <section class="content-header">
     <h1>
         Dashboard
@@ -21,7 +21,7 @@ foreach ($categoryValues as $value) {
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Edit News Category</li>
+        <li class="active">Edit Banner</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -31,7 +31,7 @@ foreach ($categoryValues as $value) {
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Edit News Category</h3>
+                    <h3 class='box-title'>Edit Banner</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body pad'>
@@ -51,14 +51,14 @@ foreach ($categoryValues as $value) {
                     <?php }; ?>
 
                     <form role="form" method="post" class="form-horizontal"
-                          action="<?php echo base_url('dacadmin/news/editnewscategory') . '/' . $id; ?>"
+                          action="<?php echo base_url('dacadmin/videos/editvideo') . '/' . $id; ?>"
                           enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
                                     <input type="text" class="form-control" id="artilcetitle" name="title"
-                                           placeholder="Title of the Cateogry" onchange="titletoslug()"
+                                           placeholder="Title of the Page" onchange="titletoslug()"
                                            value="<?php echo $title; ?>">
                                     <?php echo form_error('title', '<span class="error-message">', '</span>'); ?>
                                 </div>
@@ -67,7 +67,7 @@ foreach ($categoryValues as $value) {
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
                                     <input type="text" class="form-control" id="slug" name="slug"
-                                           placeholder="Slug of the Category" value="<?php echo $slug; ?>">
+                                           placeholder="Slug of the Page" value="<?php echo $slug; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -77,24 +77,104 @@ foreach ($categoryValues as $value) {
                                            placeholder="Chinese Title" value="<?php echo $title_cn; ?>">
                                 </div>
                             </div>
+                            <div class="form-group">
 
-
+                                <div class="col-sm-12">
+                                    <label>Content:</label>
+                                    <textarea id="editor1" name="content" rows="10" cols="80">
+                                      <?php echo $aticle; ?>
+                                    </textarea>
+                                </div>
+                            </div>
 
                             <div class="form-group">
 
-                                <div class="col-sm-4">
-                                    <input name="btnDo" id="addBtn" type="submit" value="Edit" class="btn btn-primary"/>
+                                <div class="col-sm-12">
+                                    <label>Chinese Content:</label>
+                            <textarea id="editor2" name="content_cn" rows="10" cols="80">
+                                <?php echo $aticle_cn; ?>
+                            </textarea>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+
+                                <div class="col-sm-12 col-md-6 col-xs-12"">
+                                <label>Excrept:</label>
+                            <textarea id="editor3" name="excrept" rows="10" cols="40">
+                                <?php echo $excrept; ?>
+                            </textarea>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-xs-12"">
+                            <label>Chinese Excrept:</label>
+                            <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
+                                <?php echo $excrept_cn; ?>
+                            </textarea>
                         </div>
-                    </form>
                 </div>
 
-            </div>
-            <!-- /.box -->
 
+
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-6 col-xs-12">
+                        <label for="exampleInputFile">Video Link (Youtube): </label>
+                        <?php  foreach($relatedlink as $link){
+                          $videourl = $link->post_meta_value;
+                        };?>
+                        <input type="text" class="form-control" id="video" name="video" placeholder="Video Link" value='<?php echo !empty($videourl)?$videourl:'';?>'>
+
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xs-12">
+                        <label for="exampleInputFile">Chinese Video Link:</label>
+                        <?php  foreach($relatedlink_cn as $link_cn){
+                            $videourlcn =  $link_cn->post_meta_value;
+                        };?>
+                        <input type="text" class="form-control" id="video_cn" name="video_cn" placeholder="Chinese Video Link" value="<?php echo !empty($videourlcn)?$videourlcn:'';?>">
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label for="exampleInputFile">Status:</label>
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="status" id="publish" class="minimal"
+                                       value="1" <?php echo ($status == '1') ? 'checked' : '' ?>>
+                                Publish
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="status" id="unpublish" class="minimal"
+                                       value="0" <?php echo ($status == '0') ? 'checked' : '' ?>>
+                                Unpublish
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="col-sm-4">
+                        <input name="btnDo" id="addBtn" type="submit" value="Edit" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
-        <!-- /.col-->
+
+    </div>
+    <!-- /.box -->
+
+    </div>
+    <!-- /.col-->
     </div>
     <!-- ./row -->
 </section><!-- /.content -->
@@ -105,7 +185,7 @@ foreach ($categoryValues as $value) {
         var title = document.getElementById("artilcetitle").value;
         if (orgtitle != title) {
             $.ajax({
-                url: "<?php echo base_url('dacadmin/category/checkcategory/')?>",
+                url: "<?php echo base_url('dacadmin/pages/checkpage/')?>",
                 data: {title: title},
                 type: 'POST',
                 success: function (data) {
@@ -127,7 +207,7 @@ foreach ($categoryValues as $value) {
 //
                         document.getElementById("addBtn").disabled = true;
                     }
-                    if (available == 0) {
+                    if(available == 0) {
                         document.getElementById("addBtn").disabled = false;
                     }
                 }

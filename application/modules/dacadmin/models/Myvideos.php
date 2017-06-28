@@ -3,10 +3,10 @@
 /**
  * Created by PhpStorm.
  * User: Binaya
- * Date: 6/22/2017
- * Time: 12:28 PM
+ * Date: 6/28/2017
+ * Time: 12:46 PM
  */
-class Mybanner extends CI_Model
+class Myvideos extends CI_Model
 {
     private $table_topbanner = 'tbl_post';
 
@@ -41,22 +41,22 @@ class Mybanner extends CI_Model
         return FALSE;
     }
 
-
     //list all Banner
-    public function getAllBanners(){
+    public function getAllVideos(){
 
         $this->db->select('*');
         $this->db->from($this->table_topbanner);
 
-        $this->db->where('post_type', "banners");
+        $this->db->where('post_type', "videos");
         $query = $this->db->get();
         $result = $query->result() ;
         return $result;
 
     }
 
+
     // show all page element by value
-    function getBannersByValue($fields,$where=''){
+    function getVideoByValue($fields,$where=''){
 
         //echo $where;
         $this->db->select($fields);
@@ -70,7 +70,7 @@ class Mybanner extends CI_Model
         return $result;
     }
 
-    function getBannerrelated($meta_table,$fields,$where=''){
+    function getVideorelated($meta_table,$fields,$where=''){
 
         //echo $where;
         $this->db->select($fields);
@@ -84,19 +84,6 @@ class Mybanner extends CI_Model
         return $result;
     }
 
-    function getBannersrelated($meta_table,$fields,$where=''){
-
-        //echo $where;
-        $this->db->select($fields);
-        $this->db->from($meta_table);
-        if($where){
-            $this->db->where($where);
-        }
-
-        $query = $this->db->get();
-        $result = $query->result() ;
-        return $result;
-    }
 
     //update
     function edit($data,$fieldID,$ID){
@@ -125,7 +112,6 @@ class Mybanner extends CI_Model
     }
 
 
-
     //list all values by post type
     public function getValuesbyPostType($value){
 
@@ -137,6 +123,48 @@ class Mybanner extends CI_Model
         $result = $query->result() ;
         return $result;
 
+    }
+
+
+
+    //get single value of page
+    function getValue($reqvalue,$fieldname,$fieldvalue){
+        $this->db->where($fieldname,$fieldvalue);
+        $query=$this->db->get($this->table_topbanner);
+        $result=$query->row()->$reqvalue;
+        return $result;
+    }
+
+    //get single related value of page
+    function getRelatedValued($meta_table,$reqvalue,$fieldname,$fieldvalue){
+        $this->db->where($fieldname,$fieldvalue);
+        $query=$this->db->get($meta_table);
+        $result=$query->row()->$reqvalue;
+        return $result;
+    }
+
+
+    //delete application
+    function delete($fieldID,$ID){
+        $this->db->where($fieldID,$ID);
+        $this->db->delete($this->table_topbanner);
+        if ($this->db->affected_rows() == '1')
+        {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+    //delete application related datas
+    function deleteRelated($fieldID,$ID,$meta_table){
+        $this->db->where($fieldID,$ID);
+        $this->db->delete($meta_table);
+        if ($this->db->affected_rows() == '1')
+        {
+            return TRUE;
+        }
+
+        return FALSE;
     }
 
 
@@ -157,49 +185,7 @@ class Mybanner extends CI_Model
 
     }
 
-
-    //get single value of banner
-    function getValue($reqvalue,$fieldname,$fieldvalue){
-        $this->db->where($fieldname,$fieldvalue);
-        $query=$this->db->get($this->table_topbanner);
-        $result=$query->row()->$reqvalue;
-        return $result;
-    }
-
-    //get single related value of banner
-    function getRelatedValued($meta_table,$reqvalue,$fieldname,$fieldvalue){
-        $this->db->where($fieldname,$fieldvalue);
-        $query=$this->db->get($meta_table);
-        $result=$query->row()->$reqvalue;
-        return $result;
-    }
-
-
-    //delete banner
-    function delete($fieldID,$ID){
-        $this->db->where($fieldID,$ID);
-        $this->db->delete($this->table_topbanner);
-        if ($this->db->affected_rows() == '1')
-        {
-            return TRUE;
-        }
-
-        return FALSE;
-    }
-    //delete banner related datas
-    function deleteRelated($fieldID,$ID,$meta_table){
-        $this->db->where($fieldID,$ID);
-        $this->db->delete($meta_table);
-        if ($this->db->affected_rows() == '1')
-        {
-            return TRUE;
-        }
-
-        return FALSE;
-    }
-
-
-    //get banner related value's count
+    //get application related value's count
     function getRelatedCount($meta_table,$fields,$where="1=1")
     {
 

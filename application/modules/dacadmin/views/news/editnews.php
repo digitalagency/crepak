@@ -222,7 +222,8 @@ foreach ($newsValues as $value) {
                 data: {title: title},
                 type: 'POST',
                 success: function (data) {
-                    if (data == 1) {
+                    var available = data.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+                    if (available == 1) {
 
                         bootbox.confirm("<h4>Title Already Exist</h4>", function (result) {
                             if (result) {
@@ -239,7 +240,7 @@ foreach ($newsValues as $value) {
 //
                         document.getElementById("addBtn").disabled = true;
                     }
-                    else {
+                    if (available == 0) {
                         document.getElementById("addBtn").disabled = false;
                     }
                 }

@@ -23,7 +23,7 @@ class Gallery extends Dacadmin
 
     function addimage($id = ''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Add' ){
             $status = $this->input->post('status');
@@ -50,7 +50,7 @@ class Gallery extends Dacadmin
                     if($imgSize[$i][0] > 2048 || $imgSize[$i][1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/addphotos/".$id);
+                        redirect("dacadmin/addphotos/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
                     $_FILES['images']['name']     = $files1['name'][$i];
@@ -78,12 +78,12 @@ class Gallery extends Dacadmin
                     else {
                         $message = "Error in uploading.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/gallery/addimage/".$id);
+                        redirect("dacadmin/gallery/addimage/".$id);
                     }
                 }
                 $message = "Images Uploaded successfully.";
                 $this->session->set_flashdata('success_message', $message);
-                redirect("digitalauth/gallery/addimage/".$id);
+                redirect("dacadmin/gallery/addimage/".$id);
 
             }
         }
@@ -95,7 +95,7 @@ class Gallery extends Dacadmin
     }
     function listimages($id = ''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['galleryValues'] = $this->mygallery->getPostByValue('*','id ='.$id);
@@ -107,7 +107,7 @@ class Gallery extends Dacadmin
     }
 
     function toggleImageStatus($id, $stat, $idd){
-        $reurl = 'digitalauth/gallery/listimages/'.$idd;
+        $reurl = 'dacadmin/gallery/listimages/'.$idd;
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"
@@ -144,7 +144,7 @@ class Gallery extends Dacadmin
 
         if($this->mygallery->deleteImage('id', $id)){
             $this->session->set_flashdata('success_message', 'Image Deleted successfully.');
-            redirect("digitalauth/gallery/listimages/".$idd);
+            redirect("dacadmin/gallery/listimages/".$idd);
         }
 
     }

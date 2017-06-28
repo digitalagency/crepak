@@ -20,7 +20,7 @@
                     <h3 class='box-title'>List of Applications</h3>
 
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="<?php echo base_url('dacadmin/product/addproduct') ?>">Add
+                        <a class="btn btn-primary" href="<?php echo base_url('dacadmin/application/addapplication') ?>">Add
                             Product </a>
                     </div>
                 </div>

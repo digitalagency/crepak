@@ -22,12 +22,12 @@ class Category extends Dacadmin
     }
 
     function index(){
-        redirect('digitalauth/category/listcategories', 'refresh');
+        redirect('dacadmin/category/listcategories', 'refresh');
     }
 
     function addcategory(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -64,7 +64,7 @@ class Category extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/category/addcategory/");
+                    redirect("dacadmin/category/addcategory/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -81,7 +81,7 @@ class Category extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/category/addcategory/");
+                    redirect("dacadmin/category/addcategory/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -111,7 +111,7 @@ class Category extends Dacadmin
 
             if($this->mycategory->add($article)){
                 $this->session->set_flashdata('success_message', 'Category added successfully.');
-                redirect("digitalauth/category/addcategory");
+                redirect("dacadmin/category/addcategory");
             }
 
 
@@ -125,7 +125,7 @@ class Category extends Dacadmin
 
     function listcategories(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['articles'] = $this->mycategory->getAllCategories();
@@ -136,7 +136,7 @@ class Category extends Dacadmin
 
     function editcategory($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Edit' ) {
 
@@ -172,7 +172,7 @@ class Category extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/category/editcategry/".$id);
+                        redirect("dacadmin/category/editcategry/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -186,7 +186,7 @@ class Category extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/category/editcategory/".$id);
+                        redirect("dacadmin/category/editcategory/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -257,7 +257,7 @@ class Category extends Dacadmin
                 die();*/
                 if($this->mycategory->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Category edited successfully.');
-                    redirect("digitalauth/category/editcategory/".$id);
+                    redirect("dacadmin/category/editcategory/".$id);
                 }
             }
         }
@@ -287,7 +287,7 @@ class Category extends Dacadmin
         }
         if($this->mycategory->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Category Deleted successfully.');
-            redirect("digitalauth/category/listcategories");
+            redirect("dacadmin/category/listcategories");
         }
     }
 
@@ -307,7 +307,7 @@ class Category extends Dacadmin
     }
 
     function toggleCategoryStatus($id, $stat){
-        $reurl = 'digitalauth/category/listcategories';
+        $reurl = 'dacadmin/category/listcategories';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"

@@ -22,13 +22,13 @@ class Pages extends Dacadmin
     }
 
     function index(){
-        redirect('digitalauth/pages/listpages', 'refresh');
+        redirect('dacadmin/pages/listpages', 'refresh');
 
     }
 
     function addpage(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
 
@@ -64,7 +64,7 @@ class Pages extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/pages/addpage/");
+                    redirect("dacadmin/pages/addpage/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -81,7 +81,7 @@ class Pages extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/pages/addpage/");
+                    redirect("dacadmin/pages/addpage/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -111,7 +111,7 @@ class Pages extends Dacadmin
 
             if($this->mypages->add($article)){
                 $this->session->set_flashdata('success_message', 'Page added successfully.');
-                redirect("digitalauth/pages/addpage");
+                redirect("dacadmin/pages/addpage");
             }
 
 
@@ -124,7 +124,7 @@ class Pages extends Dacadmin
 
     function listpages(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['articles'] = $this->mypages->getAllPages();
@@ -137,7 +137,7 @@ class Pages extends Dacadmin
     function editpage($id=''){
 
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Edit' ) {
 
@@ -173,7 +173,7 @@ class Pages extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
+                        redirect("dacadmin/editpage/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -187,7 +187,7 @@ class Pages extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
+                        redirect("dacadmin/editpage/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -258,7 +258,7 @@ class Pages extends Dacadmin
                 die();*/
                 if($this->mypages->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Page edited successfully.');
-                    redirect("digitalauth/pages/editpage/".$id);
+                    redirect("dacadmin/pages/editpage/".$id);
                 }
             }
         }
@@ -287,7 +287,7 @@ class Pages extends Dacadmin
         }
         if($this->mypages->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Page Deleted successfully.');
-            redirect("digitalauth/pages/listpages");
+            redirect("dacadmin/pages/listpages");
         }
     }
 
@@ -306,7 +306,7 @@ class Pages extends Dacadmin
     }
 
     function togglePageStatus($id, $stat){
-        $reurl = 'digitalauth/pages/listpages';
+        $reurl = 'dacadmin/pages/listpages';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"

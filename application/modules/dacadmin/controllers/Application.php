@@ -31,7 +31,7 @@ class Application extends Dacadmin
     function addapplication()
     {
         if (!$this->ion_auth->logged_in()) {
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -70,7 +70,7 @@ class Application extends Dacadmin
                 if ($imgSize[0] > 2048 || $imgSize[1] > 2048) {
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/application/addapplication/");
+                    redirect("dacadmin/application/addapplication/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -87,7 +87,7 @@ class Application extends Dacadmin
                 if ($imgSize[0] > 2048 || $imgSize[1] > 2048) {
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/application/addapplication/");
+                    redirect("dacadmin/application/addapplication/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -138,7 +138,7 @@ class Application extends Dacadmin
             }
 
             $this->session->set_flashdata('success_message', 'Application added successfully.');
-            redirect("digitalauth/application/addapplication");
+            redirect("dacadmin/application/addapplication");
 
 
         }
@@ -154,7 +154,7 @@ class Application extends Dacadmin
     function listapplications()
     {
         if (!$this->ion_auth->logged_in()) {
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
 
@@ -166,7 +166,7 @@ class Application extends Dacadmin
 
     function editapplication($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         if ($this->input->post('btnDo') == 'Edit' ) {
@@ -206,7 +206,7 @@ class Application extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/application/editapplication/".$id);
+                        redirect("dacadmin/application/editapplication/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -220,7 +220,7 @@ class Application extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/application/editapplication/".$id);
+                        redirect("dacadmin/application/editapplication/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -340,7 +340,7 @@ class Application extends Dacadmin
 
                 if($this->myapplication->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Application edited successfully.');
-                    redirect("digitalauth/application/editapplication/".$id);
+                    redirect("dacadmin/application/editapplication/".$id);
                 }
             }
         }
@@ -379,13 +379,13 @@ class Application extends Dacadmin
 
         if($this->myapplication->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Application Deleted successfully.');
-            redirect("digitalauth/application/listapplications");
+            redirect("dacadmin/application/listapplications");
         }
     }
 
     function checkapplication(){
         $title = $_POST['title'];
-        $count = $this->myapplication->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "application"');
+        $count = $this->myapplication->getCount('LCASE(title)','title =LCASE("'.$title.'") AND post_type= "applications"');
         if($count>0){
             echo '1';
             die();
@@ -399,7 +399,7 @@ class Application extends Dacadmin
     }
 
     function toggleApplicationStatus($id, $stat){
-        $reurl = 'digitalauth/application/listapplications';
+        $reurl = 'dacadmin/application/listapplications';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"

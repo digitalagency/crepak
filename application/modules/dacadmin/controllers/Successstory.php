@@ -6,8 +6,8 @@
  * Date: 6/2/2017
  * Time: 10:19 AM
  */
-include_once (dirname(__FILE__) . "/Digitalauth.php");
-class Successstory extends Digitalauth
+include_once (dirname(__FILE__) . "/Dacadmin.php");
+class Successstory extends Dacadmin
 {
     public $data;
 
@@ -22,12 +22,12 @@ class Successstory extends Digitalauth
     }
 
     function index(){
-        redirect('digitalauth/successstory/liststories', 'refresh');
+        redirect('dacadmin/successstory/liststories', 'refresh');
     }
 
     function addstory(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
 
@@ -63,7 +63,7 @@ class Successstory extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/successstory/addstory/");
+                    redirect("dacadmin/successstory/addstory/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -80,7 +80,7 @@ class Successstory extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/successstory/addstory/");
+                    redirect("dacadmin/successstory/addstory/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -109,7 +109,7 @@ class Successstory extends Digitalauth
 
             if($this->mystory->add($article)){
                 $this->session->set_flashdata('success_message', 'Story added successfully.');
-                redirect("digitalauth/successstory/addstory");
+                redirect("dacadmin/successstory/addstory");
             }
 
 
@@ -122,7 +122,7 @@ class Successstory extends Digitalauth
 
     function liststories(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         $this->data['allstories'] = $this->mystory->getAllStories();
         $this->_render_page('stories/liststories',$this->data);
@@ -132,7 +132,7 @@ class Successstory extends Digitalauth
 
     function editstory($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Edit' ) {
 
@@ -168,7 +168,7 @@ class Successstory extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
+                        redirect("dacadmin/editpage/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -182,7 +182,7 @@ class Successstory extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/editpage/".$id);
+                        redirect("dacadmin/editpage/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -253,7 +253,7 @@ class Successstory extends Digitalauth
                 die();*/
                 if($this->mystory->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Story edited successfully.');
-                    redirect("digitalauth/successstory/editstory/".$id);
+                    redirect("dacadmin/successstory/editstory/".$id);
                 }
             }
         }
@@ -282,7 +282,7 @@ class Successstory extends Digitalauth
         }
         if($this->mystory->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Page Deleted successfully.');
-            redirect("digitalauth/successstory/liststories");
+            redirect("dacadmin/successstory/liststories");
         }
     }
 
@@ -301,7 +301,7 @@ class Successstory extends Digitalauth
     }
 
     function toggleStoryStatus($id, $stat){
-        $reurl = 'digitalauth/successstory/liststories';
+        $reurl = 'dacadmin/successstory/liststories';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"

@@ -25,7 +25,7 @@ class News extends Dacadmin
 
     function addnews(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -68,7 +68,7 @@ class News extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/news/addnews/");
+                    redirect("dacadmin/news/addnews/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -85,7 +85,7 @@ class News extends Dacadmin
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/news/addnews/");
+                    redirect("dacadmin/news/addnews/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -116,7 +116,7 @@ class News extends Dacadmin
 
             if($this->mynews->add($article)){
                 $this->session->set_flashdata('success_message', 'News added successfully.');
-                redirect("digitalauth/news/addnews");
+                redirect("dacadmin/news/addnews");
             }
 
 
@@ -130,7 +130,7 @@ class News extends Dacadmin
 
     function listnews(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['allnews'] = $this->mynews->getAllNews();
@@ -141,7 +141,7 @@ class News extends Dacadmin
 
     function editnews($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         if ($this->input->post('btnDo') == 'Edit' ) {
@@ -184,7 +184,7 @@ class News extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/news/editnews/".$id);
+                        redirect("dacadmin/news/editnews/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -198,7 +198,7 @@ class News extends Dacadmin
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/news/editnews/".$id);
+                        redirect("dacadmin/news/editnews/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -270,7 +270,7 @@ class News extends Dacadmin
 
                 if($this->mynews->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'News edited successfully.');
-                    redirect("digitalauth/news/editnews/".$id);
+                    redirect("dacadmin/news/editnews/".$id);
                 }
             }
         }
@@ -300,7 +300,7 @@ class News extends Dacadmin
         }
         if($this->mynews->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'News Deleted successfully.');
-            redirect("digitalauth/news/listnews");
+            redirect("dacadmin/news/listnews");
         }
     }
 
@@ -319,7 +319,7 @@ class News extends Dacadmin
 
 
     function togglenewsStatus($id, $stat){
-        $reurl = 'digitalauth/news/listnews';
+        $reurl = 'dacadmin/news/listnews';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"
@@ -340,7 +340,7 @@ class News extends Dacadmin
 
     function addnewscategory(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
         if ($this->form_validation->run() == TRUE) {
@@ -359,7 +359,7 @@ class News extends Dacadmin
 
             if($this->mynews->add($newscategory)){
                 $this->session->set_flashdata('success_message', 'News Category added successfully.');
-                redirect("digitalauth/news/addnewscategory");
+                redirect("dacadmin/news/addnewscategory");
             }
 
 
@@ -373,7 +373,7 @@ class News extends Dacadmin
 
     function categories(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['newscateogry'] = $this->mynews->getAllNewsCategories();
@@ -384,7 +384,7 @@ class News extends Dacadmin
 
     function editnewscategory($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Edit' ) {
             $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -404,7 +404,7 @@ class News extends Dacadmin
 
                 if($this->mynews->edit($newscategory, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'News Category edited successfully.');
-                    redirect("digitalauth/news/editnewscategory/".$id);
+                    redirect("dacadmin/news/editnewscategory/".$id);
                 }
             }
         }
@@ -418,7 +418,7 @@ class News extends Dacadmin
 
         if($this->mynews->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'News Category Deleted successfully.');
-            redirect("digitalauth/news/categories");
+            redirect("dacadmin/news/categories");
         }
     }
 

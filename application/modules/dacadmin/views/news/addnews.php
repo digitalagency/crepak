@@ -176,7 +176,8 @@
             data: {title: title},
             type: 'POST',
             success: function(data){
-                if(data == 1){
+                var available = data.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+                if(available == 1){
 
                     bootbox.confirm("<h4>News's title Already Exist</h4>", function(result) {
                         if(result){
@@ -189,7 +190,7 @@
 //
                     document.getElementById("addBtn").disabled = true;
                 }
-                else{
+                if(available == 0){
                     document.getElementById("addBtn").disabled = false;
                 }
             }

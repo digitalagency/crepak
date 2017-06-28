@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Product</li>
+        <li class="active">Add Video</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -16,9 +16,8 @@
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Add Product</h3>
-                </div>
-                <!-- /.box-header -->
+                    <h3 class='box-title'>Add Video</h3>
+                </div><!-- /.box-header -->
                 <div class='box-body pad'>
                     <?php if ($this->session->flashdata('success_message') != "") { ?>
                         <div class="alert alert-success alert-dismissible" role="alert">
@@ -26,61 +25,36 @@
                                     aria-hidden="true">&times;</span></button>
                             <?php echo $this->session->flashdata('success_message'); ?>
                         </div>
-                    <?php }; ?>
+                    <?php } ;?>
                     <?php if ($this->session->flashdata('error_message') != "") { ?>
                         <div class="alert alert-danger alert-dismissable" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                             <?php echo $this->session->flashdata('error_message'); ?>
                         </div>
-                    <?php }; ?>
+                    <?php } ;?>
 
-                    <form role="form" method="post" class="form-horizontal"
-                          action="<?php echo base_url('dacadmin/product/addproduct'); ?>"
-                          enctype="multipart/form-data">
+                    <form role="form" method="post" class="form-horizontal" action="<?php echo base_url('dacadmin/videos/addvideo');?>" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="title">Title*</label>
-                                    <input type="text" class="form-control" id="artilcetitle" name="title"
-                                           placeholder="Title of the Product" onchange="titletoslug()">
-                                    <?php echo form_error('title', '<span class="error-message">', '</span>'); ?>
+                                    <input type="text" class="form-control" id="artilcetitle" name="title" placeholder="Title of the Banner" onchange="titletoslug()">
+                                    <?php echo form_error('title','<span class="error-message">','</span>');?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="slug">Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug"
-                                           placeholder="Slug of the Product">
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug of the Banner">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="slug">Chinese Title : </label>
-                                    <input type="text" class="form-control" id="title_cn" name="title_cn"
-                                           placeholder="Chinese Title">
+                                    <label for="slug">Chinese Title  : </label>
+                                    <input type="text" class="form-control" id="title_cn" name="title_cn" placeholder="Chinese Title">
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="slug">Category : </label>
-                                    <select name="category" id="category" class="form-control">
-                                        <option value="">Select the Category</option>
-                                        <?php
-                                        foreach ($allcategories as $category) {
-                                            ?>
-
-                                            <option
-                                                value="<?php echo $category->id ?>"><?php echo $category->title . ' / ' . $category->title_cn; ?></option>
-                                        <?php }
-                                        ?>
-                                    </select>
-
-
-                                </div>
-                            </div>
-
                             <div class="form-group">
 
                                 <div class="col-sm-12">
@@ -115,36 +89,38 @@
                             </div>
 
 
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="exampleInputFile">Images:</label>
+                                    <label for="exampleInputFile">Images: </label>
                                     <input type="file" name="images" id="images">
+                                    <span>Prefered Image size 1920 x 898 </span>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
                                     <label for="exampleInputFile">Chinese Images:</label>
                                     <input type="file" name="images_cn" id="images">
+                                    <span>Prefered Image size 1920 x 898 </span>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="exampleInputFile">File (Downloadable):</label>
-                                    <input type="file" name="pfile" id="pfile">
+                                    <label for="exampleInputFile">Video Link (Youtube): </label>
+                                    <input type="text" class="form-control" id="video" name="video" placeholder="Video Link">
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label for="exampleInputFile">Chinese File (Downloadable):</label>
-                                    <input type="file" name="pfile_cn" id="pfile_cn">
+                                    <label for="exampleInputFile">Chinese Video Link:</label>
+                                    <input type="text" class="form-control" id="video_cn" name="video_cn" placeholder="Chinese Video Link">
                                 </div>
                             </div>
+
+
 
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="exampleInputFile">Status:</label>
-
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="status" id="publish" class="minimal" value="1"
-                                                   checked>
+                                            <input type="radio" name="status" id="publish" class="minimal" value="1" checked>
                                             Publish
                                         </label>
                                     </div>
@@ -159,55 +135,46 @@
 
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <input name="btnDo" id="addBtn" type="submit" value="Add" class="btn btn-primary"/>
+                                    <input name="btnDo" id="addBtn" type="submit" value="Add" class="btn btn-primary" />
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
 
-            </div>
-            <!-- /.box -->
-
-        </div>
-        <!-- /.col-->
-    </div>
-    <!-- ./row -->
+            </div><!-- /.box -->
+            <a href="" target="_blank"></a>
+        </div><!-- /.col-->
+    </div><!-- ./row -->
 </section><!-- /.content -->
 <script src="<?php echo base_url(); ?>scriptscss/admin/bootstraps/js/bootbox.min.js" type="text/javascript"></script>
 
 <script>
     function titletoslug() {
         var title = document.getElementById("artilcetitle").value;
-        // alert(title);
         $.ajax({
-            url: "<?php echo base_url('dacadmin/product/checkproduct/')?>",
+            url:"<?php echo base_url('dacadmin/videos/checkvideos/')?>",
             data: {title: title},
             type: 'POST',
-            success: function (data) {
+
+            success: function(data){
                 var available = data.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
-                if (available == 1) {
-
-                    bootbox.confirm("<h4>Product's title Already Exist</h4>", function (result) {
-                        if (result) {
-
-                            setTimeout(function () {
-                                $("#artilcetitle").focus();
-                            }, 1);
-                        } else {
-                            setTimeout(function () {
-                                $("#artilcetitle").focus();
-                            }, 1);
+                if(available== 1){
+                    bootbox.confirm("<h4>Videos's title Already Exist</h4>", function(result) {
+                        if(result){
+                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
+                        }else{
+                            setTimeout(function(){$("#artilcetitle").focus();}, 1);
                         }
                     });
 //
                     document.getElementById("addBtn").disabled = true;
                 }
-                if (available == 0){
+                if(available == 0){
                     document.getElementById("addBtn").disabled = false;
                 }
             }
-        })
+        });
         var slug = title.toLowerCase().trim().split(/\s+/).join('-');
         $('#slug').val(slug);
 

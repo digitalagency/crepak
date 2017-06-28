@@ -1,6 +1,6 @@
 <!-- breadcrumb -->
 <?php
-foreach ($pageValues as $value) {
+foreach ($bannersValue as $value) {
     $id = $value->id;
     $title = $value->title;
     $title_cn = $value->title_cn;
@@ -51,7 +51,7 @@ foreach ($pageValues as $value) {
                     <?php }; ?>
 
                     <form role="form" method="post" class="form-horizontal"
-                          action="<?php echo base_url('dacadmin/pages/editpage') . '/' . $id; ?>"
+                          action="<?php echo base_url('dacadmin/banner/editbanner') . '/' . $id; ?>"
                           enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
@@ -120,9 +120,10 @@ foreach ($pageValues as $value) {
                     <div class="col-sm-12 col-md-6 col-xs-12">
                         <label for="exampleInputFile">Images:</label>
                         <input type="file" name="images" id="images">
+                        <span>Prefered Image size 1920 x 898 </span>
                         <?php if (!empty($image)) { ?>
                             <div class="imageview">
-                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/pages/thumbnail/' . $image ?>" alt="" />
+                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/banners/thumbnail/' . $image ?>" alt="" />
                             </div>
 
                         <?php }?>
@@ -130,11 +131,47 @@ foreach ($pageValues as $value) {
                     <div class="col-sm-12 col-md-6 col-xs-12">
                         <label for="exampleInputFile">Chinese Images:</label>
                         <input type="file" name="images_cn" id="images">
+                        <span>Prefered Image size 1920 x 898 </span>
                         <?php if (!empty($image_cn)) { ?>
                             <div class="imageview">
-                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/pages/thumbnail/' . $image_cn ?>" alt=""/>
+                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/banners/thumbnail/' . $image_cn ?>" alt=""/>
                             </div>
                         <?php }?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-sm-12 col-md-6 col-xs-12">
+                        <label for="exampleInputFile">Products:</label>
+                        <?php foreach($allproducts as $product){
+                            $productId='';
+                            foreach($relatedproduct as $productval){
+                                 $productId = $productval->post_meta_value;
+
+                            }
+                            if(!empty($productId)){
+                                if ($product->id == $productId) {
+                                    $selected =  "checked";
+                                }
+                                else{
+                                    $selected = '';
+                                }
+                            }
+                            else{
+                                $selected = '';
+                            }
+
+
+                            ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="products" id="products<?php echo $product->id;?>" value="<?php echo $product->id;?>" <?php echo $selected;?> type="radio">
+                                    <?php echo $product->title.' / '.$product->title_cn;?>
+                                </label>
+                            </div>
+                        <?php }?>
+
                     </div>
                 </div>
 
@@ -190,7 +227,8 @@ foreach ($pageValues as $value) {
                 data: {title: title},
                 type: 'POST',
                 success: function (data) {
-                    if (data == 1) {
+                    var available = data.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+                    if (available == 1) {
 
                         bootbox.confirm("<h4>Title Already Exist</h4>", function (result) {
                             if (result) {
@@ -207,7 +245,7 @@ foreach ($pageValues as $value) {
 //
                         document.getElementById("addBtn").disabled = true;
                     }
-                    else {
+                    if(available == 0) {
                         document.getElementById("addBtn").disabled = false;
                     }
                 }

@@ -30,7 +30,7 @@
          <ul class="sidebar-menu">
            <li class="header">MAIN NAVIGATION</li>
            <li class="treeview <?php if($this->uri->segment(2)==""||$this->uri->segment(2)=="main")echo "active"?>">
-             <a href="<?php echo base_url('digitalauth')?>">
+             <a href="<?php echo base_url('dacadmin')?>">
                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
              </a>
              <!--<ul class="treeview-menu">
@@ -58,6 +58,17 @@
                  <ul class="treeview-menu">
                      <li class="<?php if($this->uri->segment(3)=="addbanner")echo "active"?>"><a href="<?php echo base_url('dacadmin/banner/addbanner')?>"><i class="fa fa-circle-o"></i> Add Banner</a></li>
                      <li class="<?php if($this->uri->segment(3)=="listbanners")echo "active"?>"><a href="<?php echo base_url('dacadmin/banner/listbanners')?>"><i class="fa fa-circle-o"></i> List of Banners</a></li>
+                 </ul>
+             </li>
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addvideo"||$this->uri->segment(3) == "listvideos"||$this->uri->segment(3) == "editvideo") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-youtube-play"></i> <span>Videos</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addvideo")echo "active"?>"><a href="<?php echo base_url('dacadmin/videos/addvideo')?>"><i class="fa fa-circle-o"></i> Add Video</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listvideos")echo "active"?>"><a href="<?php echo base_url('dacadmin/videos/listvideos')?>"><i class="fa fa-circle-o"></i> List of Videos</a></li>
                  </ul>
              </li>
 

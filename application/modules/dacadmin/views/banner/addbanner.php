@@ -109,7 +109,7 @@
                                     <?php foreach($allproducts as $product){?>
                                         <div class="checkbox">
                                             <label>
-                                                <input name="products[]" id="products<?php echo $product->id;?>" value="<?php echo $product->id;?>" type="checkbox">
+                                                <input name="products" id="products<?php echo $product->id;?>" value="<?php echo $product->id;?>" type="radio">
                                                 <?php echo $product->title.' / '.$product->title_cn;?>
                                             </label>
                                         </div>
@@ -159,12 +159,10 @@
             url:"<?php echo base_url('dacadmin/banner/checkbanner/')?>",
             data: {title: title},
             type: 'POST',
-            dataType: 'json',
-            success: function(response){
-                    alert(response.status);
-                    console.log(response.status);
 
-                if(response.status == 1){
+            success: function(data){
+               var available = data.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+                if(available== 1){
                     bootbox.confirm("<h4>Banner's title Already Exist</h4>", function(result) {
                         if(result){
                             setTimeout(function(){$("#artilcetitle").focus();}, 1);
@@ -175,7 +173,7 @@
 //
                     document.getElementById("addBtn").disabled = true;
                 }
-                if(response.status == 0){
+                if(available == 0){
                     document.getElementById("addBtn").disabled = false;
                 }
             }

@@ -6,8 +6,8 @@
  * Date: 5/30/2017
  * Time: 4:54 PM
  */
-include_once (dirname(__FILE__) . "/Digitalauth.php");
-class Product extends Digitalauth
+include_once (dirname(__FILE__) . "/Dacadmin.php");
+class Product extends Dacadmin
 {
     public $data;
 
@@ -23,12 +23,12 @@ class Product extends Digitalauth
     }
 
     function index(){
-        redirect('digitalauth/product/listproducts', 'refresh');
+        redirect('dacadmin/product/listproducts', 'refresh');
     }
 
     function addproduct(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
@@ -75,7 +75,7 @@ class Product extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/product/addproduct/");
+                    redirect("dacadmin/product/addproduct/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images', $target, $thumb, $folder_file);
@@ -92,7 +92,7 @@ class Product extends Digitalauth
                 if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                     $message = "Image height or width is larger than 2048px.";
                     $this->session->set_flashdata('error_message', $message);
-                    redirect("digitalauth/product/addproduct/");
+                    redirect("dacadmin/product/addproduct/");
                 }
                 $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                 $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -166,7 +166,7 @@ class Product extends Digitalauth
 
             //if($this->myproduct->add($article)){
                 $this->session->set_flashdata('success_message', 'Product added successfully.');
-                redirect("digitalauth/product/addproduct");
+                redirect("dacadmin/product/addproduct");
             //}
 
 
@@ -180,7 +180,7 @@ class Product extends Digitalauth
 
     function listproducts(){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
 
         $this->data['articles'] = $this->myproduct->getAllProducts();
@@ -191,7 +191,7 @@ class Product extends Digitalauth
 
     function editproduct($id=''){
         if(!$this->ion_auth->logged_in() ){
-            redirect('digitalauth/login', 'refresh');
+            redirect('dacadmin/login', 'refresh');
         }
         if ($this->input->post('btnDo') == 'Edit' ) {
 
@@ -234,7 +234,7 @@ class Product extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/product/editproduct/".$id);
+                        redirect("dacadmin/product/editproduct/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images', $target, $thumb, $folder_file);
@@ -248,7 +248,7 @@ class Product extends Digitalauth
                     if($imgSize[0] > 2048 || $imgSize[1] > 2048){
                         $message = "Image height or width is larger than 2048px.";
                         $this->session->set_flashdata('error_message', $message);
-                        redirect("digitalauth/product/editproduct/".$id);
+                        redirect("dacadmin/product/editproduct/".$id);
                     }
                     $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $result = upload_image('images_cn', $target, $thumb, $folder_file);
@@ -391,7 +391,7 @@ class Product extends Digitalauth
 
                 if($this->myproduct->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Product edited successfully.');
-                    redirect("digitalauth/product/editproduct/".$id);
+                    redirect("dacadmin/product/editproduct/".$id);
                 }
             }
         }
@@ -427,7 +427,7 @@ class Product extends Digitalauth
         $this->myproduct->deleteRelated('post_id',$id,'tbl_postmeta');
         if($this->myproduct->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Product Deleted successfully.');
-            redirect("digitalauth/product/listproduct");
+            redirect("dacadmin/product/listproduct");
         }
     }
 
@@ -447,7 +447,7 @@ class Product extends Digitalauth
     }
 
     function toggleproductStatus($id, $stat){
-        $reurl = 'digitalauth/product/listproducts';
+        $reurl = 'dacadmin/product/listproducts';
         if($stat=='1'){
             $additional_data = array(
                 'status' => "0"

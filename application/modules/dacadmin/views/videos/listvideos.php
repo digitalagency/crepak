@@ -35,8 +35,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Chinese Title</th>
-                            <th>Image</th>
-                            <th>Chinese Image</th>
                             <th>Created Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -44,7 +42,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        foreach($banners as $article){
+                        foreach($videos as $article){
 //                            echo '<pre>';
 //                            print_r($article);
 //                            echo '</pre>'
@@ -53,26 +51,10 @@
                             <tr>
                                 <td><?php echo $article->title.' ('.$article->slug.')'?></td>
                                 <td><?php echo $article->title_cn;?></td>
-                                <td>
-                                    <?php
-                                    if($article->featured_img!=''){?>
-                                        <img src="<?php echo base_url().'uploads/banners/thumbnail/'.$article->featured_img?>" width="150" alt="">
-                                    <?php    }
-                                    ?>
 
-                                    <?php //echo $article['featured_img']?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if($article->featured_img_cn!=''){?>
-                                        <img src="<?php echo base_url().'uploads/banners/thumbnail/'.$article->featured_img_cn?>" width="150" alt="">
-                                    <?php    }
-                                    ?>
-
-                                    <?php //echo $article['featured_img_cn']?></td>
                                 <td><?php echo $article->post_date?></td>
                                 <td>
-                                    <a href="javascript:void(0)" onclick="toggleBannerStatus(<?php echo $article->id; ?>,<?php echo $article->status; ?>)" >
+                                    <a href="javascript:void(0)" onclick="toggleVideoStatus(<?php echo $article->id; ?>,<?php echo $article->status; ?>)" >
                                         <?php
                                         if($article->status=='1') {
                                             echo '<img src="'.base_url().'scriptscss/images/check.png">';
@@ -84,8 +66,8 @@
 
                                 </td>
                                 <td>
-                                    <a href="<?php echo base_url('dacadmin/banner/editbanner/'.$article->id); ?>" title="Edit <?php echo $article->title;?>"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="<?php echo base_url('dacadmin/banner/deletebanner/'.$article->id); ?>" title="Delete <?php echo $article->title;?>"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <a href="<?php echo base_url('dacadmin/videos/editvideo/'.$article->id); ?>" title="Edit <?php echo $article->title;?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="<?php echo base_url('dacadmin/videos/deletevideo/'.$article->id); ?>" title="Delete <?php echo $article->title;?>"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
                         <?php }
@@ -95,8 +77,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Chinese Title</th>
-                            <th>Image</th>
-                            <th>Chinese Image</th>
                             <th>Created Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -113,8 +93,8 @@
 <!-- Main content -->
 <script src="<?php echo base_url(); ?>scriptscss/admin/bootstraps/js/bootbox.min.js" type="text/javascript"></script>
 <script>
-    function toggleBannerStatus(id,stat){
-        url = '<?php echo base_url();?>dacadmin/banner/toggleBannerStatus/'+id+'/' + stat;
+    function toggleVideoStatus(id,stat){
+        url = '<?php echo base_url();?>dacadmin/videos/toggleVideoStatus/'+id+'/' + stat;
         bootbox.confirm("<h4>Change Status</h4><hr><br><?php echo 'Confirm Status Change?'; ?>", function (result) {
             if (result) {
                 window.location.replace(url);
