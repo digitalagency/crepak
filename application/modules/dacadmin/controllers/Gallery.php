@@ -52,7 +52,7 @@ class Gallery extends Dacadmin
                         $this->session->set_flashdata('error_message', $message);
                         redirect("dacadmin/addphotos/".$id);
                     }
-                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
+                    $thumb = array('dest' => $target . '/' . $folder_file, 'size' => array('w' => '300', 'h' => '300'), 'ratio' => true);
                     $_FILES['images']['name']     = $files1['name'][$i];
                     $_FILES['images']['type']     = $files1['type'][$i];
                     $_FILES['images']['tmp_name'] = $files1['tmp_name'][$i];

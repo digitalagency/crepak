@@ -4,79 +4,82 @@
             <div class="product-details-tab news-list">
                 <div class="tab-wrap">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">Comany News</a></li>
-                        <li><a data-toggle="tab" href="#menu1">Market News</a></li>
+
+                        <?php foreach ($newscategory as $key => $newscat) {
+                            ?>
+                            <li class = "<?php echo ($key==0)?'active':'';?>">
+                                <a data-toggle="tab" href="#<?php echo $newscat['slug']?>">
+                                    <?php
+                                    if($language == 'cn'){
+                                        echo $newscat['title_cn'] ;
+                                    }
+                                    else{
+                                        echo $newscat['title'];
+                                    }
+                                     ?>
+                                </a>
+                            </li>
+                        <?php }
+                        ?>
+
                     </ul>
 
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/1.jpg" alt="news4"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
+                        <?php foreach ($newscategory as $key => $newscat) {?>
+                        <div id="<?php echo $newscat['slug']?>" class="tab-pane fade in <?php echo ($key==0)?'active':'';?>">
+                            <?php
+                            $newsCatId = $newscat['id'];
+                                $getallnews = $this->mymodel->get('tbl_post', '*', 'post_parent = '.$newsCatId.' and post_type = "news" and status = "1" order by id desc');
+                            if($getallnews){
+                                echo '<div class="row">';
+                                foreach($getallnews as $news){
+                                    $slug = $news['slug'];
+                                    $datetime = $news['post_date'];
+                                    $date = date("d M Y", strtotime($datetime));
+                                    if($language == 'cn')
+                                    {
+                                        $title = $news['title_cn'];
+                                        $excrept = $news['excrept_cn'];
+                                        if (empty($news['featured_img_cn'])) {
+                                            $image = $news['featured_img'];
+                                        } else {
+                                            $image = $news['featured_img_cn'];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        $title = $news['title'];
+                                        $excrept = $news['excrept'];
+                                        if (empty($news['featured_img'])) {
+                                            $image = $news['featured_img_cn'];
+                                        } else {
+                                            $image = $news['featured_img'];
+                                        }
+                                    }?>
+                                    <div class="col-md-4 col-sm-6 no-padding">
+                                        <div class="news-item clearfix">
+                                            <figure><img src="<?php echo base_url().'uploads/news/thumbnail/'.$image; ?>"
+                                                         alt="<?php echo $title?>"></figure>
+                                            <figcaption>
+                                                <span class="clock"><i class="fa fa-clock-o"></i><?php echo $date;?></span>
+
+                                                <h3><?php echo $title;?></h3>
+                                                <a class="more"
+                                                   href="<?php echo base_url().'news/'.$slug; ?>"><?php echo $this->lang->line('learn_more') ?>
+                                                    <i class="fa fa-angle-right"></i></a>
+                                            </figcaption>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/2.jpg" alt="news2"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/3.jpg" alt="news3"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/4.jpg" alt="news4"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/5.jpg" alt="news5"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 no-padding">
-                                    <div class="news-item clearfix">
-                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/1.jpg" alt="news4"></figure>
-                                        <figcaption>
-                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                            <h3>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h3>
-                                            <a class="more" href="<?php echo base_url(); ?>news/details"><?php echo $this->lang->line('learn_more')?> <i class="fa fa-angle-right"></i></a>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                            </div>
+                               <?php  }
+                                echo '</div>';
+                            }
+                            else{
+                                echo '<p>No News available</p>';
+                            }
+                            ?>
                         </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <h3>Additional Information </h3>
-                            <p>Some content in menu 1.</p>
-                        </div>
+                        <?php }?>
+
                     </div>
                 </div>
             </div>

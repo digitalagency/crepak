@@ -71,7 +71,8 @@ $(document).ready(function() {
     // fancybox
     
     $('.fancybox').fancybox();
-    
+    $('.appgallery').fancybox();
+
     
     
     $('#leftTabs li a').click(function (e) {

@@ -1,68 +1,49 @@
+<?php
+foreach($newsDetail as $detail){
+    $datetime = $detail['post_date'];
+    $date = date("d M Y", strtotime($datetime));
+    if($language == 'cn'){
+        $title = $detail['title_cn'];
+        $content = $detail['content_cn'];
+        $excrept = $detail['excrept_cn'];
+        //$featured_img = $detail['featured_img_cn'];
+        if (empty($detail['featured_img_cn'])) {
+            $image = $detail['featured_img'];
+        } else {
+            $image = $detail['featured_img_cn'];
+        }
+    }else{
+        $title = $detail['title'];
+        $content = $detail['content'];
+        $excrept = $detail['excrept'];
+        //$featured_img = $detail['featured_img'];
+        if (empty($detail['featured_img'])) {
+            $image = $detail['featured_img_cn'];
+        } else {
+            $image = $detail['featured_img'];
+        }
+    }
+
+
+
+}
+
+?>
 <section class="body-bg">
     <div class="container">
         <div class="product-details clearfix d-news">
             <div class="col-md-7">
                 <!-- Nav tabs content -->
                 <div class="tab-content t-right">
-                    <div id="first" class="tab-pane fade in active">
+                    <div id="first" class=" fade in ">
                         <div class="tp-info">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/1.jpg" alt="news1" class="img-responsive"></figure>
+                            <figure><img src="<?php echo base_url().'uploads/news/'.$image; ?>" alt="<?php echo $title;?>" class="img-responsive"></figure>
                             <figcaption>
-                                <h2>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h2>
-                                <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
+                                <h2><?php echo $title;?></h2>
+                                <span class="clock"><i class="fa fa-clock-o"></i><?php echo $date;?></span>
                             </figcaption>
                         </div>
-                        <p>Hotel guest room access technology has been evolving globally from basic keys to mag-stripe key cards, and more recently to RFID, starting in the late 2000s. The 13.56 MHzpassive (typically Mifare) key cards offered a benefit over traditional swipe cards, since they were low-cost and easy to use, and could not be demagnetized by devices people commonly carry, such as cell phones.</p>
-                        <p>Recently, says Alastair Cush, dormakaba's global business owner of lodging systems, his company began offering its Saflok products with ZigBee capability. With the use of ZigBee, the locks themselves can interact with a central server, forwarding data—such as each door lock entry by a guest or employee—to the hotel's management system, as well as receiving updates from the hotel to change their response to specific keys. Since last year, Saflok has been providing another functionality courtesy of BLE technology that enables guests' phones to begin acting as keys.</p>
-                        <p>The newest version of the Saflok system employs three unique wireless technologies: anRFID reader to interrogate an RFID tag in a key card, a transponder using the ZigBeeprotocol to capture and transmit data, and a BLE unit to receive mobile phone transmissions. Numerous large chain hotels are using the BLE technology, including </p>
-                    </div>
-                    <div id="second" class="tab-pane fade in">
-                        <div class="tp-info">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/2.jpg" alt="news1" class="img-responsive"></figure>
-                            <figcaption>
-                                <h2>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h2>
-                                <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                            </figcaption>
-                        </div>
-                        <p>Hotel guest room access technology has been evolving globally from basic keys to mag-stripe key cards, and more recently to RFID, starting in the late 2000s. The 13.56 MHzpassive (typically Mifare) key cards offered a benefit over traditional swipe cards, since they were low-cost and easy to use, and could not be demagnetized by devices people commonly carry, such as cell phones.</p>
-                        <p>Recently, says Alastair Cush, dormakaba's global business owner of lodging systems, his company began offering its Saflok products with ZigBee capability. With the use of ZigBee, the locks themselves can interact with a central server, forwarding data—such as each door lock entry by a guest or employee—to the hotel's management system, as well as receiving updates from the hotel to change their response to specific keys. Since last year, Saflok has been providing another functionality courtesy of BLE technology that enables guests' phones to begin acting as keys.</p>
-                        <p>The newest version of the Saflok system employs three unique wireless technologies: anRFID reader to interrogate an RFID tag in a key card, a transponder using the ZigBeeprotocol to capture and transmit data, and a BLE unit to receive mobile phone transmissions. Numerous large chain hotels are using the BLE technology, including </p>
-                    </div>
-                    <div id="third" class="tab-pane fade in">
-                        <div class="tp-info">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/3.jpg" alt="news1" class="img-responsive"></figure>
-                            <figcaption>
-                                <h2>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h2>
-                                <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                            </figcaption>
-                        </div>
-                        <p>Hotel guest room access technology has been evolving globally from basic keys to mag-stripe key cards, and more recently to RFID, starting in the late 2000s. The 13.56 MHzpassive (typically Mifare) key cards offered a benefit over traditional swipe cards, since they were low-cost and easy to use, and could not be demagnetized by devices people commonly carry, such as cell phones.</p>
-                        <p>Recently, says Alastair Cush, dormakaba's global business owner of lodging systems, his company began offering its Saflok products with ZigBee capability. With the use of ZigBee, the locks themselves can interact with a central server, forwarding data—such as each door lock entry by a guest or employee—to the hotel's management system, as well as receiving updates from the hotel to change their response to specific keys. Since last year, Saflok has been providing another functionality courtesy of BLE technology that enables guests' phones to begin acting as keys.</p>
-                        <p>The newest version of the Saflok system employs three unique wireless technologies: anRFID reader to interrogate an RFID tag in a key card, a transponder using the ZigBeeprotocol to capture and transmit data, and a BLE unit to receive mobile phone transmissions. Numerous large chain hotels are using the BLE technology, including </p>
-                    </div>
-                    <div id="fourth" class="tab-pane fade in">
-                        <div class="tp-info">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/4.jpg" alt="news1" class="img-responsive"></figure>
-                            <figcaption>
-                                <h2>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h2>
-                                <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                            </figcaption>
-                        </div>
-                        <p>Hotel guest room access technology has been evolving globally from basic keys to mag-stripe key cards, and more recently to RFID, starting in the late 2000s. The 13.56 MHzpassive (typically Mifare) key cards offered a benefit over traditional swipe cards, since they were low-cost and easy to use, and could not be demagnetized by devices people commonly carry, such as cell phones.</p>
-                        <p>Recently, says Alastair Cush, dormakaba's global business owner of lodging systems, his company began offering its Saflok products with ZigBee capability. With the use of ZigBee, the locks themselves can interact with a central server, forwarding data—such as each door lock entry by a guest or employee—to the hotel's management system, as well as receiving updates from the hotel to change their response to specific keys. Since last year, Saflok has been providing another functionality courtesy of BLE technology that enables guests' phones to begin acting as keys.</p>
-                        <p>The newest version of the Saflok system employs three unique wireless technologies: anRFID reader to interrogate an RFID tag in a key card, a transponder using the ZigBeeprotocol to capture and transmit data, and a BLE unit to receive mobile phone transmissions. Numerous large chain hotels are using the BLE technology, including </p>
-                    </div>
-                    <div id="fifth" class="tab-pane fade in">
-                        <div class="tp-info">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/5.jpg" alt="news1" class="img-responsive"></figure>
-                            <figcaption>
-                                <h2>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h2>
-                                <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                            </figcaption>
-                        </div>
-                        <p>Hotel guest room access technology has been evolving globally from basic keys to mag-stripe key cards, and more recently to RFID, starting in the late 2000s. The 13.56 MHzpassive (typically Mifare) key cards offered a benefit over traditional swipe cards, since they were low-cost and easy to use, and could not be demagnetized by devices people commonly carry, such as cell phones.</p>
-                        <p>Recently, says Alastair Cush, dormakaba's global business owner of lodging systems, his company began offering its Saflok products with ZigBee capability. With the use of ZigBee, the locks themselves can interact with a central server, forwarding data—such as each door lock entry by a guest or employee—to the hotel's management system, as well as receiving updates from the hotel to change their response to specific keys. Since last year, Saflok has been providing another functionality courtesy of BLE technology that enables guests' phones to begin acting as keys.</p>
-                        <p>The newest version of the Saflok system employs three unique wireless technologies: anRFID reader to interrogate an RFID tag in a key card, a transponder using the ZigBeeprotocol to capture and transmit data, and a BLE unit to receive mobile phone transmissions. Numerous large chain hotels are using the BLE technology, including </p>
+                        <?php echo $content;?>
                     </div>
                 </div>
             </div>
@@ -71,110 +52,89 @@
                     <div class="row">
                         <!-- Nav left -->
                         <ul class="nav nav-tabs" id="leftTabs">
-                            <li class="active">
-                                <a href="#a_tab" data-toggle="tab">Comany News</a>
-                            </li>
-                            <li>
-                                <a href="#b_tab" data-toggle="tab">
-                                    <span></span>Market News</a>
-                            </li>
-
+                            <?php
+                                foreach($newscategory as $key => $newscat){
+                                    ?>
+                                    <li class = "<?php echo ($key==0)?'active':'';?>">
+                                        <a data-toggle="tab" href="#<?php echo $newscat['slug']?>">
+                                            <?php
+                                            if($language == 'cn'){
+                                                echo $newscat['title_cn'] ;
+                                            }
+                                            else{
+                                                echo $newscat['title'];
+                                            }
+                                            ?>
+                                        </a>
+                                    </li>
+                            <?php } ?>
                         </ul>
                         <!-- Nav content -->
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="a_tab">
-                                <!-- Nav tabs -->
-                                <ul class="new-tab">
-                                    <li class="active">
-                                        <a href="#first" data-toggle="tab">
-                                            <div class="news-item clearfix">
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/1.jpg" alt="news1" class="img-responsive"></figure>
+                            <?php
+                                foreach($newscategory as $key=>$categ){?>
+                                <div class="tab-pane fade in <?php echo ($key==0)?'active':'';?>" id="<?php echo $categ['slug']?>">
+                                <?php
+                                $newsCatId = $categ['id'];
+                                $getallnews = $this->mymodel->get('tbl_post', '*', 'post_parent = '.$newsCatId.' and post_type = "news" and status = "1" order by id desc');
+                                if($getallnews){?>
+                                    <ul class="new-tab">
+                                        <?php
+                                        foreach($getallnews as $subnews){
+                                            $subslug = $subnews['slug'];
+                                            $datetime = $subnews['post_date'];
+                                            $subdate = date("d M Y", strtotime($datetime));
+                                            if($language == 'cn')
+                                            {
+                                                $subtitle = $subnews['title_cn'];
+                                                $excrept = $subnews['excrept_cn'];
+                                                if (empty($subnews['featured_img_cn'])) {
+                                                    $subimage = $subnews['featured_img'];
+                                                } else {
+                                                    $subimage = $subnews['featured_img_cn'];
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $subtitle = $subnews['title'];
+                                                $excrept = $subnews['excrept'];
+                                                if (empty($subnews['featured_img'])) {
+                                                    $subimage = $subnews['featured_img_cn'];
+                                                } else {
+                                                    $subimage = $subnews['featured_img'];
+                                                }
+                                            }
+                                            ?>
+                                            <li>
+                                                <a href="<?php echo base_url().'news/'.$subslug; ?>" >
+                                                    <div class="news-item clearfix">
+                                                        <div class="row">
+                                                            <div class="col-xs-6">
+                                                                <figure><img src="<?php echo base_url().'uploads/news/thumbnail/'.$subimage; ?>" alt="<?php echo $subtitle;?>" class="img-responsive"></figure>
+                                                            </div>
+                                                            <div class="col-xs-6">
+                                                                <figcaption>
+                                                                    <span class="clock"><i class="fa fa-clock-o"></i><?php echo $subdate;?></span>
+                                                                    <h4><?php echo $subtitle?></h4>
+                                                                </figcaption>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-xs-6">
-                                                        <figcaption>
-                                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                                            <h4>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h4>
-                                                        </figcaption>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#second" data-toggle="tab">
-                                            <div class="news-item clearfix">
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/2.jpg" alt="news1" class="img-responsive"></figure>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <figcaption>
-                                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                                            <h4>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h4>
-                                                        </figcaption>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#third" data-toggle="tab">
-                                            <div class="news-item clearfix">
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/3.jpg" alt="news1" class="img-responsive"></figure>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <figcaption>
-                                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                                            <h4>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h4>
-                                                        </figcaption>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#fourth" data-toggle="tab">
-                                            <div class="news-item clearfix">
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/4.jpg" alt="news1" class="img-responsive"></figure>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <figcaption>
-                                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                                            <h4>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h4>
-                                                        </figcaption>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#fifth" data-toggle="tab">
-                                            <div class="news-item clearfix">
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/news/5.jpg" alt="news1" class="img-responsive"></figure>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <figcaption>
-                                                            <span class="clock"><i class="fa fa-clock-o"></i>21 May 2017</span>
-                                                            <h4>Rebecca Minkoff Brings Self-Service to Its SoHo Store With RFID</h4>
-                                                        </figcaption>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane fade in" id="b_tab">
-                                <h1>Content of B</h1>
-                            </div>
+                                                </a>
+                                            </li>
+                                        <?php }
+                                        ?>
+                                    </ul>
+                                <?php }
+                                else{
+                                    echo '<h3>No News available</h3>';
+                                }
+                                ?>
+                                </div>
+                                <?php }
+
+                            ?>
+
                         </div>
                     </div>
                 </div>

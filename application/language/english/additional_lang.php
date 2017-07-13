@@ -11,6 +11,7 @@ $lang['application'] = 'Applications';
 $lang['news_events'] = 'News & Events';
 $lang['learn_more'] = 'Learn More';
 $lang['shop_now']   = 'Shop Now';
+$lang['application_text'] = 'The solution is utilized used by public and private organizations to solve complex asset management challenges, including the areas of:';
 
 //Listing and  Detail page
 $lang['download_file'] = 'Download Pdf';
@@ -19,6 +20,7 @@ $lang['additional_information'] = 'Additional Information';
 $lang['review'] = 'Review';
 $lang['view_detail'] = 'View Detail';
 $lang['related_product'] = 'Related Products';
+$lang['related_application'] = 'Related Applications';
 $lang['practical_solution'] = 'Most Practical Solution';
 
 

@@ -21,7 +21,7 @@
 
                     <div class="pull-right">
                         <a class="btn btn-primary" href="<?php echo base_url('dacadmin/application/addapplication') ?>">Add
-                            Product </a>
+                            Application </a>
                     </div>
                 </div>
                 <!-- /.box-header -->

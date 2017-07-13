@@ -3,3 +3,17 @@
     margin: 20px 0px;
 }
 .errorimg .img-responsive{display: inline-block}
+
+.tab-pane .related li{
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 3px;
+margin: 8px;
+vertical-align: middle}
+
+.tab-pane .related li img
+{
+  height:214px ;
+  width: 227px;
+  object-fit: cover;
+}

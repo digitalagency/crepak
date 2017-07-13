@@ -45,7 +45,6 @@ class Banner extends Dacadmin
             $excrept_cn = $this->input->post('excrept_cn');
             $status = $this->input->post('status');
 
-            $related_stories = $this->input->post('stories');
             $related_product = $this->input->post('products');
 
             $folder_file = 'banners';
@@ -167,7 +166,6 @@ class Banner extends Dacadmin
                 $excrept_cn = $this->input->post('excrept_cn');
                 $status = $this->input->post('status');
 
-                $related_stories = $this->input->post('stories');
                 $related_product = $this->input->post('products');
 
                 $folder_file = 'banners';
@@ -271,29 +269,28 @@ class Banner extends Dacadmin
 
 
 
+                if (isset($related_product)) {
+                    $relatedProductcount = $this->mybanner->getRelatedCount('tbl_postmeta', '*', 'post_id =' . $id . ' AND post_meta_key= "related_product"');
+                    if ($relatedProductcount > 0) {
+                        $relatedPrd = $this->mybanner->getBannerrelated('tbl_postmeta', '*', 'post_id =' . $id . ' and post_meta_key = "related_product"');
+                        foreach ($relatedPrd as $prod) {
+                            $relatedId = $prod->id;
+                        }
 
-                $relatedProductcount = $this->mybanner->getRelatedCount('tbl_postmeta','*','post_id ='.$id.' AND post_meta_key= "related_product"');
-                if($relatedProductcount>0){
-                    $relatedPrd = $this->mybanner->getBannerrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "related_product"');
-                    foreach($relatedPrd as $prod){
-                        $relatedId = $prod->id;
+                        $relatedproduct = array(
+                            'post_meta_value' => $related_product
+                        );
+                        $this->mybanner->editRelated(' tbl_postmeta', $relatedproduct, 'id', $relatedId);
+                    } else {
+                        $relatedproduct = array(
+                            'post_id' => $id,
+                            'post_meta_key' => 'related_product',
+                            'post_meta_value' => $related_product
+                        );
+
+                        $this->mybanner->addRelated($relatedproduct, 'tbl_postmeta');
                     }
-
-                    $relatedproduct = array(
-                        'post_meta_value' => serialize($related_product)
-                    );
-                    $this->mybanner->editRelated(' tbl_postmeta',$relatedproduct, 'id', $relatedId);
                 }
-                else{
-                    $relatedproduct = array(
-                        'post_id' => $id,
-                        'post_meta_key' => 'related_product',
-                        'post_meta_value' => $related_product
-                    );
-
-                    $this->mybanner->addRelated($relatedproduct, 'tbl_postmeta');
-                }
-
 
                 if($this->mybanner->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Application edited successfully.');

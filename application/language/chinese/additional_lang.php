@@ -11,6 +11,7 @@ $lang['application'] = '应用';
 $lang['news_events'] = '新闻与事件';
 $lang['learn_more'] = '学到更多';
 $lang['shop_now']   = '现在去购物';
+$lang['application_text'] = '该解决方案被公共和私人组织利用，以解决复杂的资产管理挑战，包括以下领域：';
 
 //Listing and  Detail page
 $lang['download_file'] = '下载 Pdf';
@@ -19,6 +20,7 @@ $lang['additional_information'] = '附加信息';
 $lang['review'] = '评论';
 $lang['view_detail'] = '查看详情';
 $lang['related_product'] = '相关产品';
+$lang['related_application'] = '相关应用';
 $lang['practical_solution'] = '最实用的解决方案';
 
 
