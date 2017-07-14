@@ -16,3 +16,6 @@ body{
     bottom: 0px;
     width: 100%;
 }
+.fileview{
+    margin: 10px 0 10px -10px;
+}

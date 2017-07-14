@@ -30,7 +30,7 @@ class Digitalauth extends MX_Controller {
             $this->data['categorycount'] = $this->mymodel->getcount('*','tbl_post','post_type = "category"');
             $this->data['productcount'] = $this->mymodel->getcount('*','tbl_post','post_type = "product"');
 
-          $this->_render_page('welcome_admin');
+          $this->_render_page('index');
         }
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -975,6 +975,36 @@ class Digitalauth extends MX_Controller {
     //Category
 
     //Category
+    function download($filename){
+         $name = $filename;
+        $this->load->helper('download');
+        $path = base_url().'uploads/pfiles/'.$filename;
+        $pth    =   file_get_contents($path);
+        //$nme    =   "sample_file.pdf";
+        force_download($name, $pth);
+
+
+        /*if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off'); }
+
+        // get the file mime type using the file extension
+        $this->load->helper('file');
+
+        $mime = get_mime_by_extension($path);
+
+        // Build the headers to push out the file properly.
+        header('Pragma: public');     // required
+        header('Expires: 0');         // no cache
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Last-Modified: '.gmdate ('D, d M Y H:i:s', filemtime ($path)).' GMT');
+        header('Cache-Control: private',false);
+        header('Content-Type: '.$mime);  // Add the mime type from Code igniter.
+        header('Content-Disposition: attachment; filename="'.basename($name).'"');  // Add the file name
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: '.filesize($path)); // provide file size
+        header('Connection: close');
+        readfile($path); // push it out*/
+        exit();
+    }
 
     function login()
       {

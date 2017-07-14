@@ -16,7 +16,7 @@
         <div class='col-md-12'>
             <div class='box box-info'>
                 <div class='box-header'>
-                    <h3 class='box-title'>Add page</h3>
+                    <h3 class='box-title'>Add Page</h3>
                 </div><!-- /.box-header -->
                 <div class='box-body pad'>
                     <?php if ($this->session->flashdata('success_message') != "") { ?>

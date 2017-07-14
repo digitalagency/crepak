@@ -99,83 +99,86 @@ foreach ($categoryValues as $value) {
 
                             <div class="form-group">
 
-                                <div class="col-sm-12 col-md-6 col-xs-12"">
-                                <label>Excrept:</label>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Excrept:</label>
                             <textarea id="editor3" name="excrept" rows="10" cols="40">
                                 <?php echo $excrept; ?>
                             </textarea>
-                            </div>
+                                </div>
 
-                            <div class="col-sm-12 col-md-6 col-xs-12"">
-                            <label>Chinese Excrept:</label>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Chinese Excrept:</label>
                             <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
                                 <?php echo $excrept_cn; ?>
                             </textarea>
-                        </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <div class="col-sm-12 col-md-6 col-xs-12">
-                        <label for="exampleInputFile">Images:</label>
-                        <input type="file" name="images" id="images">
-                        <?php if (!empty($image)) { ?>
-                            <div class="imageview">
-                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image ?>" alt="" />
+                                </div>
                             </div>
 
-                        <?php }?>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xs-12">
-                        <label for="exampleInputFile">Chinese Images:</label>
-                        <input type="file" name="images_cn" id="images">
-                        <?php if (!empty($image_cn)) { ?>
-                            <div class="imageview">
-                                <img class="img-responsive" src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image_cn ?>" alt=""/>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Images:</label>
+                                    <input type="file" name="images" id="images">
+                                    <?php if (!empty($image)) { ?>
+                                        <div class="imageview">
+                                            <img class="img-responsive"
+                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image ?>"
+                                                 alt=""/>
+                                        </div>
+
+                                    <?php } ?>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Chinese Images:</label>
+                                    <input type="file" name="images_cn" id="images">
+                                    <?php if (!empty($image_cn)) { ?>
+                                        <div class="imageview">
+                                            <img class="img-responsive"
+                                                 src="<?php echo base_url() . 'uploads/categories/thumbnail/' . $image_cn ?>"
+                                                 alt=""/>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label for="exampleInputFile">Status:</label>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="status" id="publish" class="minimal"
+                                                   value="1" <?php echo ($status == '1') ? 'checked' : '' ?>>
+                                            Publish
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="status" id="unpublish" class="minimal"
+                                                   value="0" <?php echo ($status == '0') ? 'checked' : '' ?>>
+                                            Unpublish
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                        <?php }?>
-                    </div>
-                </div>
 
 
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <label for="exampleInputFile">Status:</label>
+                            <div class="form-group">
 
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="status" id="publish" class="minimal"
-                                       value="1" <?php echo ($status == '1') ? 'checked' : '' ?>>
-                                Publish
-                            </label>
+                                <div class="col-sm-4">
+                                    <input name="btnDo" id="addBtn" type="submit" value="Edit" class="btn btn-primary"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="status" id="unpublish" class="minimal"
-                                       value="0" <?php echo ($status == '0') ? 'checked' : '' ?>>
-                                Unpublish
-                            </label>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
-
-                <div class="form-group">
-
-                    <div class="col-sm-4">
-                        <input name="btnDo" id="addBtn" type="submit" value="Edit" class="btn btn-primary"/>
-                    </div>
-                </div>
             </div>
-            </form>
+            <!-- /.box -->
+
         </div>
-
-    </div>
-    <!-- /.box -->
-
-    </div>
-    <!-- /.col-->
+        <!-- /.col-->
     </div>
     <!-- ./row -->
 </section><!-- /.content -->

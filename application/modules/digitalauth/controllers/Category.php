@@ -22,8 +22,7 @@ class Category extends Digitalauth
     }
 
     function index(){
-        echo 'hello';
-
+        redirect('digitalauth/category/listcategories', 'refresh');
     }
 
     function addcategory(){

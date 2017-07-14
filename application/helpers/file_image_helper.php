@@ -47,7 +47,7 @@ function initialize_upload($path,$max_size = '20480', $max_width = '2048', $max_
 {
 	$CI = &get_instance();
 	$config['upload_path'] = $path;
-	$config['allowed_types'] = 'gif|jpg|jpeg|png|JPG|JPEG|PNG|GIF';
+	$config['allowed_types'] = 'gif|jpg|jpeg|png|JPG|JPEG|PNG|GIF|pdf|pptx';
 	$config['max_size']	= $max_size;
 	$config['max_width']  = $max_width;
 	$config['max_height']  = $max_height;
@@ -105,6 +105,38 @@ function create_image($src, $dest,  $ratio = false)
 	$CI->image_lib->initialize($config1);
 
 	$CI->image_lib->resize();
+
+}
+
+
+function file_upload($files,$target){
+
+	$CI = &get_instance();
+	//initialize_upload($target);
+	 $new_name = rand(0,100000).$_FILES[$files]['name'];
+
+	$config['upload_path'] = $target;
+	$config['overwrite'] = TRUE;
+	$config['allowed_types'] = 'gif|jpg|jpeg|png|JPG|JPEG|PNG|GIF|pdf|pptx';
+	//$config['encrypt_name'] = TRUE;
+
+	$config['file_name'] = $new_name;
+
+
+	$CI->load->library('upload', $config);
+	$CI->upload->initialize($config);
+
+	if (!$CI->upload->do_upload($files))
+	{
+		$CI->session->set_flashdata('message', $CI->upload->display_errors());
+
+		return false;
+	}
+	else{
+		$data = $CI->upload->data();
+		return $data;
+	}
+
 
 }
 

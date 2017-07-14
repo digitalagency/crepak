@@ -72,7 +72,9 @@
 
                                     <?php //echo $article['featured_img_cn']?></td>
                                 <td><?php echo $article->post_date?></td>
-                                <td>Count</td>
+                                <td><?php
+                                    echo $this->mycategory->getcount('*','post_parent = '.$article->id);
+                                    ?></td>
                                 <td>
                                     <a href="javascript:void(0)" onclick="toggleCategoryStatus(<?php echo $article->id; ?>,<?php echo $article->status; ?>)" >
                                         <?php

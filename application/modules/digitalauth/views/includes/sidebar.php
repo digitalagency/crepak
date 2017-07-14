@@ -46,7 +46,7 @@
              </a>
              <ul class="treeview-menu">
                <li class="<?php if($this->uri->segment(2)=="addmenu")echo "active"?>"><a href="<?php echo base_url('digitalauth/addmenu')?>"><i class="fa fa-circle-o"></i> Add Menu</a></li>
-               <li class="<?php if($this->uri->segment(2)=="listmenus")echo "active"?>"><a href="<?php echo base_url('digitalauth/listmenus')?>"><i class="fa fa-circle-o"></i> List Menus</a></li>
+               <li class="<?php if($this->uri->segment(2)=="listmenus")echo "active"?>"><a href="<?php echo base_url('digitalauth/listmenus')?>"><i class="fa fa-circle-o"></i> List of Menus</a></li>
              </ul>
            </li>
 
@@ -91,7 +91,42 @@
                  </a>
                  <ul class="treeview-menu">
                      <li class="<?php if($this->uri->segment(3)=="addpage")echo "active"?>"><a href="<?php echo base_url('digitalauth/pages/addpage')?>"><i class="fa fa-circle-o"></i> Add Page</a></li>
-                     <li class="<?php if($this->uri->segment(3)=="listpages")echo "active"?>"><a href="<?php echo base_url('digitalauth/pages/listpages')?>"><i class="fa fa-circle-o"></i> List Pages</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listpages")echo "active"?>"><a href="<?php echo base_url('digitalauth/pages/listpages')?>"><i class="fa fa-circle-o"></i> List of Pages</a></li>
+                 </ul>
+             </li>
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addnews"||$this->uri->segment(3) == "listnews"||$this->uri->segment(3) == "editnews"||$this->uri->segment(3) == "addnewscategory"||$this->uri->segment(3) == "categories"||$this->uri->segment(3) == "editnewscategory") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-newspaper-o"></i> <span>News & Events</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addnews")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/addnews')?>"><i class="fa fa-circle-o"></i> Add News</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listnews")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/listnews')?>"><i class="fa fa-circle-o"></i> List of News</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="categories")echo "active"?>"><a href="<?php echo base_url('digitalauth/news/categories')?>"><i class="fa fa-circle-o"></i> News Categories</a></li>
+                 </ul>
+             </li>
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addstory"||$this->uri->segment(3) == "liststories"||$this->uri->segment(3) == "editstory") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-users"></i> <span>Successful Stories</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addstory")echo "active"?>"><a href="<?php echo base_url('digitalauth/successstory/addstory')?>"><i class="fa fa-circle-o"></i> Add Successful Story</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="liststories")echo "active"?>"><a href="<?php echo base_url('digitalauth/successstory/liststories')?>"><i class="fa fa-circle-o"></i> List of Successful Stories</a></li>
+
+                 </ul>
+             </li>
+
+             <li class="treeview <?php if ($this->uri->segment(3) == "addapplication"||$this->uri->segment(3) == "listapplications"||$this->uri->segment(3) == "editapplication") echo "active"; ?>">
+                 <a href="#">
+                     <i class="fa fa-cloud"></i> <span>Applications</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li class="<?php if($this->uri->segment(3)=="addapplication")echo "active"?>"><a href="<?php echo base_url('digitalauth/application/addapplication')?>"><i class="fa fa-circle-o"></i> Add Application</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listapplications")echo "active"?>"><a href="<?php echo base_url('digitalauth/application/listapplications')?>"><i class="fa fa-circle-o"></i> List of Applications</a></li>
                  </ul>
              </li>
 
@@ -103,7 +138,7 @@
                  </a>
                  <ul class="treeview-menu">
                      <li class="<?php if($this->uri->segment(3)=="addcategory")echo "active"?>"><a href="<?php echo base_url('digitalauth/category/addcategory')?>"><i class="fa fa-circle-o"></i> Add Category</a></li>
-                     <li class="<?php if($this->uri->segment(3)=="listcategories")echo "active"?>"><a href="<?php echo base_url('digitalauth/category/listcategories')?>"><i class="fa fa-circle-o"></i> List Categories</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listcategories")echo "active"?>"><a href="<?php echo base_url('digitalauth/category/listcategories')?>"><i class="fa fa-circle-o"></i> List of Categories</a></li>
                  </ul>
              </li>
 
@@ -114,7 +149,7 @@
                  </a>
                  <ul class="treeview-menu">
                      <li class="<?php if($this->uri->segment(3)=="addproduct")echo "active"?>"><a href="<?php echo base_url('digitalauth/product/addproduct')?>"><i class="fa fa-circle-o"></i> Add Product</a></li>
-                     <li class="<?php if($this->uri->segment(3)=="listproducts")echo "active"?>"><a href="<?php echo base_url('digitalauth/product/listproducts')?>"><i class="fa fa-circle-o"></i> List Products</a></li>
+                     <li class="<?php if($this->uri->segment(3)=="listproducts")echo "active"?>"><a href="<?php echo base_url('digitalauth/product/listproducts')?>"><i class="fa fa-circle-o"></i> List of Products</a></li>
                  </ul>
              </li>
 

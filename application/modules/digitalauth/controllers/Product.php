@@ -23,8 +23,7 @@ class Product extends Digitalauth
     }
 
     function index(){
-        echo 'hello';
-
+        redirect('digitalauth/product/listproducts', 'refresh');
     }
 
     function addproduct(){
@@ -37,6 +36,8 @@ class Product extends Digitalauth
         if ($this->form_validation->run() == TRUE) {
             $image = '';
             $image_cn = '';
+            $pfile = '';
+            $pfile_cn = '';
             $title = $this->input->post('title');
             $title_cn = $this->input->post('title_cn');
             $slug = $this->input->post('slug');
@@ -51,6 +52,7 @@ class Product extends Digitalauth
             else{
                 $post_parent = '0';
             }
+
 
 
 
@@ -118,11 +120,54 @@ class Product extends Digitalauth
                 'post_parent'     =>  $post_parent
             );
 
+            $lastId = $this->myproduct->getLastId($article);
 
-            if($this->myproduct->add($article)){
+            $folder_pfile = 'pfiles';
+            $target = 'uploads';
+            $pfilepath        =  './uploads/'.$folder_pfile.'/';
+            //$thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
+            if(!is_dir($pfilepath)):
+                mkdir($pfilepath);
+                chmod($pfilepath, 0755);
+            endif;
+
+            if ($_FILES['pfile']['size']!=0) {
+
+               // $thumb = array('dest' => $target . '/' . $folder_pfile, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
+                $thumb =  $target . '/' . $folder_pfile;
+                $result = file_upload('pfile', $thumb);
+                if (isset($result['file_name'])) {
+                     $pfile =  $result['file_name'];
+                }
+                $uploadfile = array (
+                    'post_id'   => $lastId,
+                    'post_meta_key' => 'product_file',
+                    'post_meta_value'   => $pfile
+                );
+                $this->myproduct->addRelated($uploadfile,'tbl_postmeta');
+            }
+
+
+
+            if ($_FILES['pfile_cn']['size']!=0) {
+                $thumb =  $target . '/' . $folder_pfile;
+                $result = file_upload('pfile_cn', $thumb);
+                if (isset($result['file_name'])) {
+                    $pfile_cn =  $result['file_name'];
+                }
+                $uploadfile_cn = array (
+                    'post_id'   => $lastId,
+                    'post_meta_key' => 'product_file_cn',
+                    'post_meta_value'   => $pfile_cn
+                );
+                $this->myproduct->addRelated($uploadfile_cn,'tbl_postmeta');
+            }
+
+
+            //if($this->myproduct->add($article)){
                 $this->session->set_flashdata('success_message', 'Product added successfully.');
                 redirect("digitalauth/product/addproduct");
-            }
+            //}
 
 
         }
@@ -152,6 +197,7 @@ class Product extends Digitalauth
 
             $this->form_validation->set_rules('title', $this->lang->line(''), 'required');
             if ($this->form_validation->run() == TRUE) {
+
                 $image = '';
                 $image_cn = '';
                 $title = $this->input->post('title');
@@ -272,6 +318,77 @@ class Product extends Digitalauth
                     );
                 }
 
+                $folder_pfile = 'pfiles';
+                $target = 'uploads';
+                $pfilepath        =  './uploads/'.$folder_pfile.'/';
+                //$thumb_path  =  './uploads/'.$folder_file.'/thumbnail/';
+                if(!is_dir($pfilepath)):
+                    mkdir($pfilepath);
+                    chmod($pfilepath, 0755);
+                endif;
+
+                if ($_FILES['pfile']['size']!=0) {
+
+                    // $thumb = array('dest' => $target . '/' . $folder_pfile, 'size' => array('w' => '', 'h' => ''), 'ratio' => true);
+                    $thumb =  $target . '/' . $folder_pfile;
+                    $result = file_upload('pfile', $thumb);
+                    if (isset($result['file_name'])) {
+                        $pfile =  $result['file_name'];
+                    }
+
+                    $prodfilecount = $this->myproduct->getfileCount('tbl_postmeta','*','post_id ='.$id.' AND post_meta_key= "product_file"');
+                    if($prodfilecount>0){
+                        $relatedstr = $this->myproduct->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file"');
+                        foreach($relatedstr as $prod){
+                            $relatedId = $prod->id;
+                        }
+                        $uploadfile = array(
+                            'post_meta_value'   => $pfile
+                        );
+                        $this->myproduct->editRelated(' tbl_postmeta',$uploadfile, 'id', $relatedId);
+
+                    }else{
+                        $uploadfile = array (
+                            'post_id'   => $id,
+                            'post_meta_key' => 'product_file',
+                            'post_meta_value'   => $pfile
+                        );
+                        $this->myproduct->addRelated($uploadfile,'tbl_postmeta');
+                    }
+
+                }
+
+                if ($_FILES['pfile_cn']['size']!=0) {
+                    $thumb =  $target . '/' . $folder_pfile;
+                    $result = file_upload('pfile_cn', $thumb);
+                    if (isset($result['file_name'])) {
+                        $pfile_cn =  $result['file_name'];
+                    }
+
+                    $prodfile_cn_count = $this->myproduct->getfileCount('tbl_postmeta','*','post_id ='.$id.' AND post_meta_key= "product_file_cn"');
+                    if($prodfile_cn_count>0){
+                        $relatedstr = $this->myproduct->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file_cn"');
+                        foreach($relatedstr as $prod){
+                            $relatedId = $prod->id;
+                        }
+                        $uploadfile = array(
+                            'post_meta_value'   => $pfile_cn
+                        );
+                        $this->myproduct->editRelated(' tbl_postmeta',$uploadfile, 'id', $relatedId);
+
+                    }
+                    else{
+                        $uploadfile_cn = array (
+                            'post_id'   => $id,
+                            'post_meta_key' => 'product_file_cn',
+                            'post_meta_value'   => $pfile_cn
+                        );
+                        $this->myproduct->addRelated($uploadfile_cn,'tbl_postmeta');
+                    }
+
+                }
+
+
                 if($this->myproduct->edit($article, 'id', $id)){
                     $this->session->set_flashdata('success_message', 'Product edited successfully.');
                     redirect("digitalauth/product/editproduct/".$id);
@@ -281,6 +398,11 @@ class Product extends Digitalauth
 
         $this->data['allcategories'] = $this->mycategory->getAllCategories();
         $this->data['productValues'] = $this->myproduct->getProductByValue('*','id ='.$id);
+        $this->data['prodfile'] = $this->myproduct->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file"');
+        $this->data['prodfile_cn'] = $this->myproduct->getProductrelated('tbl_postmeta','*','post_id ='.$id.' and post_meta_key = "product_file_cn"');
+
+
+
         $this->_render_page('product/editproduct',$this->data);
         $this->load->view('includes/adminscript');
         $this->load->view('includes/footer');
@@ -288,21 +410,22 @@ class Product extends Digitalauth
 
     function deleteproduct($id){
 
-        $image = $this->mycategory->getValue('featured_img','id',$id);
+        $image = $this->myproduct->getValue('featured_img','id',$id);
         if(!empty($image)){
             $imagepath = './uploads/products/'.$image;
             $imagepath_thumb = './uploads/products/thumbnail/'.$image;
             @unlink($imagepath);
             @unlink($imagepath_thumb);
         }
-        $image_cn = $this->mycategory->getValue('featured_img_cn','id',$id);
+        $image_cn = $this->myproduct->getValue('featured_img_cn','id',$id);
         if(!empty($image)){
             $imagepath_cn = './uploads/products/'.$image_cn;
             $imagepath_cn_thumb = './uploads/products/thumbnail/'.$image_cn;
             @unlink($imagepath_cn);
             @unlink($imagepath_cn_thumb);
         }
-        if($this->mycategory->delete('id', $id)){
+        $this->myproduct->deleteRelated('post_id',$id,'tbl_postmeta');
+        if($this->myproduct->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Product Deleted successfully.');
             redirect("digitalauth/product/listproduct");
         }
