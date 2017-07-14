@@ -117,7 +117,7 @@ $autoload['config'] = array();
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('ion_auth','auth');
+$autoload['language'] = array('ion_auth','auth','additional');
 
 /*
 | -------------------------------------------------------------------
