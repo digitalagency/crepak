@@ -3,5 +3,28 @@ body{
 }
 .error-message {color: #dd4b39;}
 .success-message{ background-color: #dff0d8; display: block; padding: 10px;position: relative;}
-.imageview {border: 1px solid #cccccc;width: 25%;display: inline-block;padding: 3px; margin-top: 10px;}
-.imageview img{width: 100%}
+
+.imageview {border: 1px solid #cccccc;width: 200px;display: inline-block;padding: 3px; margin: 10px;}
+.imageview img{width: 100%; height: 200px; object-fit: cover}
+
+.login-footer{
+    background: #fff none repeat scroll 0 0;
+    border-top: 1px solid #d2d6de;
+    color: #444;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+.fileview{
+    margin: 10px 0 10px -10px;
+}
+.posttype {
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    margin-top: 3px;
+}
+.secondmenu{
+    margin-left: 10px;
+}

@@ -14,11 +14,17 @@ class Welcome extends CI_Controller {
    }
 	 function index()
 	{
-		  $this->_render_page('home');
+		  $this->_render_page('index');
 		  $this->load->view('includes/footer');
 
 	}
 	function hello(){
+
+		$this->_render_page('welcome_message');
+		$this->load->view('includes/footer');
+	}
+
+	function test(){
 
 		$this->_render_page('welcome_message');
 		$this->load->view('includes/footer');

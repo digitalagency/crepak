@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'form','language','inflector','html','file_image','cookie');
+$autoload['helper'] = array('url', 'form','language','inflector','html','file_image','cookie','download');
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +117,7 @@ $autoload['config'] = array();
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('ion_auth','auth');
+$autoload['language'] = array('ion_auth','auth','additional');
 
 /*
 | -------------------------------------------------------------------
