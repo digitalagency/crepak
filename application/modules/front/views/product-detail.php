@@ -1,35 +1,54 @@
+<?php
+    foreach($prodDetail as $product){
+        $pid = $product['id'];
+        //$galfile = $application['slug'];
+        if ($language == 'cn') {
+            $title = $product['title_cn'];
+            $content = $product['content_cn'];
+            $excrept = $product['excrept_cn'];
+            //$featured_img = $detail['featured_img_cn'];
+            if (empty($product['featured_img_cn'])) {
+                $image = $product['featured_img'];
+            } else {
+                $image = $product['featured_img_cn'];
+            }
+        } else {
+            $title = $product['title'];
+            $content = $product['content'];
+            $excrept = $product['excrept'];
+            //$featured_img = $detail['featured_img'];
+            if (empty($product['featured_img'])) {
+                $image = $product['featured_img_cn'];
+            } else {
+                $image = $product['featured_img'];
+            }
+        }
+    }
+
+?>
+
 <section class="body-bg">
     <div class="container">
         <div class="product-details">
             <div class="top-details">
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="product-img">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/p-detail.jpg" alt="product-details"></figure>
+                    <?php
+                    if (!empty($image)) {
+                        ?>
+                        <div class="col-md-5">
+                            <div class="product-img">
+                                <figure><img src="<?php echo base_url() . 'uploads/products/' . $image; ?>"
+                                             alt="<?php echo $title; ?>"></figure>
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
                     <div class="col-md-7">
                         <div class="product-info">
-                            <h3>1166 UHF handheld reader</h3>
+                            <h3><?php echo $title; ?></h3>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="product-info-left">
-                                        <dl class="dl-horizontal">
-                                            <dt>Type &nbsp &nbsp -</dt>
-                                            <dd>Handheld Reader</dd>
-
-                                            <dt>Size &nbsp &nbsp -</dt>
-                                            <dd>177 x 94 x170 mm</dd>
-
-                                            <dt>Color &nbsp &nbsp -</dt>
-                                            <dd>White</dd>
-
-                                            <dt>Brand &nbsp &nbsp -</dt>
-                                            <dd>TSL</dd>
-
-                                            <dt>Model &nbsp &nbsp -</dt>
-                                            <dd>1166</dd>
-                                        </dl>
+                                        <?php echo $excrept; ?>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
@@ -57,8 +76,8 @@
                 <div class="tab-wrap">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home"><?php echo $this->lang->line('description');?></a></li>
-                        <li><a data-toggle="tab" href="#menu1"><?php echo $this->lang->line('additional_information');?></a></li>
-                        <li><a data-toggle="tab" href="#menu2"><?php echo $this->lang->line('review');?></a></li>
+
+                        <li><a data-toggle="tab" href="#review"><?php echo $this->lang->line('review');?></a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -67,11 +86,8 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat nec est ac gravida. Morbi porttitor mauris ac molestie ultrices. Quisque placerat massa volutpat est interdum pretium. Fusce cursus eleifend nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean venenatis hendrerit tellus sit amet pellentesque. Nullam sit amet magna luctus, porttitor est id, ultricies erat. Phasellus id fermentum augue. Curabitur dictum mattis neque, sed pharetra lacus mollis ac.</p>
                             <p>Quisque viverra quis ante vel elementum. Donec dictum ultrices ullamcorper. Mauris et lorem placerat, porttitor odio quis, egestas nunc. Nunc sollicitudin, neque id lobortis dapibus, tellus purus tincidunt enim, nec fringilla lacus nibh porta purus. Donec lobortis ullamcorper eros ut finibus. Mauris nisi quam, vulputate sit amet purus a, convallis vulputate nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent magna eros, sagittis in neque volutpat, sagittis venenatis ipsum.</p>
                         </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <h3>Additional Information </h3>
-                            <p>Some content in menu 1.</p>
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
+
+                        <div id="review" class="tab-pane fade">
                             <h3>Review</h3>
                             <p>Some content in menu 2.</p>
                         </div>

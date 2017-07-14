@@ -427,7 +427,7 @@ class Product extends Dacadmin
         $this->myproduct->deleteRelated('post_id',$id,'tbl_postmeta');
         if($this->myproduct->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Product Deleted successfully.');
-            redirect("dacadmin/product/listproduct");
+            redirect("dacadmin/product/listproducts");
         }
     }
 

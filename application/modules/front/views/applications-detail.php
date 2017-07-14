@@ -81,7 +81,7 @@ foreach ($applicationdetail as $application) {
                         <!--<li><a data-toggle="tab"
                                href="#menu1"><?php /*echo $this->lang->line('additional_information'); */ ?></a></li>-->
 
-                        <li><a data-toggle="tab" href="#menu2"><?php echo $this->lang->line('review'); ?></a></li>
+                        <!--<li><a data-toggle="tab" href="#review"><?php /*echo $this->lang->line('review'); */?></a></li>-->
                         <?php
                         if ($apprelatedstory) {
                             ?>
@@ -104,7 +104,7 @@ foreach ($applicationdetail as $application) {
                             ?>
                         </div>
 
-                        <div id="menu2" class="tab-pane fade">
+                        <div id="review" class="tab-pane fade">
                             <h3>Review</h3>
 
                             <p>Some content in menu 2.</p>

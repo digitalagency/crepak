@@ -22,6 +22,7 @@ $lang['view_detail'] = 'View Detail';
 $lang['related_product'] = 'Related Products';
 $lang['related_application'] = 'Related Applications';
 $lang['practical_solution'] = 'Most Practical Solution';
+$lang['category_title'] = 'Category';
 
 
 //Contact page

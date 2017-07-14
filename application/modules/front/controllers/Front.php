@@ -96,6 +96,20 @@ class Front extends CI_Controller
     {
         $lang = $this->session->userdata('lang');
         if (!empty($slug)) {
+            $proId = $this->mymodel->getValue('tbl_post', 'id', 'slug', $slug);
+            $catId = $this->mymodel->getValue('tbl_post', 'post_parent', 'id', $proId);
+            $data['galcount'] = $this->mymodel->getCount('*','tbl_images','post_id = '.$proId);
+            if($data['galcount']>0)
+            {
+                $data['galleryImg'] = $this->mymodel->get('tbl_images','*','post_id = '.$proId.' and status = 1');
+            }
+
+            //file count
+            $data['cnfilecount'] = $this->mymodel->getCount('*','tbl_postmeta','post_meta_key = "product_file_cn" and post_id = '.$proId);
+            $data['filecount'] = $this->mymodel->getCount('*','tbl_postmeta','post_meta_key = "product_file" and post_id = '.$proId);
+
+
+
             if ($lang == 'cn') {
                 $post_title = $this->mymodel->getValue('tbl_post', 'title_cn', 'slug', $slug);
                 $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
@@ -103,6 +117,13 @@ class Front extends CI_Controller
                 $post_title = $this->mymodel->getValue('tbl_post', 'title', 'slug', $slug);
                 $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
             }
+
+            $data['prodDetail'] = $this->mymodel->get('tbl_post','*','post_type = "product" and slug = "'.$slug.'"');
+
+
+            $data['relatedproduct'] = $this->mymodel->get('tbl_post','*','post_type = "product" and status = 1 and slug !="'.$slug.'" and post_parent = "'.$catId.'"');
+
+
 
             $this->_render_page('product-detail', $data);
         } else {
@@ -119,16 +140,21 @@ class Front extends CI_Controller
         if (!empty($slug)) {
             if ($lang == 'cn') {
                 $post_title = $this->mymodel->getValue('tbl_post', 'title_cn', 'slug', $slug);
+                $data['Category_title'] = $post_title;
                 $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
             } else {
                 $post_title = $this->mymodel->getValue('tbl_post', 'title', 'slug', $slug);
+                $data['Category_title'] = $post_title;
                 $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
             }
 
+            $catId = $this->mymodel->getValue('tbl_post', 'id', 'slug', $slug);
+            $data['allproducts'] =  $this->mymodel->get('tbl_post','*','post_parent = '.$catId);
             $this->_render_page('category-details', $data);
         }
         else {
             $data['title'] = 'Categories | ' . $this->config->item('site_title', 'ion_auth');
+            $data['getallcategories'] = $this->mymodel->get('tbl_post', '*', 'post_type = "category" and status = 1');
             $this->_render_page('category-listing', $data);
         }
         $this->load->view('includes/footer');
