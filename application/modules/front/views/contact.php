@@ -12,88 +12,110 @@
                 </div>
                 <div class="inquery-form">
                     <h4 class="text-center"><?php echo $this->lang->line('inquiry_form'); ?></h4>
+                    <?php if ($this->session->flashdata('success_message') != "") { ?>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <?php echo $this->session->flashdata('success_message'); ?>
+                        </div>
+                    <?php }; ?>
 
-                    <form method="post">
+                    <form method="post" action="<?php echo base_url() . 'contact' ?>">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_company_name'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" name="company_name"
                                            placeholder="<?php echo $this->lang->line('placeholder_company_name'); ?> ..."
-                                           required>
+                                        >
+                                    <?php echo form_error('company_name', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_country_name'); ?></em></label>
-                                    <select class="select small form-control">
-                                        <option value="0">United States ...</option>
-                                        <option value="1">Nepal</option>
-                                        <option value="2">Australia</option>
-                                        <option value="3">Japan</option>
+                                    <select class="select small form-control" name="country">
+                                        <option value="United States">United States ...</option>
+                                        <option value="China">China</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Japan">Japan</option>
                                     </select>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_first_name'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" name="first_name"
                                            placeholder="<?php echo $this->lang->line('placeholder_first_name'); ?> ..."
-                                           required>
+                                        >
+                                    <?php echo form_error('first_name', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_last_name'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" name="last_name"
                                            placeholder="<?php echo $this->lang->line('placeholder_last_name'); ?> ..."
-                                           required>
+                                        >
+                                    <?php echo form_error('last_name', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_email'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="email" class="form-control" name="emailid"
                                            placeholder="<?php echo $this->lang->line('placeholder_email'); ?> ..."
-                                           required>
+                                        >
+                                    <?php echo form_error('emailid', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_phone'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" name="phone_number"
                                            placeholder="<?php echo $this->lang->line('placeholder_phone'); ?> ..."
-                                           required>
+                                        >
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label><em><?php echo $this->lang->line('lable_distributor'); ?></em></label>
-                                    <select class="select small form-control">
-                                        <option value="0">Distributor</option>
-                                        <option value="1">Nepal</option>
-                                        <option value="2">Australia</option>
-                                        <option value="3">Japan</option>
-                                    </select>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_subject'); ?></em></label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" name="subject"
                                            placeholder="<?php echo $this->lang->line('placeholder_subject'); ?> ..."
-                                           required>
+                                        >
+                                    <?php echo form_error('subject', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label><em><?php echo $this->lang->line('lable_message'); ?></em></label>
-                                    <textarea class="form-control" rows="3"
+                                    <textarea class="form-control" rows="3" name="message"
                                               placeholder="<?php echo $this->lang->line('placeholder_message'); ?> ..."></textarea>
+                                    <?php echo form_error('message', '<span class="text-danger">', '</span>'); ?>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-12">
-                                <button class="btn btn-default"><?php echo $this->lang->line('button_submit'); ?> <i
+
+                                <button class="btn btn-default"
+                                        name="contact_submit"><?php echo $this->lang->line('button_submit'); ?> <i
                                         class="fa fa-angle-right"></i></button>
                             </div>
                         </div>

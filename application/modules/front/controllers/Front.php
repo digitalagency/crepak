@@ -38,6 +38,51 @@ class Front extends CI_Controller
     function contact()
     {
         $data['title'] = 'Contact | ' . $this->config->item('site_title', 'ion_auth');
+
+
+        $this->form_validation->set_rules('company_name', $this->lang->line(''), 'required');
+        $this->form_validation->set_rules('first_name', $this->lang->line(''), 'required');
+        $this->form_validation->set_rules('last_name', $this->lang->line(''), 'required');
+        $this->form_validation->set_rules('emailid', $this->lang->line(''), 'required');
+        $this->form_validation->set_rules('subject', $this->lang->line(''), 'required');
+        $this->form_validation->set_rules('message', $this->lang->line(''), 'required');
+
+        if($this->form_validation->run() == TRUE){
+            $companyName    = $this->input->post('company_name');
+            $country        = $this->input->post('country');
+            $first_name     = $this->input->post('first_name');
+            $last_name      = $this->input->post('last_name');
+            $emailid        = $this->input->post('emailid');
+            $phone_number   = $this->input->post('phone_number');
+            $subject        = $this->input->post('subject');
+            $message        = $this->input->post('message');
+
+            $html  = '<html><body><div>';
+            $html .= '<p>Company Name : '.$companyName.'</p>';
+            $html .= '<p>Country      : '.$country.'</p>';
+            $html .= '<p>Full Name    : '.$first_name.' '.$last_name.'</p>';
+            $html .= '<p>Phone NUmber : '.$phone_number.'</p>';
+            $html .= '<p>Message      : </p>';
+            $html .= '<p>'.$message.'</p>';
+            $html .= '</div></body></html>';
+            $this->load->library('email');
+            $this->email->clear();
+            $config['charset'] = 'utf-8';
+            $config['mailtype'] = 'html';
+            $this->email->initialize($config);
+            $this->email->set_newline("\r\n");
+            //$fn = $this->config->item('admin_email','ion_auth');
+            $fn = 'binaya619@gmail.com';
+            $this->email->from($emailid,$first_name.' '.$last_name);
+            $this->email->to($fn);
+            $this->email->subject($subject);
+            $this->email->message($html);
+            if($this->email->send()){
+                $message = "Thank you connecting with us. We will get back to you shortly.";
+                $this->session->set_flashdata('success_message', $message);
+            }
+        }
+
         $this->_render_page('contact', $data);
         $this->load->view('includes/footer');
     }
@@ -108,8 +153,6 @@ class Front extends CI_Controller
             $data['cnfilecount'] = $this->mymodel->getCount('*','tbl_postmeta','post_meta_key = "product_file_cn" and post_id = '.$proId);
             $data['filecount'] = $this->mymodel->getCount('*','tbl_postmeta','post_meta_key = "product_file" and post_id = '.$proId);
 
-
-
             if ($lang == 'cn') {
                 $post_title = $this->mymodel->getValue('tbl_post', 'title_cn', 'slug', $slug);
                 $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
@@ -119,11 +162,13 @@ class Front extends CI_Controller
             }
 
             $data['prodDetail'] = $this->mymodel->get('tbl_post','*','post_type = "product" and slug = "'.$slug.'"');
-
-
             $data['relatedproduct'] = $this->mymodel->get('tbl_post','*','post_type = "product" and status = 1 and slug !="'.$slug.'" and post_parent = "'.$catId.'"');
 
-
+            $data['galcount'] = $this->mymodel->getCount('*','tbl_images','post_id = '.$proId);
+            if($data['galcount']>0)
+            {
+                $data['galleryImg'] = $this->mymodel->get('tbl_images','*','post_id = '.$proId.' and status = 1');
+            }
 
             $this->_render_page('product-detail', $data);
         } else {
@@ -197,7 +242,37 @@ class Front extends CI_Controller
     }
 
     function story($slug = ''){
+        $lang = $this->session->userdata('lang');
+        if (!empty($slug)){
+            if ($lang == 'cn') {
+                $post_title = $this->mymodel->getValue('tbl_post', 'title_cn', 'slug', $slug);
+                $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
+            } else {
+                $post_title = $this->mymodel->getValue('tbl_post', 'title', 'slug', $slug);
+                $data['title'] = $post_title . ' | ' . $this->config->item('site_title', 'ion_auth');
+            }
+            $data['storydetail'] = $this->mymodel->get('tbl_post','*','post_type = "story" and slug = "'.$slug.'"');
+            $data['relatedstory'] = $this->mymodel->get('tbl_post', '*', 'post_type = "story" and status = 1 and slug !="'.$slug.'"');
+            $this->_render_page('story-detail', $data);
+        }
+        else {
+            $data['title'] = 'Story | ' . $this->config->item('site_title', 'ion_auth');
+            $data['allstories'] = $this->mymodel->get('tbl_post', '*', 'post_type = "story" and status = 1');
+            $this->_render_page('story-page', $data);
+        }
+        $this->load->view('includes/footer');
+    }
 
+    //for file download
+
+    function download($filename){
+        $name = $filename;
+        $this->load->helper('download');
+        $path = base_url().'uploads/pfiles/'.$filename;
+        $pth    =   file_get_contents($path);
+        //$nme    =   "sample_file.pdf";
+        force_download($name, $pth);
+        exit();
     }
 
     function _render_page($view, $data = null, $returnhtml = false)//I think this makes more sense

@@ -56,6 +56,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>scriptscss/theme/js/bootstrap-submenu.js"></script>
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/bootstrap.min.js"></script>
 
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/jquery.fancybox.js"></script>

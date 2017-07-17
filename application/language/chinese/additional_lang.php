@@ -23,7 +23,9 @@ $lang['related_product'] = '相关产品';
 $lang['related_application'] = '相关应用';
 $lang['practical_solution'] = '最实用的解决方案';
 $lang['category_title'] = '类别';
-
+$lang['gallery'] = '画廊';
+$lang['related_stories'] = '相关故事';
+$lang['related_products'] = '相关产品';
 
 
 //Contact page

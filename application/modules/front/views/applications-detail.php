@@ -85,14 +85,14 @@ foreach ($applicationdetail as $application) {
                         <?php
                         if ($apprelatedstory) {
                             ?>
-                            <li><a data-toggle="tab" href="#relatedstory">Related Stories</a></li>
+                            <li><a data-toggle="tab" href="#relatedstory"><?php echo $this->lang->line('related_stories');?></a></li>
                         <?php }
                         if ($apprelatedproduct) {
                             ?>
-                            <li><a data-toggle="tab" href="#relatedproduct">Related Products</a></li>
+                            <li><a data-toggle="tab" href="#relatedproduct"><?php echo $this->lang->line('related_products');?></a></li>
                         <?php }
                         if($galcount>0){?>
-                            <li><a data-toggle="tab" href="#relatedgallery">Gallery</a></li>
+                            <li><a data-toggle="tab" href="#relatedgallery"><?php echo $this->lang->line('gallery');?></a></li>
                         <?php }
                         ?>
                     </ul>

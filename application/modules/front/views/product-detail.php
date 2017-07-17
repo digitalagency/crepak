@@ -1,5 +1,6 @@
 <?php
     foreach($prodDetail as $product){
+        $galfile = $product['slug'];
         $pid = $product['id'];
         //$galfile = $application['slug'];
         if ($language == 'cn') {
@@ -24,7 +25,23 @@
             }
         }
     }
+if($cnfilecount>0)
+{
+    $cnfilevalue = $this->mymodel->get('tbl_postmeta','*','post_id = '.$pid.' and post_meta_key = "product_file_cn"');
+    foreach($cnfilevalue as $cnvalue )
+    {
+        $cnfile = $cnvalue['post_meta_value'];
+    }
+}
 
+if($filecount >0)
+{
+    $filevalue = $this->mymodel->get('tbl_postmeta','*','post_id = '.$pid.' and post_meta_key = "product_file"');
+    foreach($filevalue as $value )
+    {
+        $file = $value['post_meta_value'];
+    }
+}
 ?>
 
 <section class="body-bg">
@@ -53,10 +70,28 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="download-pdf">
-                                        <button class="btn- btn-default"> <?php
-                                            echo $download = $this->lang->line('download_file');
-                                            //echo utf8_encode($download);
-                                            ?> </button>
+                                        <?php
+                                        if($language == 'cn')
+                                        {
+                                            if($cnfilecount>0)
+                                            {?>
+
+                                                <a href="<?php echo base_url().'download/'.$cnfile;?>" class="btn btn-default">
+                                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                                                </a>
+                                            <?php }
+                                        }
+                                        else
+                                        {
+                                            if($filecount >0)
+                                            {?>
+                                                <a href="<?php echo base_url().'download/'.$file;?>" class="btn btn-default">
+                                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                                                </a>
+                                            <?php }
+                                        }
+                                        ?>
+
                                         <div class="pdf-share">
                                             <h4>Share On:</h4>
                                             <ul>
@@ -75,22 +110,46 @@
             <div class="product-details-tab">
                 <div class="tab-wrap">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home"><?php echo $this->lang->line('description');?></a></li>
+                        <li class="active"><a data-toggle="tab" href="#description"><?php echo $this->lang->line('description');?></a></li>
 
-                        <li><a data-toggle="tab" href="#review"><?php echo $this->lang->line('review');?></a></li>
+                        <!--<li><a data-toggle="tab" href="#review"><?php /*echo $this->lang->line('review');*/?></a></li>-->
+                        <?php
+                        if($galcount>0){?>
+                            <li><a data-toggle="tab" href="#relatedgallery"><?php echo $this->lang->line('gallery');?></a></li>
+                        <?php }
+                        ?>
                     </ul>
 
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <h3>Product Description</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat nec est ac gravida. Morbi porttitor mauris ac molestie ultrices. Quisque placerat massa volutpat est interdum pretium. Fusce cursus eleifend nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean venenatis hendrerit tellus sit amet pellentesque. Nullam sit amet magna luctus, porttitor est id, ultricies erat. Phasellus id fermentum augue. Curabitur dictum mattis neque, sed pharetra lacus mollis ac.</p>
-                            <p>Quisque viverra quis ante vel elementum. Donec dictum ultrices ullamcorper. Mauris et lorem placerat, porttitor odio quis, egestas nunc. Nunc sollicitudin, neque id lobortis dapibus, tellus purus tincidunt enim, nec fringilla lacus nibh porta purus. Donec lobortis ullamcorper eros ut finibus. Mauris nisi quam, vulputate sit amet purus a, convallis vulputate nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent magna eros, sagittis in neque volutpat, sagittis venenatis ipsum.</p>
+                        <div id="description" class="tab-pane fade in active">
+                            <?php
+                            echo $content;
+                            ?>
                         </div>
 
                         <div id="review" class="tab-pane fade">
                             <h3>Review</h3>
                             <p>Some content in menu 2.</p>
                         </div>
+                        <?php
+                        if($galcount>0){?>
+                            <div id="relatedgallery" class="tab-pane fade">
+                                <ul class="related">
+                                    <?php
+                                    foreach($galleryImg as $gImg)
+                                    {
+                                        $galImage = $gImg['image'];?>
+                                        <li>
+                                            <a href="<?php echo base_url() . 'uploads/'.$galfile.'/'.$galImage; ?>" class="appgallery" data-fancybox-group="<?php echo $galfile;?>" >
+                                                <img src="<?php echo base_url() . 'uploads/'.$galfile.'/thumbnail/'.$galImage; ?>" alt="">
+                                            </a>
+                                        </li>
+                                    <?php }
+                                    ?>
+                                </ul>
+                            </div>
+                        <?php }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -99,36 +158,50 @@
                     <h2><?php echo $this->lang->line('related_product');?></h2>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/1.jpg" alt="1"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 50</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
+                    <?php
+                        foreach($relatedproduct as $relprod){
+                            $relprodslug = $relprod['slug'];
+                            if ($language == 'cn')
+                            {
+                                $relprodtitle = $relprod['title_cn'];
+                                $relprodexcrept = $relprod['excrept_cn'];
+                                if (empty($relprod['featured_img_cn'])) {
+                                    $relprodimage = $relprod['featured_img'];
+                                } else {
+                                    $relprodimage = $relprod['featured_img_cn'];
+                                }
+                            }
+                            else
+                            {
+                                $relprodtitle = $relprod['title'];
+                                $relprodexcrept = $relprod['excrept'];
+                                if (empty($relprod['featured_img'])) {
+                                    $relprodimage = $relprod['featured_img_cn'];
+                                } else {
+                                    $relprodimage = $relprod['featured_img'];
+                                }
+                            }?>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="related-produt-item">
+                                    <?php
+                                    if(!empty($relprodimage)){?>
+                                        <figure>
+                                            <img src="<?php echo base_url().'uploads/products/thumbnail/'.$relprodimage; ?>" alt="<?php echo $relprodtitle;?>">
+                                        </figure>
+                                    <?php }
+                                    ?>
+
+                                    <div class="figcaption">
+                                        <h3><?php echo $relprodtitle;?></h3>
+
+                                        <?php echo $relprodexcrept;?>
+                                        <a class="btn btn-default" href="<?php echo base_url().'product/'.$relprodslug; ?>"><?php echo $this->lang->line('view_detail');?>  <i class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/2.jpg" alt="2"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 20</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/1.jpg" alt="1"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 30</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                     <?php }
+                    ?>
+
                 </div>
             </div>
         </div>

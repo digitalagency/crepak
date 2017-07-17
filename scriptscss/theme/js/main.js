@@ -11,6 +11,11 @@ $(document).ready(function() {
     $(".dropdown-menu>li").find("a[href='"+window.location.href+"']").each(function(){
         $(this).parent().parent().parent().addClass("active");        //add additional code here if needed
     });
+    $(".dropdown-submenu .dropdown-menu>li").find("a[href='"+window.location.href+"']").each(function(){
+        $(this).parent().parent().parent().parent().parent().addClass("active");        //add additional code here if needed
+        $('.dropdown .dropdown-menu ').children().removeClass('active');
+    });
+
 	// fade in #back-top
 	$(function() {
 		$(window).scroll(function() {
@@ -79,9 +84,10 @@ $(document).ready(function() {
         $(this).tab('show');
         $('.tab-content > .tab-pane.active').jScrollPane();
     });
-    
-    
-    
+
+
+    //multiple submenu droupdown
+    $('[data-submenu]').submenupicker();
     
 
 

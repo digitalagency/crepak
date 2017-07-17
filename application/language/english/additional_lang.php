@@ -23,6 +23,9 @@ $lang['related_product'] = 'Related Products';
 $lang['related_application'] = 'Related Applications';
 $lang['practical_solution'] = 'Most Practical Solution';
 $lang['category_title'] = 'Category';
+$lang['gallery'] = 'Gallery';
+$lang['related_stories'] = 'Related Stories';
+$lang['related_products'] = 'Related Products';
 
 
 //Contact page
