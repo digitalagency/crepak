@@ -85,7 +85,7 @@
                                 foreach ($menus as $menu) {
                                     $menu['id'];
                                     $submenucount = $this->mymodel->getcount('*', 'tbl_menu', 'parent_id =' . $menu['id']);
-                                    $submenus = $this->mymodel->get('tbl_menu', '*', 'parent_id =' . $menu['id']);
+                                    $submenus = $this->mymodel->get('tbl_menu', '*', 'status = 1 and parent_id ="' . $menu['id'] .'" order by menu_order asc');
                                     ?>
                                     <?php if ($submenucount > 0) { ?>
                                         <li class="dropdown"><a
@@ -103,7 +103,7 @@
                                                 <?php foreach ($submenus as $submenu):
                                                     $submenu['id'];
                                                     $secondmenucount = $this->mymodel->getcount('*', 'tbl_menu', 'parent_id =' . $submenu['id']);
-                                                    $secondmenu = $this->mymodel->get('tbl_menu', '*', 'parent_id =' . $submenu['id']);
+                                                    $secondmenu = $this->mymodel->get('tbl_menu', '*', ' status = 1 and  parent_id ="' . $submenu['id'].'" order by menu_order asc');
 
                                                     if($secondmenucount>0){?>
                                                         <li class="dropdown-submenu">
