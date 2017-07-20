@@ -39,7 +39,6 @@ class Front extends CI_Controller
     {
         $data['title'] = 'Contact | ' . $this->config->item('site_title', 'ion_auth');
 
-
         $this->form_validation->set_rules('company_name', $this->lang->line(''), 'required');
         $this->form_validation->set_rules('first_name', $this->lang->line(''), 'required');
         $this->form_validation->set_rules('last_name', $this->lang->line(''), 'required');
@@ -61,26 +60,26 @@ class Front extends CI_Controller
             $html .= '<p>Company Name : '.$companyName.'</p>';
             $html .= '<p>Country      : '.$country.'</p>';
             $html .= '<p>Full Name    : '.$first_name.' '.$last_name.'</p>';
-            $html .= '<p>Phone NUmber : '.$phone_number.'</p>';
+            $html .= '<p>Phone Nmmber : '.$phone_number.'</p>';
             $html .= '<p>Message      : </p>';
             $html .= '<p>'.$message.'</p>';
             $html .= '</div></body></html>';
-            $this->load->library('email');
-            $this->email->clear();
-            $config['charset'] = 'utf-8';
-            $config['mailtype'] = 'html';
-            $this->email->initialize($config);
-            $this->email->set_newline("\r\n");
+
             //$fn = $this->config->item('admin_email','ion_auth');
             $fn = 'binaya619@gmail.com';
-            $this->email->from($emailid,$first_name.' '.$last_name);
-            $this->email->to($fn);
-            $this->email->subject($subject);
-            $this->email->message($html);
-            if($this->email->send()){
+
+
+            $to = $fn;
+            $from = $emailid;
+            $header = "From:" . $from . " \r\n";
+            //$header .= "Cc:" . $sndreMail . " \r\n";
+            $header .= "MIME-Version: 1.0\r\n";
+            $header .= "Content-type: text/html\r\n";
+            if(mail($to,$subject,$html,$header)){
                 $message = "Thank you connecting with us. We will get back to you shortly.";
                 $this->session->set_flashdata('success_message', $message);
             }
+
         }
 
         $this->_render_page('contact', $data);
@@ -273,6 +272,28 @@ class Front extends CI_Controller
         //$nme    =   "sample_file.pdf";
         force_download($name, $pth);
         exit();
+    }
+
+
+    function testemail(){
+
+        $to = 'binaya619@gmail.com';
+        $from = 's.khanal147@gmail.com';
+        $subject = 'Email test';
+        $header = "From:" . $from . " \r\n";
+        //$header .= "Cc:" . $sndreMail . " \r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type: text/html\r\n";
+        $message = 'testing for email class';
+        if(mail($to,$subject,$message,$header)){
+            $data['msg'] = 'email sent';
+        }
+        else{
+            $data['msg'] = 'email not sent';
+        }
+        $this->load->view('emailresult', $data);
+
+
     }
 
     function _render_page($view, $data = null, $returnhtml = false)//I think this makes more sense
