@@ -8,6 +8,7 @@
                 </div>
                 <div class="row">
                     <?php
+                    if($allproducts){
                         foreach($allproducts as $product)
                         {
                             $prodslug = $product['slug'];
@@ -49,7 +50,13 @@
                                     </div>
                                 </div>
                             </div>
-                     <?php }
+                        <?php }
+                    }
+                    else
+                    {
+                        echo 'No Products Available';
+                    }
+
                     ?>
 
                 </div>

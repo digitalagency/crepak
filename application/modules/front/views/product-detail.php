@@ -159,6 +159,8 @@ if($filecount >0)
                 </div>
                 <div class="row">
                     <?php
+                    if($relatedproduct)
+                    {
                         foreach($relatedproduct as $relprod){
                             $relprodslug = $relprod['slug'];
                             if ($language == 'cn')
@@ -199,7 +201,13 @@ if($filecount >0)
                                     </div>
                                 </div>
                             </div>
-                     <?php }
+                        <?php }
+                    }
+                    else
+                    {
+                        echo '<p>No Related Products Available</p>';
+                    }
+
                     ?>
 
                 </div>
