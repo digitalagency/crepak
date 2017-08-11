@@ -21,3 +21,22 @@ vertical-align: middle}
 .download-pdf a {
   margin-bottom: 25px;
 }
+#description tbody>tr:nth-of-type(odd){
+  background-color: #f9f9f9;
+}
+.related-produt-item p {
+  padding: 0 10px;
+}
+
+.application-item h4 a{
+  font-family: "san_francisco_textbold";
+  color:#5d5e5d;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.news-item h3 a{
+  font-size: 24px;
+  font-family: "san_francisco_textbold";
+  color:#5d5e5d;
+}
+.news-events .no-padding{padding: 0 46px 0 0;}

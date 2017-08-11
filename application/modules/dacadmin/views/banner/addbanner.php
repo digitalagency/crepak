@@ -178,7 +178,7 @@
                 }
             }
         });
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
+        var slug = title.toLowerCase().trim().replace(/[^A-Za-z0-9\s!?]/g,'').split(/\s+/).join('-');
         $('#slug').val(slug);
 
     }

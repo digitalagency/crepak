@@ -58,8 +58,8 @@
                             <div class="header-search mobile-search visible-xs pull-right">
                                 <i class="fa fa-search"></i>
                                 <div class="header-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="search">
+                                    <form action="<?php echo base_url('search')?>" method="post">
+                                        <input type="text" placeholder="search" name="searchvalue">
                                         <button><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
@@ -164,8 +164,8 @@
                             <div class="header-search hidden-xs">
                                 <i class="fa fa-search"></i>
                                 <div class="header-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="search">
+                                    <form action="<?php echo base_url('search')?>" method="post">
+                                        <input type="text" placeholder="search" name="searchvalue">
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>

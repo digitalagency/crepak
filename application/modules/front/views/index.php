@@ -37,19 +37,19 @@
 
                     <!--<div class="container">
                         <div class="carousel-caption wow fadeIn">
-                            <h1><?php /*echo $title; */?></h1>
-                            <?php /*echo $excrept; */?>
+                            <h1><?php /*echo $title; */ ?></h1>
+                            <?php /*echo $excrept; */ ?>
                             <?php
-/*                            $relatedPrdCount = $this->mymodel->getcount('*', 'tbl_postmeta', 'post_id =' . $value['id']);
-                            if ($relatedPrdCount > 0) {
-                                $relatedPrdId = $this->mymodel->getValue('tbl_postmeta', 'post_meta_value', 'post_id', $value['id']);
-                                $relatedPrd = $this->mymodel->getValue('tbl_post', 'slug', 'id', $relatedPrdId); */?>
+                    /*                            $relatedPrdCount = $this->mymodel->getcount('*', 'tbl_postmeta', 'post_id =' . $value['id']);
+                                                if ($relatedPrdCount > 0) {
+                                                    $relatedPrdId = $this->mymodel->getValue('tbl_postmeta', 'post_meta_value', 'post_id', $value['id']);
+                                                    $relatedPrd = $this->mymodel->getValue('tbl_post', 'slug', 'id', $relatedPrdId); */ ?>
                                 <a class="btn btn-default"
-                                   href="<?php /*echo base_url() . 'product/' . $relatedPrd; */?>"><?php /*echo $this->lang->line('shop_now') */?>
+                                   href="<?php /*echo base_url() . 'product/' . $relatedPrd; */ ?>"><?php /*echo $this->lang->line('shop_now') */ ?>
                                     <i
                                         class="fa fa-angle-right"></i></a>
                             <?php /*}
-                            */?>
+                            */ ?>
                         </div>
                     </div>-->
                 </div>
@@ -179,10 +179,9 @@
         <div class="row">
             <?php
 
-            foreach($allapplications as $application){
+            foreach ($allapplications as $application) {
                 $slug = $application['slug'];
-                if ($language == 'cn')
-                {
+                if ($language == 'cn') {
                     $title = $application['title_cn'];
                     $excrept = $application['excrept_cn'];
                     if (empty($application['featured_img_cn'])) {
@@ -190,9 +189,7 @@
                     } else {
                         $image = $application['featured_img_cn'];
                     }
-                }
-                else
-                {
+                } else {
                     $title = $application['title'];
                     $excrept = $application['excrept'];
                     if (empty($application['featured_img'])) {
@@ -200,27 +197,38 @@
                     } else {
                         $image = $application['featured_img'];
                     }
-                }?>
+                } ?>
                 <div class="col-md-4 col-sm-6">
                     <div class="application-item">
                         <?php
-                        if(!empty($image)){?>
+                        if (!empty($image)) {
+                            ?>
                             <figure>
-                                <img src="<?php echo base_url().'uploads/applications/thumbnail/'.$image; ?>" alt="<?php echo $title;?>">
+                                <a href="<?php echo base_url() . 'applications/' . $slug; ?>">
+                                    <img src="<?php echo base_url() . 'uploads/applications/thumbnail/' . $image; ?>"
+                                         alt="<?php echo $title; ?>">
+                                </a>
+
                             </figure>
                         <?php }
                         ?>
 
                         <figcaption>
-                            <h4><?php echo $title;?></h4>
+                            <h4>
+                                <a href="<?php echo base_url() . 'applications/' . $slug; ?>">
+                                    <?php echo $title; ?>
+                                </a>
+                            </h4>
 
-                            <?php echo $excrept;?>
-                            <a class="more" href="<?php echo base_url().'applications/'.$slug; ?>"><?php echo $this->lang->line('learn_more') ?> <i
+                            <?php echo $excrept; ?>
+                            <a class="more"
+                               href="<?php echo base_url() . 'applications/' . $slug; ?>"><?php echo $this->lang->line('learn_more') ?>
+                                <i
                                     class="fa fa-angle-right"></i></a>
                         </figcaption>
                     </div>
                 </div>
-           <?php  }
+            <?php }
             ?>
 
         </div>
@@ -238,59 +246,69 @@
             <h2><?php echo $this->lang->line('news_events') ?></h2>
         </div>
         <?php
-            foreach($allnews as $news){
-                $datetime = $news['post_date'];
-                $date = date("d M Y", strtotime($datetime));
-                $slug = $news['slug'];
-                if($language == 'cn')
-                {
-                    $title = $news['title_cn'];
-                    $excrept = $news['excrept_cn'];
-                    if (empty($news['featured_img_cn'])) {
-                        $image = $news['featured_img'];
-                    } else {
-                        $image = $news['featured_img_cn'];
-                    }
-                }
-                else
-                {
+        foreach ($allnews as $news) {
+            $datetime = $news['post_date'];
+            $date = date("d M Y", strtotime($datetime));
+            $slug = $news['slug'];
+            if ($language == 'cn') {
+
+                if (empty($news['title_cn'])) {
                     $title = $news['title'];
-                    $excrept = $news['excrept'];
-                    if (empty($news['featured_img'])) {
-                        $image = $news['featured_img_cn'];
-                    } else {
-                        $image = $news['featured_img'];
-                    }
-                }?>
+                } else {
+                    $title = $news['title_cn'];
+                }
+                $excrept = $news['excrept_cn'];
+                if (empty($news['featured_img_cn'])) {
+                    $image = $news['featured_img'];
+                } else {
+                    $image = $news['featured_img_cn'];
+                }
+            } else {
+                $title = $news['title'];
+                $excrept = $news['excrept'];
+                if (empty($news['featured_img'])) {
+                    $image = $news['featured_img_cn'];
+                } else {
+                    $image = $news['featured_img'];
+                }
+            } ?>
 
-                <div class="col-sm-6 no-padding">
-                    <div class="news-item clearfix">
-                        <div class="row">
-                            <div class="col-md-4">
+            <div class="col-sm-6 no-padding">
+                <div class="news-item clearfix">
+                    <div class="row">
+                        <div class="col-md-4">
 
-                                <?php
-                                if(!empty($image)){?>
-                                    <figure>
-                                        <img src="<?php echo base_url().'uploads/news/thumbnail/'.$image; ?>" alt="<?php echo $title;?>">
-                                    </figure>
-                                <?php }
+                            <?php
+                            if (!empty($image)) {
                                 ?>
-                            </div>
-                            <div class="col-md-8">
-                                <figcaption>
-                                    <h3><?php echo $title;?></h3>
-                                    <span><i class="fa fa-clock-o"></i><?php echo $date?></span>
-                                    <?php
-                                        echo $excrept;
-                                    ?>
+                                <figure>
+                                    <a href="<?php echo base_url() . 'news/' . $slug; ?>">
+                                        <img src="<?php echo base_url() . 'uploads/news/thumbnail/' . $image; ?>"
+                                             alt="<?php echo $title; ?>">
+                                    </a>
+                                </figure>
+                            <?php }
+                            ?>
+                        </div>
+                        <div class="col-md-8">
+                            <figcaption>
+                                <h3>
+                                    <a href="<?php echo base_url() . 'news/' . $slug; ?>">
+                                    <?php echo substr($title, 0, 50) . '...'; ?>
+                                </a>
+                                </h3>
+                                <span><i class="fa fa-clock-o"></i><?php echo $date ?></span>
+                                <?php
+                                echo substr(strip_tags($excrept), 0, 150) . '...';
+                                ?>
 
-                                    <a class="more" href="<?php echo base_url().'news/'.$slug;?>"><?php echo $this->lang->line('learn_more') ?> <i
-                                            class="fa fa-angle-right"></i></a>
-                                </figcaption>
-                            </div>
+                                <a class="more" href="<?php echo base_url() . 'news/' . $slug; ?>"><?php echo $this->lang->line('learn_more') ?>
+                                    <i class="fa fa-angle-right"></i></a>
+                            </figcaption>
                         </div>
                     </div>
                 </div>
+            </div>
         <?php }
         ?>
 

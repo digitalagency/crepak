@@ -193,7 +193,7 @@ class Front extends CI_Controller
             }
 
             $catId = $this->mymodel->getValue('tbl_post', 'id', 'slug', $slug);
-            $data['allproducts'] =  $this->mymodel->get('tbl_post','*','post_parent = '.$catId);
+            $data['allproducts'] =  $this->mymodel->get('tbl_post','*','post_parent = '.$catId .' and status = 1');
             $this->_render_page('category-details', $data);
         }
         else {
@@ -259,6 +259,24 @@ class Front extends CI_Controller
             $data['allstories'] = $this->mymodel->get('tbl_post', '*', 'post_type = "story" and status = 1');
             $this->_render_page('story-page', $data);
         }
+        $this->load->view('includes/footer');
+    }
+
+    function search(){
+        $searchValue = $this->input->post('searchvalue');
+        if(!empty($searchValue)){
+            $query = "title LIKE '%".$searchValue."%' or title_cn LIKE '%".$searchValue."%' or content LIKE '%".$searchValue."%' or content_cn LIKE '%".$searchValue."%'";
+            $data['searchcount'] = $this->mymodel->getCount('*','tbl_post',$query);
+            $data['searchResult'] = $this->mymodel->get('tbl_post','*',$query);
+        }
+        else{
+            $data['searchcount'] = '0';
+        }
+
+
+        $data['searchValue'] = $searchValue;
+        $data['title'] = 'Search | '.$this->config->item('site_title', 'ion_auth');
+        $this->_render_page('searchpage', $data);
         $this->load->view('includes/footer');
     }
 

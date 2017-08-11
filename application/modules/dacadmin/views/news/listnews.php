@@ -6,7 +6,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Page</li>
+        <li class="active">Add News</li>
     </ol>
 </section>
 <!-- breadcrumb -->
@@ -19,7 +19,7 @@
                 <div class='box-header'>
                     <h3 class='box-title'>List of News</h3>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="<?php echo base_url('dacadmin/product/addproduct')?>">Add Product </a>
+                        <a class="btn btn-primary" href="<?php echo base_url('dacadmin/news/addnews')?>">Add News </a>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">

@@ -8,7 +8,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">Forgot Password</p>
         <?php echo $message; ?>
-        <?php echo form_open("digitalauth/forgotpassword"); ?>
+        <?php echo form_open("dacadmin/forgotpassword"); ?>
 
         <div class="form-group has-feedback">
             <?php echo form_input($identity); ?>
