@@ -201,17 +201,20 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="application-item">
                         <?php
-                        if (!empty($image)) {
-                            ?>
-                            <figure>
-                                <a href="<?php echo base_url() . 'applications/' . $slug; ?>">
-                                    <img src="<?php echo base_url() . 'uploads/applications/thumbnail/' . $image; ?>"
-                                         alt="<?php echo $title; ?>">
-                                </a>
-
-                            </figure>
-                        <?php }
+                        if(!empty($image)){
+                            $img = base_url().'uploads/applications/thumbnail/'.$image;
+                        }
+                        else{
+                            $img = base_url().'scriptscss/images/nopreview.png';
+                        }
                         ?>
+                        <figure>
+                            <a href="<?php echo base_url() . 'applications/' . $slug; ?>">
+                                <img src="<?php echo $img; ?>"
+                                     alt="<?php echo $title; ?>">
+                            </a>
+
+                        </figure>
 
                         <figcaption>
                             <h4>
