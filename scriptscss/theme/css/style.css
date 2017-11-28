@@ -4,11 +4,7 @@
     url('../fonts/sanfranciscotext-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
-
-
-
 
 @font-face {
     font-family: 'san_francisco_textmedium';
@@ -16,11 +12,7 @@
     url('../fonts/sanfranciscotext-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
-
-
-
 
 @font-face {
     font-family: 'san_francisco_textregular';
@@ -28,11 +20,7 @@
     url('../fonts/sanfranciscotext-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
-
-
-
 
 @font-face {
     font-family: 'san_francisco_textsemibold';
@@ -40,7 +28,6 @@
     url('../fonts/sanfranciscotext-semibold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 body {
@@ -574,14 +561,14 @@ section.body-bg {
     padding: 60px 0;
 }
 .product-details {
-    background: #fff;
+    /*background: #fff;*/
     padding: 50px 0;
 }
 .top-details, .tab-wrap {
     padding: 0 60px;
     border-bottom: 1px solid #ebebeb;
     padding-top: 30px;
-    padding-bottom: 60px;
+    /*padding-bottom: 60px;*/
 }
 .product-img {
     border: 1px solid #eae3e3;
@@ -589,13 +576,17 @@ section.body-bg {
 }
 .product-img img{
     display: inline-block;
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
 }
 .product-info {
-    padding-left: 30px;
+    /*padding-left: 30px;*/
 }
 .product-info h3{
     font-size: 28px;
-    margin-bottom: 50px;
+    margin: 30px 0px;
+    text-align: center;
 }
 .product-info-left {
     position: relative;
@@ -726,9 +717,14 @@ section.body-bg {
 .related-produt-item img {
     display: inline-block;
 }
+.related-produt-item h4 a{
+    font-family: "san_francisco_textbold";
+    color:#5d5e5d;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
 
-
-/* Product details end */
+    /* Product details end */
 
 /* Product Listing start */
 

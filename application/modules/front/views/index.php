@@ -197,11 +197,16 @@
                     } else {
                         $image = $application['featured_img'];
                     }
-                } ?>
+                }
+                $homeicon = $application['homeicon'];
+                ?>
                 <div class="col-md-4 col-sm-6">
                     <div class="application-item">
                         <?php
-                        if(!empty($image)){
+                        if(!empty($homeicon)){
+                            $img = base_url().'uploads/applications/thumbnail/'.$homeicon;
+                        }
+                        elseif(!empty($image)){
                             $img = base_url().'uploads/applications/thumbnail/'.$image;
                         }
                         else{

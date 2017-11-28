@@ -40,3 +40,23 @@ vertical-align: middle}
   color:#5d5e5d;
 }
 .news-events .no-padding{padding: 0 46px 0 0;}
+.article-details{margin-bottom: 20px}
+.article-details h4{margin-bottom: 10px}
+
+.article-details .related li{
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 3px;
+  margin: 8px;
+  vertical-align: middle;
+  text-align: center;
+}
+.article-details .related li img
+{
+  height:150px ;
+  width: 200px;
+  object-fit: cover;
+}
+.article-details .product-img{border: none}
+.related-products .application-item figure img{height: 76px; width: 80px; object-fit: cover}
+.product-info .prodtitle{font-size: 28px;margin: 0px; text-align: left}

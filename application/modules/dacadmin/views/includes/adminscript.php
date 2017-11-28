@@ -78,6 +78,8 @@
             } );
             CKEDITOR.replace( 'editor3', {});
             CKEDITOR.replace( 'editor4', {});
+            CKEDITOR.replace( 'editor5', {});
+            CKEDITOR.replace( 'editor6', {});
 
       });
     </script>
