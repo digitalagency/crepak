@@ -102,18 +102,40 @@
                             <div class="form-group">
 
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Excrept:</label>
-                            <textarea id="editor3" name="excrept" rows="10" cols="40">
+                                    <label>Features & Benifit:</label>
+                            <textarea id="editor5" name="benifit" rows="10" cols="40">
                             </textarea>
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 col-xs-12">
-                                    <label>Chinese Excrept:</label>
-                            <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
+                                    <label>Chinese Features & Benifit:</label>
+                            <textarea id="editor6" name="benifit_cn" rows="10" cols="40">
                             </textarea>
                                 </div>
                             </div>
 
+                            <div class="form-group">
+
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Excrept:</label>
+                                    <textarea id="editor3" name="excrept" rows="10" cols="40">
+                                    </textarea>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Chinese Excrept:</label>
+                                    <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label>Keywords:</label>
+                                    <input type="text" class="form-control" id="keywords" name="keywords"
+                                           placeholder="Keywords for the Product">
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
@@ -203,12 +225,12 @@
 //
                     document.getElementById("addBtn").disabled = true;
                 }
-                if (available == 0){
+                if (available == 0) {
                     document.getElementById("addBtn").disabled = false;
                 }
             }
         })
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
+        var slug = title.toLowerCase().trim().replace(/[^A-Za-z0-9\s!?]/g, '').split(/\s+/).join('-');
         $('#slug').val(slug);
 
     }

@@ -6,8 +6,11 @@ foreach ($productValues as $value) {
     $title_cn = $value->title_cn;
     $aticle = $value->content;
     $aticle_cn = $value->content_cn;
+    $benifit = $value->benifit;
+    $benifit_cn = $value->benifit_cn;
     $excrept = $value->excrept;
     $excrept_cn = $value->excrept_cn;
+    $keywords = $value->keywords;
     $image = $value->featured_img;
     $image_cn = $value->featured_img_cn;
     $status = $value->status;
@@ -104,6 +107,7 @@ foreach ($productValues as $value) {
 
                                 </div>
                             </div>
+
                             <div class="form-group">
 
                                 <div class="col-sm-12">
@@ -118,27 +122,52 @@ foreach ($productValues as $value) {
 
                                 <div class="col-sm-12">
                                     <label>Chinese Content:</label>
-                            <textarea id="editor2" name="content_cn" rows="10" cols="80">
-                                <?php echo $aticle_cn; ?>
-                            </textarea>
+                                    <textarea id="editor2" name="content_cn" rows="10" cols="80">
+                                        <?php echo $aticle_cn; ?>
+                                    </textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
 
-                                <div class="col-sm-12 col-md-6 col-xs-12"
-                                ">
-                                <label>Excrept:</label>
-                            <textarea id="editor3" name="excrept" rows="10" cols="40">
-                                <?php echo $excrept; ?>
-                            </textarea>
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Features & Benifit:</label>
+                                    <textarea id="editor5" name="benifit" rows="10" cols="40">
+                                        <?php echo $benifit; ?>
+                                    </textarea>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Chinese Features & Benifit:</label>
+                                    <textarea id="editor6" name="benifit_cn" rows="10" cols="40">
+                                        <?php echo $benifit_cn; ?>
+                                    </textarea>
+                                </div>
                             </div>
 
-                            <div class="col-sm-12 col-md-6 col-xs-12">
-                                <label>Chinese Excrept:</label>
-                            <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
-                                <?php echo $excrept_cn; ?>
-                            </textarea>
+                            <div class="form-group">
+
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Excrept:</label>
+                                    <textarea id="editor3" name="excrept" rows="10" cols="40">
+                                        <?php echo $excrept; ?>
+                                    </textarea>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label>Chinese Excrept:</label>
+                                    <textarea id="editor4" name="excrept_cn" rows="10" cols="40">
+                                        <?php echo $excrept_cn; ?>
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label>Keywords:</label>
+                                    <input type="text" class="form-control" id="keywords" name="keywords"
+                                           placeholder="Keywords for the Product" value="<?php echo $keywords; ?>">
+                                </div>
                             </div>
 
 
@@ -152,7 +181,6 @@ foreach ($productValues as $value) {
                                                  src="<?php echo base_url() . 'uploads/products/thumbnail/' . $image ?>"
                                                  alt=""/>
                                         </div>
-
                                     <?php } ?>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-xs-12">
@@ -177,7 +205,7 @@ foreach ($productValues as $value) {
                                     if (!empty($prodfile[0]->post_meta_value)) {
                                         ?>
                                         <div class="fileview">
-                                            <a href="<?php echo base_url('dacadmin/download') .'/'.  $prodfile[0]->post_meta_value; ?>"
+                                            <a href="<?php echo base_url('dacadmin/download') . '/' . $prodfile[0]->post_meta_value; ?>"
                                                class="btn btn-app">
                                                 <i class="fa fa-file-archive-o"></i>
                                                 Notifications
@@ -227,7 +255,8 @@ foreach ($productValues as $value) {
                             <div class="form-group">
 
                                 <div class="col-sm-4">
-                                    <input name="btnDo" id="addBtn" type="submit" value="Edit" class="btn btn-primary"/>
+                                    <input name="btnDo" id="addBtn" type="submit" value="Edit"
+                                           class="btn btn-primary"/>
                                 </div>
                             </div>
                         </div>
@@ -271,13 +300,13 @@ foreach ($productValues as $value) {
 //
                         document.getElementById("addBtn").disabled = true;
                     }
-                    if (available ==0 ) {
+                    if (available == 0) {
                         document.getElementById("addBtn").disabled = false;
                     }
                 }
             })
         }
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
+        var slug = title.toLowerCase().trim().replace(/[^A-Za-z0-9\s!?]/g, '').split(/\s+/).join('-');
         $('#slug').val(slug);
 
     }

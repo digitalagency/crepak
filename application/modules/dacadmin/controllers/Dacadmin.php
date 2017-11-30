@@ -425,7 +425,7 @@ class Dacadmin extends MX_Controller {
                   $this->data['code'] = $code;
 
                   // render
-                  $this->_render_page('auth/reset_password', $this->data);
+                  $this->_render_page('dacadmin/reset_password', $this->data);
               } else {
                   // do we have a valid request?
                   if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id')) {
@@ -444,17 +444,17 @@ class Dacadmin extends MX_Controller {
                       if ($change) {
                           // if the password was successfully changed
                           $this->session->set_flashdata('message', $this->ion_auth->messages());
-                          redirect("auth/login", 'refresh');
+                          redirect("dacadmin/login", 'refresh');
                       } else {
                           $this->session->set_flashdata('message', $this->ion_auth->errors());
-                          redirect('auth/reset_password/' . $code, 'refresh');
+                          redirect('dacadmin/reset_password/' . $code, 'refresh');
                       }
                   }
               }
           } else {
               // if the code is invalid then send them back to the forgot password page
               $this->session->set_flashdata('message', $this->ion_auth->errors());
-              redirect("auth/forgot_password", 'refresh');
+              redirect("dacadmin/forgotpassword", 'refresh');
           }
       }
 

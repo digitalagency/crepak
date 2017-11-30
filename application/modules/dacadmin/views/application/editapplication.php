@@ -10,6 +10,7 @@ foreach ($applicationValues as $value) {
     $excrept_cn = $value->excrept_cn;
     $image = $value->featured_img;
     $image_cn = $value->featured_img_cn;
+    $homeicon = $value->homeicon;
     $status = $value->status;
     $slug = $value->slug;
     $post_parent = $value->post_parent;
@@ -144,6 +145,22 @@ foreach ($applicationValues as $value) {
                                     <?php } ?>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Icon: <small>(For homepage only)</small></label>
+                                    <input type="file" name="homeicon" id="homeicon">
+
+                                    <?php if (!empty($homeicon)) { ?>
+                                        <div class="homepageicon">
+                                            <img class="img-responsive"
+                                                 src="<?php echo base_url() . 'uploads/applications/thumbnail/' . $homeicon ?>"
+                                                 alt=""/>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
@@ -290,7 +307,7 @@ foreach ($applicationValues as $value) {
                 }
             })
         }
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
+        var slug = title.toLowerCase().trim().replace(/[^A-Za-z0-9\s!?]/g,'').split(/\s+/).join('-');
         $('#slug').val(slug);
 
     }

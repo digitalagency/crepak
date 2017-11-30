@@ -72,3 +72,6 @@ $route['news/(:any)'] = "front/news/$1";
 $route['product/(:any)'] = "front/product/$1";
 $route['applications/(:any)'] = "front/applications/$1";
 $route['category/(:any)'] = "front/category/$1";
+$route['story/(:any)'] = "front/story/$1";
+$route['download/(:any)'] = "front/download/$1";
+$route['search/(:any)'] = "front/search/$1";

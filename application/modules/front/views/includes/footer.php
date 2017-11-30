@@ -33,7 +33,7 @@
                     <p>Contact us to know how our RFID tags would help you to optimize your operation</p>
                 </div>
                 <div class="creat-btn">
-                    <a class="btn btn-default" href="#"><?php echo $this->lang->line('contact_crepak');?> </a>
+                    <a class="btn btn-default" href="<?php echo base_url('contact')?>"><?php echo $this->lang->line('contact_crepak');?> </a>
                 </div>
             </div>
         </div>
@@ -56,6 +56,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>scriptscss/theme/js/bootstrap-submenu.js"></script>
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/bootstrap.min.js"></script>
 
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/jquery.fancybox.js"></script>

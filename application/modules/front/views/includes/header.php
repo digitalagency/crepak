@@ -11,6 +11,7 @@
     <title><?php echo $title ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>scriptscss/theme/css/bootstrap-submenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/jquery.fancybox.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>scriptscss/theme/css/owl.carousel.css" rel="stylesheet">
@@ -57,8 +58,8 @@
                             <div class="header-search mobile-search visible-xs pull-right">
                                 <i class="fa fa-search"></i>
                                 <div class="header-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="search">
+                                    <form action="<?php echo base_url('search')?>" method="post">
+                                        <input type="text" placeholder="search" name="searchvalue">
                                         <button><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
@@ -84,13 +85,11 @@
                                 foreach ($menus as $menu) {
                                     $menu['id'];
                                     $submenucount = $this->mymodel->getcount('*', 'tbl_menu', 'parent_id =' . $menu['id']);
-                                    $submenus = $this->mymodel->get('tbl_menu', '*', 'parent_id =' . $menu['id']);
+                                    $submenus = $this->mymodel->get('tbl_menu', '*', 'status = 1 and parent_id ="' . $menu['id'] .'" order by menu_order asc');
                                     ?>
                                     <?php if ($submenucount > 0) { ?>
                                         <li class="dropdown"><a
-                                                href="javascript:void(0)" data-toggle="dropdown" role="button"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
+                                                href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-submenu="" role="button" aria-haspopup="true" aria-expanded="false">
                                                 <?php
                                                 if ($language == 'cn') {
                                                     echo $menu['title_cn'];
@@ -101,29 +100,63 @@
 
                                                 <span class="caret dropdown-toggle"></span></a>
                                             <ul class="dropdown-menu">
-                                                <?php foreach ($submenus as $submenu): ?>
-                                                    <li><a href="<?php echo base_url() . $submenu['page_link']; ?>">
+                                                <?php foreach ($submenus as $submenu):
+                                                    $submenu['id'];
+                                                    $secondmenucount = $this->mymodel->getcount('*', 'tbl_menu', 'parent_id =' . $submenu['id']);
+                                                    $secondmenu = $this->mymodel->get('tbl_menu', '*', ' status = 1 and  parent_id ="' . $submenu['id'].'" order by menu_order asc');
+
+                                                    if($secondmenucount>0){?>
+                                                        <li class="dropdown-submenu">
+                                                            <a href="<?php echo ($submenu['page_link']!='')?base_url().$submenu['page_link']:'javascript:void(0)';?>">
                                                             <?php
                                                             if ($language == 'cn') {
-                                                                echo $submenu['title_cn'];
+                                                                echo trim($submenu['title_cn']);
                                                             } else {
-                                                                echo $submenu['title'];
+                                                                echo trim($submenu['title']);
                                                             }
                                                             ?>
-                                                        </a></li>
-                                                <?php endforeach; ?>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <?php
+                                                                foreach($secondmenu as $secmenu){?>
+                                                                    <li><a href="<?php echo ($secmenu['page_link']!='')?base_url().$secmenu['page_link']:'javascript:void(0)';?>">
+                                                                    <?php
+                                                                    if ($language == 'cn') {
+                                                                        echo trim($secmenu['title_cn']);
+                                                                    } else {
+                                                                        echo trim($secmenu['title']);
+                                                                    }
+                                                                    ?>
+                                                                        </a></li>
+                                                                <?php }
+                                                                ?>
+                                                            </ul>
+                                                        </li>
+                                                    <?php }else{
+                                                    ?>
+                                                    <li><a href="<?php echo ($submenu['page_link']!='')?base_url() . $submenu['page_link']:'javascript:void(0)'; ?>">
+                                                    <?php
+                                                            if ($language == 'cn') {
+                                                                echo trim($submenu['title_cn']);
+                                                            } else {
+                                                                echo trim($submenu['title']);
+                                                            }
+                                                            ?>
+                                                    </a></li>
+                                                <?php }
+                                                endforeach; ?>
                                             </ul>
                                         </li>
                                     <?php } else { ?>
-                                        <li><a href="<?php echo base_url() . $menu['page_link']; ?>">
-                                                <?php
-                                                if ($language == 'cn') {
-                                                    echo $menu['title_cn'];
-                                                } else {
-                                                    echo $menu['title'];
-                                                }
-                                                ?>
-                                            </a></li>
+                                        <li><a href="<?php echo ($menu['page_link'] != '')?base_url() . $menu['page_link']:'javascript:void(0)'; ?>">
+                                        <?php
+                                        if ($language == 'cn') {
+                                            echo trim($menu['title_cn']);
+                                        } else {
+                                            echo trim($menu['title']);
+                                        }
+                                        ?>
+                                        </a></li>
                                     <?php } ?>
                                 <?php }
                                 ?>
@@ -131,8 +164,8 @@
                             <div class="header-search hidden-xs">
                                 <i class="fa fa-search"></i>
                                 <div class="header-form">
-                                    <form action="#">
-                                        <input type="text" placeholder="search">
+                                    <form action="<?php echo base_url('search')?>" method="post">
+                                        <input type="text" placeholder="search" name="searchvalue">
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>

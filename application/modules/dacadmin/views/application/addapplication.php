@@ -107,6 +107,12 @@
                                     <input type="file" name="images_cn" id="images">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 col-md-6 col-xs-12">
+                                    <label for="exampleInputFile">Icon: <small>(For homepage only)</small></label>
+                                    <input type="file" name="homeicon" id="homeicon">
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6 col-xs-12">
@@ -210,7 +216,7 @@
                 }
             }
         })
-        var slug = title.toLowerCase().trim().split(/\s+/).join('-');
+        var slug = title.toLowerCase().trim().replace(/[^A-Za-z0-9\s!?]/g,'').split(/\s+/).join('-');
         $('#slug').val(slug);
 
     }

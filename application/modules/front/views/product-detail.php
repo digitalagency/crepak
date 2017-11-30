@@ -1,118 +1,221 @@
+<?php
+foreach ($prodDetail as $product) {
+    $galfile = $product['slug'];
+    $pid = $product['id'];
+    //$galfile = $application['slug'];
+    if ($language == 'cn') {
+        $title = $product['title_cn'];
+        $content = $product['content_cn'];
+        $excrept = $product['excrept_cn'];
+        //$featured_img = $detail['featured_img_cn'];
+        if (empty($product['featured_img_cn'])) {
+            $image = $product['featured_img'];
+        } else {
+            $image = $product['featured_img_cn'];
+        }
+        $benifit = $product['benifit_cn'];
+    } else {
+        $title = $product['title'];
+        $content = $product['content'];
+        $excrept = $product['excrept'];
+        //$featured_img = $detail['featured_img'];
+        if (empty($product['featured_img'])) {
+            $image = $product['featured_img_cn'];
+        } else {
+            $image = $product['featured_img'];
+        }
+        $benifit = $product['benifit'];
+    }
+    $keywords = $product['keywords'];
+
+}
+if ($cnfilecount > 0) {
+    $cnfilevalue = $this->mymodel->get('tbl_postmeta', '*', 'post_id = ' . $pid . ' and post_meta_key = "product_file_cn"');
+    foreach ($cnfilevalue as $cnvalue) {
+        $cnfile = $cnvalue['post_meta_value'];
+    }
+}
+
+if ($filecount > 0) {
+    $filevalue = $this->mymodel->get('tbl_postmeta', '*', 'post_id = ' . $pid . ' and post_meta_key = "product_file"');
+    foreach ($filevalue as $value) {
+        $file = $value['post_meta_value'];
+    }
+}
+?>
+
 <section class="body-bg">
     <div class="container">
         <div class="product-details">
             <div class="top-details">
+
                 <div class="row">
-                    <div class="col-md-5">
-                        <div class="product-img">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/p-detail.jpg" alt="product-details"></figure>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="product-info">
-                            <h3>1166 UHF handheld reader</h3>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="product-info-left">
-                                        <dl class="dl-horizontal">
-                                            <dt>Type &nbsp &nbsp -</dt>
-                                            <dd>Handheld Reader</dd>
-
-                                            <dt>Size &nbsp &nbsp -</dt>
-                                            <dd>177 x 94 x170 mm</dd>
-
-                                            <dt>Color &nbsp &nbsp -</dt>
-                                            <dd>White</dd>
-
-                                            <dt>Brand &nbsp &nbsp -</dt>
-                                            <dd>TSL</dd>
-
-                                            <dt>Model &nbsp &nbsp -</dt>
-                                            <dd>1166</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="download-pdf">
-                                        <button class="btn- btn-default"> <?php
-                                            echo $download = $this->lang->line('download_file');
-                                            //echo utf8_encode($download);
-                                            ?> </button>
-                                        <div class="pdf-share">
-                                            <h4>Share On:</h4>
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                    <div class="col-md-12">
+                        <div class="product-info row">
+                            <div class="col-md-8">
+                                <h3 class="prodtitle"><?php echo $title; ?></h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="pdf-share">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                        <?php if (!empty($keywords)) { ?>
+                            <div class="product-info row">
+                                <div class="col-md-12 product-keywords">
+                                    <?php echo $keywords ?>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div class="product-details-tab">
                 <div class="tab-wrap">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home"><?php echo $this->lang->line('description');?></a></li>
-                        <li><a data-toggle="tab" href="#menu1"><?php echo $this->lang->line('additional_information');?></a></li>
-                        <li><a data-toggle="tab" href="#menu2"><?php echo $this->lang->line('review');?></a></li>
-                    </ul>
+                    <div id="description" class="article-details">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <?php echo $content; ?>
+                                <?php
+                                if (!empty($benifit)) {
+                                    ?>
+                                    <h4>Features & Benifit</h4>
+                                    <?php
+                                    echo $benifit;
+                                }
+                                ?>
+                            </div>
+                            <?php
+                            if (!empty($image)) {
+                                ?>
 
-                    <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <h3>Product Description</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras feugiat nec est ac gravida. Morbi porttitor mauris ac molestie ultrices. Quisque placerat massa volutpat est interdum pretium. Fusce cursus eleifend nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean venenatis hendrerit tellus sit amet pellentesque. Nullam sit amet magna luctus, porttitor est id, ultricies erat. Phasellus id fermentum augue. Curabitur dictum mattis neque, sed pharetra lacus mollis ac.</p>
-                            <p>Quisque viverra quis ante vel elementum. Donec dictum ultrices ullamcorper. Mauris et lorem placerat, porttitor odio quis, egestas nunc. Nunc sollicitudin, neque id lobortis dapibus, tellus purus tincidunt enim, nec fringilla lacus nibh porta purus. Donec lobortis ullamcorper eros ut finibus. Mauris nisi quam, vulputate sit amet purus a, convallis vulputate nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent magna eros, sagittis in neque volutpat, sagittis venenatis ipsum.</p>
-                        </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <h3>Additional Information </h3>
-                            <p>Some content in menu 1.</p>
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            <h3>Review</h3>
-                            <p>Some content in menu 2.</p>
+                                <div class="col-md-5">
+                                    <div class="product-img">
+                                        <figure><img src="<?php echo base_url() . 'uploads/products/' . $image; ?>"
+                                                     alt="<?php echo $title; ?>"></figure>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
+
+                    <?php
+                    if ($galcount > 0) {
+                        ?>
+                        <div id="relatedgallery" class="article-details">
+                            <h4>Gallery</h4>
+                            <ul class="related">
+                                <?php
+                                foreach ($galleryImg as $gImg) {
+                                    $galImage = $gImg['image']; ?>
+                                    <li>
+                                        <a href="<?php echo base_url() . 'uploads/' . $galfile . '/' . $galImage; ?>"
+                                           class="appgallery" data-fancybox-group="<?php echo $galfile; ?>">
+                                            <img
+                                                src="<?php echo base_url() . 'uploads/' . $galfile . '/thumbnail/' . $galImage; ?>"
+                                                alt="">
+                                        </a>
+                                    </li>
+                                <?php }
+                                ?>
+                            </ul>
+                        </div>
+                    <?php }
+                    if ($language == 'cn') {
+                        if ($cnfilecount > 0) {
+                            ?>
+                            <div id="review" class="article-details">
+                                <a href="<?php echo base_url() . 'download/' . $cnfile; ?>" class="btn btn-default">
+                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                                </a>
+                            </div>
+                        <?php }
+                    } else {
+                        if ($filecount > 0) {
+                            ?>
+                            <div id="review" class="article-details">
+                                <a href="<?php echo base_url() . 'download/' . $file; ?>" class="btn btn-default">
+                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                                </a>
+                            </div>
+                        <?php }
+                    }
+                    ?>
+
+
                 </div>
+
+
             </div>
+
             <div class="related-products text-center">
                 <div class="page-title">
                     <h2><?php echo $this->lang->line('related_product');?></h2>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/1.jpg" alt="1"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 50</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
+                    <?php
+                    if($relatedproduct)
+                    {
+                        foreach($relatedproduct as $relprod){
+                            $relprodslug = $relprod['slug'];
+                            if ($language == 'cn')
+                            {
+                                $relprodtitle = $relprod['title_cn'];
+                                $relprodexcrept = $relprod['excrept_cn'];
+                                if (empty($relprod['featured_img_cn'])) {
+                                    $relprodimage = $relprod['featured_img'];
+                                } else {
+                                    $relprodimage = $relprod['featured_img_cn'];
+                                }
+                            }
+                            else
+                            {
+                                $relprodtitle = $relprod['title'];
+                                $relprodexcrept = $relprod['excrept'];
+                                if (empty($relprod['featured_img'])) {
+                                    $relprodimage = $relprod['featured_img_cn'];
+                                } else {
+                                    $relprodimage = $relprod['featured_img'];
+                                }
+                            }?>
+                            <div class="col-sm-3 col-xs-3">
+                                <div class="application-item">
+                                    <?php
+                                    if(!empty($relprodimage)){
+                                        $img = base_url().'uploads/products/thumbnail/'.$relprodimage;
+                                    }
+                                    else{
+                                        $img = base_url().'scriptscss/images/nopreview.png';
+                                    }
+                                   ?>
+                                        <figure>
+                                            <a href="<?php echo base_url().'product/'.$relprodslug; ?>">
+                                            <img src="<?php echo $img; ?>" alt="<?php echo $relprodtitle;?>">
+                                                </a>
+                                        </figure>
+
+
+                                    <div class="figcaption">
+                                        <h3>
+                                        <a href="<?php echo base_url().'product/'.$relprodslug; ?>"><?php echo $relprodtitle;?></a>
+                                        </h3>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/2.jpg" alt="2"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 20</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <div class="related-produt-item">
-                            <figure><img src="<?php echo base_url(); ?>scriptscss/theme/images/products/1.jpg" alt="1"></figure>
-                            <div class="figcaption">
-                                <h3>Terminator 30</h3>
-                                <p><span>Size:</span> 79x20x3</p>
-                                <a class="btn btn-default" href="<?php echo base_url(); ?>product/details"><?php echo $this->lang->line('view_detail');?> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                        <?php }
+                    }
+                    else
+                    {
+                        echo '<p>No Related Products Available</p>';
+                    }
+
+                    ?>
+
                 </div>
             </div>
         </div>

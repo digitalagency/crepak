@@ -43,9 +43,12 @@ class Product extends Dacadmin
             $slug = $this->input->post('slug');
             $content = $this->input->post('content');
             $content_cn = $this->input->post('content_cn');
+            $benifit = $this->input->post('benifit');
+            $benifit_cn = $this->input->post('benifit_cn');
             $excrept = $this->input->post('excrept');
             $excrept_cn = $this->input->post('excrept_cn');
             $status = $this->input->post('status');
+            $keywords = $this->input->post('keywords');
             if($this->input->post('category')!=''){
                 $post_parent = $this->input->post('category');
             }
@@ -110,14 +113,17 @@ class Product extends Dacadmin
                 'slug'          =>  $slug,
                 'content'       =>  $content,
                 'content_cn'    =>  $content_cn,
+                'benifit'       =>  $benifit,
+                'benifit_cn'    =>  $benifit_cn,
                 'excrept'       =>  $excrept,
                 'excrept_cn'    =>  $excrept_cn,
+                'keywords'      =>  $keywords,
                 'featured_img'  =>  $image,
                 'featured_img_cn'=> $image_cn,
                 'status'        =>  $status,
                 'post_date'     =>  date("Y-m-d  H:i:s"),
                 'post_type'     =>  'product',
-                'post_parent'     =>  $post_parent
+                'post_parent'   =>  $post_parent
             );
 
             $lastId = $this->myproduct->getLastId($article);
@@ -205,9 +211,12 @@ class Product extends Dacadmin
                 $slug = $this->input->post('slug');
                 $content = $this->input->post('content');
                 $content_cn = $this->input->post('content_cn');
+                $benifit = $this->input->post('benifit');
+                $benifit_cn = $this->input->post('benifit_cn');
                 $excrept = $this->input->post('excrept');
                 $excrept_cn = $this->input->post('excrept_cn');
                 $status = $this->input->post('status');
+                $keywords = $this->input->post('keywords');
                 if($this->input->post('category')!=''){
                     $post_parent = $this->input->post('category');
                 }
@@ -257,19 +266,42 @@ class Product extends Dacadmin
                     }
                 }
 
-                if($image!='' && $image_cn ==''){
+                $article['title']   = $title;
+                $article['title_cn']   = $title_cn;
+                $article['slug']   = $slug;
+                $article['content']   = $content;
+                $article['content_cn']   = $content_cn;
+                $article['benifit']   = $benifit;
+                $article['benifit_cn']   = $benifit_cn;
+                $article['excrept']   = $excrept;
+                $article['excrept_cn']   = $excrept_cn;
+                $article['keywords']   = $keywords;
+                $article['status']   = $status;
+                $article['post_update']   = date("Y-m-d  H:i:s");
+                $article['post_parent']   = $post_parent;
+                if($image!=''){
+                    $article['featured_img']   = $image;
+                }
+                if($image_cn!=''){
+                    $article['featured_img_cn']   = $image_cn;
+                }
+
+                /*if($image!='' && $image_cn ==''){
                     $article = array(
-                        'title' => $title,
-                        'title_cn' => $title_cn,
-                        'slug' => $slug,
-                        'content' => $content,
-                        'content_cn' => $content_cn,
-                        'excrept' => $excrept,
-                        'excrept_cn' => $excrept_cn,
+                        'title'     => $title,
+                        'title_cn'  => $title_cn,
+                        'slug'      => $slug,
+                        'content'   => $content,
+                        'content_cn'=> $content_cn,
+                        'benifit'   =>  $benifit,
+                        'benifit_cn'=>  $benifit_cn,
+                        'excrept'   => $excrept,
+                        'excrept_cn'=> $excrept_cn,
+                        'keywords'  =>  $keywords,
                         'featured_img' => $image,
-                        'status'  => $status,
-                        'post_update' => date("Y-m-d  H:i:s"),
-                        'post_parent'     =>  $post_parent
+                        'status'    => $status,
+                        'post_update'=> date("Y-m-d  H:i:s"),
+                        'post_parent'=>  $post_parent
                     );
                 }
                 elseif($image_cn!='' && $image ==''){
@@ -316,7 +348,7 @@ class Product extends Dacadmin
                         'post_update' => date("Y-m-d  H:i:s"),
                         'post_parent'     =>  $post_parent
                     );
-                }
+                }*/
 
                 $folder_pfile = 'pfiles';
                 $target = 'uploads';
@@ -427,7 +459,7 @@ class Product extends Dacadmin
         $this->myproduct->deleteRelated('post_id',$id,'tbl_postmeta');
         if($this->myproduct->delete('id', $id)){
             $this->session->set_flashdata('success_message', 'Product Deleted successfully.');
-            redirect("dacadmin/product/listproduct");
+            redirect("dacadmin/product/listproducts");
         }
     }
 

