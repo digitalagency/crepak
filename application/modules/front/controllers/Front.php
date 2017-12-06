@@ -81,7 +81,11 @@ class Front extends CI_Controller
             }
 
         }
-
+        $count = $this->mymodel->getCount('*','tbl_post','slug = "contact"');
+        if($count > 0){
+            echo 'here';
+            $data['contactpage'] = $this->mymodel->get('tbl_post','*', 'slug = "contact"');
+        }
         $this->_render_page('contact', $data);
         $this->load->view('includes/footer');
     }
@@ -193,7 +197,7 @@ class Front extends CI_Controller
             }
 
             $catId = $this->mymodel->getValue('tbl_post', 'id', 'slug', $slug);
-            $data['allproducts'] =  $this->mymodel->get('tbl_post','*','post_parent = '.$catId .' and status = 1');
+           $data['allproducts'] =  $this->mymodel->get('tbl_post','*','post_parent = '.$catId .' and status = 1');
             $this->_render_page('category-details', $data);
         }
         else {

@@ -372,6 +372,11 @@ section.application {
 .application-item h4 {
     margin-bottom: 20px;
     font-size: 20px;
+    min-height: 44px;
+}
+.application-item h3 {font-size: 14px;}
+.application-item p {
+    min-height: 75px;
 }
 .application-item img {
     display: inline-block;
@@ -389,9 +394,9 @@ section.application {
     font-size: 18px;
 }
 .application-item {
-    border: 1px solid #ebebeb;
-    padding: 60px 45px;
-    margin-bottom: 30px;
+    /*border: 1px solid #ebebeb;*/
+    /*padding: 60px 45px;
+    margin-bottom: 30px;*/
 }
 a.more {
     color: #cfb69f;
@@ -562,7 +567,7 @@ section.body-bg {
 }
 .product-details {
     /*background: #fff;*/
-    padding: 50px 0;
+    padding: 0;
 }
 .top-details, .tab-wrap {
     padding: 0 60px;
@@ -687,6 +692,14 @@ section.body-bg {
     padding: 0 60px;
     margin-top: 60px;
 }
+
+ul.related-story {
+    display: block;
+}
+.related-story li {
+    list-style: disc;
+    margin-left: 30px;
+}
 .page-title{
     margin-bottom: 50px;
 }
@@ -697,11 +710,11 @@ section.body-bg {
     padding: 0 30px;
 }
 .related-produt-item {
-    border: 1px solid #f0eaea;
+    /*border: 1px solid #f0eaea;*/
     margin: 30px 0;
 }
 .related-produt-item figure {
-    border-bottom: 1px solid #f0eaea;
+    /*border-bottom: 1px solid #f0eaea;*/
     margin-bottom: 25px;
 }
 .related-produt-item .figcaption {
@@ -723,6 +736,8 @@ section.body-bg {
     margin-bottom: 20px;
     font-size: 20px;
 }
+.related-produt-item h4 {min-height: 44px;}
+.related-produt-item p {min-height: 75px;}
 
     /* Product details end */
 
@@ -913,4 +928,11 @@ textare.form-control {
 }
 
 
+.pad-top-0{ padding-top: 0!important;}
+.pad-top-5{ padding-top: 5px;}
+.pad-lr-25{ padding-left: 25px; padding-right: 25px;}
+.pad-tb-25{ padding-top: 25px; padding-bottom: 25px;}
+.pad-25{ padding:25px; }
+.no-border {border: none!important;}
+.app-img{width: 250px!important; height: 200px!important;}
 

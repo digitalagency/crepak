@@ -34,7 +34,10 @@
                         <div class="col-sm-4 col-xs-6">
                             <div class="related-produt-item ">
                                 <?php
-                                if (!empty($image)) {
+                                if(!empty($homeicon)){
+                                    $img = base_url().'uploads/applications/thumbnail/'.$homeicon;
+                                }
+                                elseif (!empty($image)) {
                                     $img = base_url() . 'uploads/applications/thumbnail/' . $image;
                                 } else {
                                     $img = base_url() . 'scriptscss/images/nopreview.png';
@@ -53,7 +56,7 @@
                                         </a>
                                     </h4>
 
-                                    <p><?php echo $excrept; ?></p>
+                                    <?php echo $excrept; ?>
                                     <a class="btn btn-default"
                                        href="<?php echo base_url() . 'applications/' . $slug; ?>"><?php echo $this->lang->line('view_detail'); ?>
                                         <i class="fa fa-angle-right"></i></a>

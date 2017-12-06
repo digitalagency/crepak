@@ -25,16 +25,16 @@ foreach ($applicationdetail as $application) {
 }
 ?>
 
-<section class="body-bg">
+<section class="body-bg pad-top-0">
     <div class="container">
         <div class="product-details">
-            <div class="top-details">
+            <div class="top-details pad-top-5">
                 <?php
                 if (!empty($image)) {
                     ?>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="product-img">
+                            <div class="product-img no-border">
                                 <figure><img src="<?php echo base_url() . 'uploads/applications/' . $image; ?>"
                                              alt="<?php echo $title; ?>"></figure>
                             </div>
@@ -120,7 +120,7 @@ foreach ($applicationdetail as $application) {
                                                 }
                                             } ?>
 
-                                            <li>
+                                            <li class="no-border">
                                                 <?php
                                                 if (!empty($productimage)) {
                                                     ?>
@@ -152,7 +152,7 @@ foreach ($applicationdetail as $application) {
                         <div id="relatedstory" class="article-details">
                             <h4>Successful story</h4>
 
-                            <ul class="related">
+                            <ul class="related-story">
                                 <?php
                                 foreach ($apprelatedstory as $relatedstory) {
                                     $storyIds = unserialize($relatedstory['post_meta_value']);
@@ -245,7 +245,7 @@ foreach ($applicationdetail as $application) {
                         $homeicon = $relapp['homeicon'];
                         ?>
                         <div class="col-sm-3 col-xs-3">
-                            <div class="application-item">
+                            <div class="application-item pad-25">
                                 <?php
                                 if(!empty($homeicon)){
                                     $img = base_url().'uploads/applications/thumbnail/'.$homeicon;

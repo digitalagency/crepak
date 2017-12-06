@@ -183,7 +183,7 @@ if ($filecount > 0) {
                                     $relprodimage = $relprod['featured_img'];
                                 }
                             }?>
-                            <div class="col-sm-3 col-xs-3">
+                            <div class="col-sm-2 col-xs-6">
                                 <div class="application-item">
                                     <?php
                                     if(!empty($relprodimage)){
@@ -195,8 +195,8 @@ if ($filecount > 0) {
                                    ?>
                                         <figure>
                                             <a href="<?php echo base_url().'product/'.$relprodslug; ?>">
-                                            <img src="<?php echo $img; ?>" alt="<?php echo $relprodtitle;?>">
-                                                </a>
+                                                <img src="<?php echo $img; ?>" alt="<?php echo $relprodtitle;?>">
+                                            </a>
                                         </figure>
 
 
