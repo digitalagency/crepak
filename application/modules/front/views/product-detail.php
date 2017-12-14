@@ -45,11 +45,20 @@ if ($filecount > 0) {
 }
 
 if(isset($_POST['filesubmit'])){
-    print_r($_POST);
+    $filename = $this->input->post('filename');
+    $email = $this->input->post('emailid');
+    $subscriber = array(
+      'emailid' => $email,
+
+    );
+    if($this->mymodel->add('subscriber',$subscriber))
+    {
+        redirect(base_url().'download/'.$filename);
+    }
 }
 ?>
 <style>
-    .modal-body{    background: #fef8f2;}
+    #downloadpdf .modal-body{ background: #fef8f2;}
 </style>
 <section class="body-bg">
     <div class="container">
@@ -136,22 +145,22 @@ if(isset($_POST['filesubmit'])){
                     if ($language == 'cn') {
                         if ($cnfilecount > 0) {
                             ?>
-                            <div id="review" class="article-details">
-                                <a href="<?php echo base_url() . 'download/' . $cnfile; ?>" class="btn btn-default">
-                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                            <!--<div id="review" class="article-details">
+                                <a href="<?php /*echo base_url() . 'download/' . $cnfile; */?>" class="btn btn-default">
+                                    <?php /*echo $download = $this->lang->line('download_file'); */?>
                                 </a>
-                            </div>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
+                            </div>-->
+                            <button id="review" type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
                         <?php }
                     } else {
                         if ($filecount > 0) {
                             ?>
-                            <div id="review" class="article-details">
-                                <a href="<?php echo base_url() . 'download/' . $file; ?>" class="btn btn-default">
-                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                            <!--<div id="review" class="article-details">
+                                <a href="<?php /*echo base_url() . 'download/' . $file; */?>" class="btn btn-default">
+                                    <?php /*echo $download = $this->lang->line('download_file'); */?>
                                 </a>
-                            </div>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
+                            </div>-->
+                            <button id="review" type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
                         <?php }
                     }
                     ?>
@@ -252,18 +261,18 @@ if(isset($_POST['filesubmit'])){
                     else{
                        $val = $file;
                     }
-                    echo '<input type="hidden" name="file" value="'.$val.'">';
+                    echo '<input type="hidden" name="filename" value="'.$val.'">';
                     ?>
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Email :</label>
-                        <input type="email" name="emailid" class="form-control" id="recipient-name" placeholder="Email Address.." required>
+                        <input type="email" name="emailid" class="form-control" id="recipient-name" placeholder="Email Address.." required >
                     </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="filesubmit" class="btn btn-primary"><?php echo $this->lang->line('download_file')?></button>
+                <button type="submit" name="filesubmit" class="btn btn-primary" onclick="closemodal();"><?php echo $this->lang->line('download_file')?></button>
             </div>
             </form>
         </div>

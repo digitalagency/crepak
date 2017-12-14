@@ -67,7 +67,9 @@
 <!-- Scrolling Nav JavaScript -->
 <script src="<?php echo base_url(); ?>scriptscss/theme/js/scrolling-nav.js"></script>
 <script>
-
+        function closemodal(){
+            $('#downloadpdf').modal('hide');
+        }
     function switchlang(lang)
     {
         var language = lang
