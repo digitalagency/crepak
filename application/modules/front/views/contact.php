@@ -5,6 +5,43 @@
                 <div class="page-title text-center">
                     <h2><?php echo $this->lang->line('contact_us'); ?></h2>
                 </div>
+                <?php
+                if (isset($contactpage)) {
+                    foreach ($contactpage as $cp) {
+                        if ($language == 'cn') {
+                            if (!empty($cp['title_cn'])) {
+                                $title = $cp['title_cn'];
+                            } else {
+                                $title = $cp['title'];
+                            }
+
+                            $content = $cp['content_cn'];
+                            if (!empty($cp['featured_img_cn'])) {
+                                $featuredImage = $cp['featured_img_cn'];
+                            } else {
+                                $featuredImage = $cp['featured_img'];
+                            }
+
+                        } else {
+                            $title = $cp['title'];
+                            $content = $cp['content'];
+                            $featuredImage = $cp['featured_img'];
+                        } ?>
+                        <div class="pagedetail">
+                            <?php if (!empty($featuredImage)) { ?>
+                                <div class="pageimage">
+                                    <img src="<?php echo base_url() . 'uploads/pages/' . $featuredImage ?>" alt="">
+                                </div>
+                            <?php } ?>
+                            <?php if (!empty($content)) { ?>
+                                <div class="pagecontent">
+                                    <?php echo $content; ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php }
+                }
+                ?>
                 <div class="contact-map">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.760681304124!2d114.14958771441334!3d22.287053585330437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404007db6b3eeaf%3A0x9548eb9985675274!2sSan+Toi+Building%2C+137-139+Connaught+Rd+Central%2C+Sheung+Wan%2C+Hong+Kong!5e0!3m2!1sen!2snp!4v1496917752276"

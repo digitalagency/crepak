@@ -128,22 +128,36 @@ if ($filecount > 0) {
                     <?php }
                     if ($language == 'cn') {
                         if ($cnfilecount > 0) {
-                            ?>
+                    ?>
                             <div id="review" class="article-details">
                                 <a href="<?php echo base_url() . 'download/' . $cnfile; ?>" class="btn btn-default">
                                     <?php echo $download = $this->lang->line('download_file'); ?>
                                 </a>
                             </div>
-                        <?php }
-                    } else {
-                        if ($filecount > 0) {
-                            ?>
+                    <?php 
+                        } 
+                        else {
+                           if ($filecount > 0) {
+                    ?>
                             <div id="review" class="article-details">
                                 <a href="<?php echo base_url() . 'download/' . $file; ?>" class="btn btn-default">
                                     <?php echo $download = $this->lang->line('download_file'); ?>
                                 </a>
                             </div>
-                        <?php }
+                    <?php 
+                            }
+                            else {
+                                if ($filecount > 0) {
+                    ?>
+                            <div id="review" class="article-details">
+                                <a href="<?php echo base_url() . 'download/' . $file; ?>" class="btn btn-default">
+                                    <?php echo $download = $this->lang->line('download_file'); ?>
+                                </a>
+                            </div>
+                    <?php 
+                                }
+                            }
+                        }
                     }
                     ?>
 
@@ -183,7 +197,7 @@ if ($filecount > 0) {
                                     $relprodimage = $relprod['featured_img'];
                                 }
                             }?>
-                            <div class="col-sm-3 col-xs-3">
+                            <div class="col-sm-2 col-xs-6">
                                 <div class="application-item">
                                     <?php
                                     if(!empty($relprodimage)){
@@ -195,8 +209,8 @@ if ($filecount > 0) {
                                    ?>
                                         <figure>
                                             <a href="<?php echo base_url().'product/'.$relprodslug; ?>">
-                                            <img src="<?php echo $img; ?>" alt="<?php echo $relprodtitle;?>">
-                                                </a>
+                                                <img src="<?php echo $img; ?>" alt="<?php echo $relprodtitle;?>">
+                                            </a>
                                         </figure>
 
 

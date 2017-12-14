@@ -33,6 +33,11 @@
                             </h2>
                         </div>
                         <div class="page_content">
+                            <?php if (!empty($featuredImage)) { ?>
+                                <div class="pageimage">
+                                    <img src="<?php echo base_url() . 'uploads/pages/' . $featuredImage ?>" alt="">
+                                </div>
+                            <?php } ?>
                             <?php echo $content; ?>
                         </div>
                     <?php }
