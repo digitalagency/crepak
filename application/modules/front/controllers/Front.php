@@ -65,8 +65,8 @@ class Front extends CI_Controller
             $html .= '<p>'.$message.'</p>';
             $html .= '</div></body></html>';
 
-            echo $fn = $this->config->item('admin_email','ion_auth');
-            echo $fncc = $this->config->item('admin_cc_email','ion_auth');exit;
+            $fn = $this->config->item('admin_email','ion_auth');
+            $fncc = $this->config->item('admin_cc_email','ion_auth');
             //$fncc = 'binaya619@gmail.com';
 
 
