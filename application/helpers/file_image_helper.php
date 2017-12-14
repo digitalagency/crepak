@@ -19,7 +19,7 @@ function upload_image($image,$target,$thumb= array('dest' => '','size' => array(
 		}
 		$data = $CI->upload->data();
 		// $image = $folder_file.'_'.$data['file_name'];
-		$image = rand(0,100000).$data['file_name'];
+		$image = rand(0,100000).preg_replace("/[^a-zA-Z0-9.]/", "_", $data['file_name']);
 
 		$data['fullname']=$image;
 		$image_path = $data['full_path'];
@@ -113,7 +113,7 @@ function file_upload($files,$target){
 
 	$CI = &get_instance();
 	//initialize_upload($target);
-	 $new_name = rand(0,100000).$_FILES[$files]['name'];
+	 $new_name = rand(0,100000).preg_replace("/[^a-zA-Z0-9.]/", "_", $_FILES[$files]['name']);
 
 	$config['upload_path'] = $target;
 	$config['overwrite'] = TRUE;
