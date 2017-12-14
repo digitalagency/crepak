@@ -88,7 +88,10 @@ class Front extends CI_Controller
             echo 'here';
             $data['contactpage'] = $this->mymodel->get('tbl_post','*', 'slug = "contact"');
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 527bb8c96239081e353d3a517951820f5a9fd91f
         $this->_render_page('contact', $data);
         $this->load->view('includes/footer');
     }

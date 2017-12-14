@@ -60,3 +60,9 @@ vertical-align: middle}
 .article-details .product-img{border: none}
 .related-products .application-item figure img{/*height: 76px; width: 80px;*/ object-fit: cover}
 .product-info .prodtitle{font-size: 28px;margin: 0px; text-align: left}
+
+/*contact page content*/
+.pagedetail{margin-bottom: 40px}
+.pagedetail .pageimage{margin-bottom: 10px}
+.pagedetail .pagecontent{text-align: justify}
+/*contact page content*/
