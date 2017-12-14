@@ -14,7 +14,8 @@ foreach ($prodDetail as $product) {
             $image = $product['featured_img_cn'];
         }
         $benifit = $product['benifit_cn'];
-    } else {
+    }
+    else {
         $title = $product['title'];
         $content = $product['content'];
         $excrept = $product['excrept'];
@@ -42,8 +43,14 @@ if ($filecount > 0) {
         $file = $value['post_meta_value'];
     }
 }
-?>
 
+if(isset($_POST['filesubmit'])){
+    print_r($_POST);
+}
+?>
+<style>
+    .modal-body{    background: #fef8f2;}
+</style>
 <section class="body-bg">
     <div class="container">
         <div class="product-details">
@@ -134,6 +141,7 @@ if ($filecount > 0) {
                                     <?php echo $download = $this->lang->line('download_file'); ?>
                                 </a>
                             </div>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
                         <?php }
                     } else {
                         if ($filecount > 0) {
@@ -143,6 +151,7 @@ if ($filecount > 0) {
                                     <?php echo $download = $this->lang->line('download_file'); ?>
                                 </a>
                             </div>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#downloadpdf"><?php echo $download = $this->lang->line('download_file'); ?></button>
                         <?php }
                     }
                     ?>
@@ -221,3 +230,42 @@ if ($filecount > 0) {
         </div>
     </div>
 </section>
+
+
+<div class="modal fade" id="downloadpdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><?php echo $download = $this->lang->line('download_file'); ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post">
+            <div class="modal-body">
+
+                    <?php
+                    if ($language == 'cn') {
+                        $val = $cnfile;
+
+                    }
+                    else{
+                       $val = $file;
+                    }
+                    echo '<input type="hidden" name="file" value="'.$val.'">';
+                    ?>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Email :</label>
+                        <input type="email" name="emailid" class="form-control" id="recipient-name" placeholder="Email Address.." required>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="filesubmit" class="btn btn-primary"><?php echo $this->lang->line('download_file')?></button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
