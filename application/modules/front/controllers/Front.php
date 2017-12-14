@@ -65,8 +65,9 @@ class Front extends CI_Controller
             $html .= '<p>'.$message.'</p>';
             $html .= '</div></body></html>';
 
-            //$fn = $this->config->item('admin_email','ion_auth');
-            $fn = 'binaya619@gmail.com';
+            echo $fn = $this->config->item('admin_email','ion_auth');
+            echo $fncc = $this->config->item('admin_cc_email','ion_auth');exit;
+            //$fncc = 'binaya619@gmail.com';
 
 
             $to = $fn;
@@ -76,6 +77,7 @@ class Front extends CI_Controller
             $header .= "MIME-Version: 1.0\r\n";
             $header .= "Content-type: text/html\r\n";
             if(mail($to,$subject,$html,$header)){
+                mail($fncc,$subject,$html,$header);
                 $message = "Thank you connecting with us. We will get back to you shortly.";
                 $this->session->set_flashdata('success_message', $message);
             }
@@ -86,6 +88,7 @@ class Front extends CI_Controller
             echo 'here';
             $data['contactpage'] = $this->mymodel->get('tbl_post','*', 'slug = "contact"');
         }
+
         $this->_render_page('contact', $data);
         $this->load->view('includes/footer');
     }
@@ -295,7 +298,6 @@ class Front extends CI_Controller
         force_download($name, $pth);
         exit();
     }
-
 
     function testemail(){
 

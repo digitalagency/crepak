@@ -935,4 +935,6 @@ textare.form-control {
 .pad-25{ padding:25px; }
 .no-border {border: none!important;}
 .app-img{width: 250px!important; height: 200px!important;}
+.pageimage img { max-height: 260px; width: 100%; margin-bottom: 20px; }
+.news-item p { line-height: 18px; min-height: 36px; }
 

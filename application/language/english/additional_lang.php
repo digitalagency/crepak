@@ -14,7 +14,7 @@ $lang['shop_now']   = 'Shop Now';
 $lang['application_text'] = 'The solution is utilized used by public and private organizations to solve complex asset management challenges, including the areas of:';
 
 //Listing and  Detail page
-$lang['download_file'] = 'Download Pdf';
+$lang['download_file'] = 'Download Product Data Sheet';
 $lang['description'] = 'Description';
 $lang['additional_information'] = 'Additional Information';
 $lang['review'] = 'Review';

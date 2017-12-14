@@ -58,15 +58,18 @@
                                     }?>
                                     <div class="col-md-4 col-sm-6 no-padding">
                                         <div class="news-item clearfix">
-                                            <figure><img src="<?php echo base_url().'uploads/news/thumbnail/'.$image; ?>"
-                                                         alt="<?php echo $title?>"></figure>
+                                            <figure>
+                                                <a href="<?php echo base_url().'news/'.$slug; ?>">
+                                                   <img src="<?php echo base_url().'uploads/news/thumbnail/'.$image; ?>" alt="<?php echo $title?>">
+                                                </a>
+                                            </figure>
                                             <figcaption>
                                                 <span class="clock"><i class="fa fa-clock-o"></i><?php echo $date;?></span>
 
-                                                <h3><?php echo $title;?></h3>
-                                                <a class="more"
-                                                   href="<?php echo base_url().'news/'.$slug; ?>"><?php echo $this->lang->line('learn_more') ?>
-                                                    <i class="fa fa-angle-right"></i></a>
+                                                <p><?php echo $title;?></p>
+                                                <a class="more" href="<?php echo base_url().'news/'.$slug; ?>">
+                                                    <?php echo $this->lang->line('learn_more') ?> <i class="fa fa-angle-right"></i>
+                                                </a>
                                             </figcaption>
                                         </div>
                                     </div>
