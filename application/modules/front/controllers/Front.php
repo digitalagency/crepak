@@ -65,8 +65,8 @@ class Front extends CI_Controller
             $html .= '<p>'.$message.'</p>';
             $html .= '</div></body></html>';
 
-            echo $fn = $this->config->item('admin_email','ion_auth');
-            echo $fncc = $this->config->item('admin_cc_email','ion_auth');exit;
+            $fn = $this->config->item('admin_email','ion_auth');
+            $fncc = $this->config->item('admin_cc_email','ion_auth');
             //$fncc = 'binaya619@gmail.com';
 
 
@@ -88,10 +88,7 @@ class Front extends CI_Controller
             echo 'here';
             $data['contactpage'] = $this->mymodel->get('tbl_post','*', 'slug = "contact"');
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 527bb8c96239081e353d3a517951820f5a9fd91f
         $this->_render_page('contact', $data);
         $this->load->view('includes/footer');
     }
